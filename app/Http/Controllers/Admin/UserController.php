@@ -3,44 +3,44 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateUserRequest;
+use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
-use Yajra\DataTables\DataTables;
+use App\Traits\HasDataTables;
 
 class USerController extends Controller
 {
-
+    use HasDataTables;
     public function index(Request $request)
     {
 
-        if ($request->ajax()) {
-            $users = User::with('roles.permissions')->get();
+        if (request()->ajax()) {
+            $query = User::with('roles.permissions')->get();
+            return $this->dataTable(
+                $query,
+                'users',
+                function ($dataTable) {
+                    $dataTable
+                        ->addColumn('roles', function ($user) {
+                            return $user->roles->map(function ($role) {
+                                return '<span class="badge bg-success">' . e($role->name) . '</span>';
+                            })->implode(' ');
+                        })
+                        ->addColumn('role_permissions', function ($user) {
+                            $permissions = $user->roles->flatMap(function ($role) {
+                                return $role->permissions;
+                            })->unique('id');
 
-            return DataTables::of($users)
-                ->addColumn('roles', function ($user) {
-                    return $user->roles->map(function ($role) {
-                        return '<span class="badge bg-success">' . e($role->name) . '</span>';
-                    })->implode(' ');
-                })
-                ->addColumn('role_permissions', function ($user) {
-                    $permissions = $user->roles->flatMap(function ($role) {
-                        return $role->permissions;
-                    })->unique('id');
-
-                    return $permissions->map(function ($permission) {
-                        return '<span class="badge bg-primary">' . e($permission->name) . '</span>';
-                    })->implode(' ');
-                })
-                ->addColumn('action', function ($user) {
-                    return view('admin.inc.table-actions', [
-                        'item' => $user,
-                        'route' => 'users',
-                    ])->render();
-                })
-                ->escapeColumns([])
-                ->make(true);
+                            return $permissions->map(function ($permission) {
+                                return '<span class="badge bg-primary">' . e($permission->name) . '</span>';
+                            })->implode(' ');
+                        })
+                        ->rawColumns(['roles', 'role_permissions']);
+                }
+            );
         }
 
 
@@ -53,15 +53,8 @@ class USerController extends Controller
         return view('admin.users.edit', compact('roles'));
     }
 
-    public function store(Request $request)
+    public function store(CreateUserRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email',
-            'password' => 'required|min:6',
-            'roles' => 'required'
-        ]);
-
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
@@ -87,17 +80,8 @@ class USerController extends Controller
         return view('admin.users.edit', compact('roles', 'user'));
     }
 
-    public function update(Request $request, User $user)
+    public function update(UpdateUserRequest $request, User $user)
     {
-
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|unique:users,email,' . $user->id,
-            'password' => 'nullable|min:6',
-            'roles' => 'required'
-        ]);
-
-
         $data = $request->only(['name', 'email']);
         if ($request->filled('password')) {
             $data['password'] = Hash::make($request->password);

@@ -5,24 +5,16 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
-use Yajra\DataTables\DataTables;
+use App\Traits\HasDataTables;
 
 class PermissionController extends Controller
 {
-
-    public function index(Request $request)
+    use HasDataTables;
+    public function index()
     {
-        if ($request->ajax()) {
-            $permissions = Permission::all();
-            return DataTables::of($permissions)
-                ->addColumn('action', function ($permission) {
-                    return view('admin.inc.table-actions', [
-                        'item'  => $permission,
-                        'route' => 'permissions'
-                    ])->render();
-                })
-                ->escapeColumns([])
-                ->make(true);
+        if (request()->ajax()) {
+            $query = Permission::query();
+            return $this->dataTable($query, 'permissions');
         }
 
         return view('admin.permissions.index');

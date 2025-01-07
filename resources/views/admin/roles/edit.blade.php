@@ -6,14 +6,10 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
+
             @php
-                if (isset($role)) {
-                    $method = 'put';
-                    $action = route('admin.roles.update', $role);
-                } else {
-                    $method = 'post';
-                    $action = route('admin.roles.store');
-                }
+                $action = isset($role) ? route('admin.roles.update', $role) : route('admin.roles.store');
+                $method = isset($role) ? 'PUT' : 'POST';
             @endphp
 
             <div class="d-flex align-items-center justify-content-between mb-4">

@@ -3,27 +3,22 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Http\Request;
+use App\Http\Requests\StorePageRequest;
+use App\Http\Requests\UpdatePageRequest;
 use Illuminate\Support\Str;
 use App\Models\Page;
-use Yajra\DataTables\DataTables;
+use App\Traits\HasDataTables;
+use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
+    use HasDataTables;
 
-    public function index(Request $request)
+    public function index()
     {
-        if ($request->ajax()) {
-            $pages = Page::all();
-            return DataTables::of($pages)
-                ->addColumn('action', function ($page) {
-                    return view('admin.inc.table-actions', [
-                        'item'  => $page,
-                        'route' => 'pages'
-                    ])->render();
-                })
-                ->escapeColumns([])
-                ->make(true);
+        if (request()->ajax()) {
+            $query = Page::query();
+            return $this->dataTable($query, 'pages');
         }
 
         return view('admin.pages.index');
@@ -34,15 +29,8 @@ class PageController extends Controller
         return view('admin.pages.edit');
     }
 
-    public function store(Request $request)
+    public function store(StorePageRequest $request)
     {
-        $request->validate([
-            'title' => 'required',
-            'slug' => 'required',
-            'meta_title' => 'required',
-            'meta_description' => 'required',
-            'meta_keywords' => 'required',
-        ]);
 
         try {
             $data = $request->all();
@@ -54,7 +42,7 @@ class PageController extends Controller
 
             $response['success'] = true;
             $response['message'] = 'Page successfully created.';
-            $response['redirect'] = route('pages.index');
+            $response['redirect'] = route('admin.pages.index');
 
             return response()->json($response);
         } catch (\Exception $exception) {
@@ -79,16 +67,8 @@ class PageController extends Controller
         return view('admin.pages.edit', compact('page'));
     }
 
-    public function update(Request $request, Page $page)
+    public function update(UpdatePageRequest $request, Page $page)
     {
-        $request->validate([
-            'title' => 'required',
-            'slug' => 'required',
-            'meta_title' => 'required',
-            'meta_description' => 'required',
-            'meta_keywords' => 'required',
-        ]);
-
         try {
             $data = $request->all();
 
@@ -100,7 +80,7 @@ class PageController extends Controller
 
             $response['success'] = true;
             $response['message'] = 'Page successfully updated.';
-            $response['redirect'] = route('pages.index');
+            $response['redirect'] = route('admin.pages.index');
 
             if ($request->ajax()) {
                 return response()->json($response);
@@ -118,8 +98,24 @@ class PageController extends Controller
         }
     }
 
-    public function destroy(string $id)
+    public function destroy(Request $request, Page $page)
     {
-        //
+
+        try {
+            $page->delete();
+
+            $response['success'] = true;
+            $response['message'] = 'Page successfully deleted.';
+
+            return response()->json($response);
+        } catch (\Exception $exception) {
+            return response()->json([
+                'success' => false,
+                'request' => $request->type,
+                'message' => $exception->getMessage(),
+                'line'    => $exception->getLine(),
+                'file'    => $exception->getFile()
+            ]);
+        }
     }
 }
