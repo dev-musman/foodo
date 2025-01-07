@@ -453,7 +453,7 @@
 <input type="hidden" value="{{json_encode($menuArr)}}" id="menues">
 
 @endsection
-@push('script')
+@push('scripts')
     <script>
         const menuFrom =    `<div class="col-md-10 menuFrom">                                
                                 <div class="text-center">
