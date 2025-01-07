@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', isset($permission) ? 'Edit Permission' : 'Create Permission')
+@section('title', isset($menuType) ? 'Edit Menu Type' : 'Create Menu Type')
 
 @section('content')
 
@@ -8,16 +8,13 @@
         <div class="container-fluid">
 
             @php
-                $action = isset($permission)
-                    ? route('admin.permissions.update', $permission)
-                    : route('admin.permissions.store');
-                $method = isset($permission) ? 'PUT' : 'POST';
+                $action = isset($menuType) ? route('admin.menu-types.update', $menuType) : route('admin.menu-types.store');
+                $method = isset($menuType) ? 'PUT' : 'POST';
             @endphp
 
-
             <div class="d-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3">{{ isset($permission) ? 'Edit' : 'Create' }} Permission</h1>
-                <a href="{{ route('admin.permissions.index') }}" class="btn btn-primary">Back</a>
+                <h1 class="h3">{{ isset($menuType) ? 'Edit' : 'Create' }} Menu Type</h1>
+                <a href="{{ route('admin.menu-types.index') }}" class="btn btn-primary">Back</a>
             </div>
 
             <form class="standart-form" action="{{ $action }}" method="{{ $method }}">
@@ -25,16 +22,14 @@
                 <div class="card card-solid">
                     <div class="card-body">
                         <div class="row">
-                            <div class="col-sm-6 mb-2">
+                            <div class="col-sm-6 mb-4">
                                 <div class="form-group">
-                                    <label>Name</label>
-                                    <input type="text" class="form-control" name="name"
-                                        value="{{ $permission->name ?? '' }}" placeholder="Permission name...">
-                                    <span data-field="name" class="invalid-feedback"></span>
+                                    <label>Type</label>
+                                    <input type="text" class="form-control" name="type"
+                                        value="{{ $menuType->type ?? '' }}" placeholder="Type...">
+                                    <span data-field="type" class="invalid-feedback"></span>
                                 </div>
                             </div>
-
-
                         </div>
                     </div>
                     <!-- /.card-body -->
@@ -48,4 +43,7 @@
         </div><!-- /.container-fluid -->
     </section>
     <!-- /.content -->
+@endsection
+@section('js')
+    <script src="{{ asset('admin/js/menu.js') }}"></script>
 @endsection

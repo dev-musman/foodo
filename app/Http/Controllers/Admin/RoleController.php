@@ -6,30 +6,28 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
-use Yajra\DataTables\DataTables;
+use App\Traits\HasDataTables;
 
 class RoleController extends Controller
 {
+    use HasDataTables;
 
-    public function index(Request $request)
+    public function index()
     {
 
-        if ($request->ajax()) {
-            $roles = Role::with('permissions')->get();
-            return DataTables::of($roles)
-                ->addColumn('permissions', function ($role) {
-                    return $role->permissions->map(function ($permission) {
-                        return '<span class="badge bg-success">' . e($permission->name) . '</span>';
-                    })->implode(' ');
-                })
-                ->addColumn('action', function ($role) {
-                    return view('admin.inc.table-actions', [
-                        'item' => $role,
-                        'route' => 'roles'
-                    ])->render();
-                })
-                ->rawColumns(['permissions', 'action'])
-                ->make(true);
+        if (request()->ajax()) {
+            $query = Role::with('permissions')->get();
+            return $this->dataTable(
+                $query,
+                'roles',
+                function ($dataTable) {
+                    $dataTable->addColumn('permissions', function ($role) {
+                        return $role->permissions->map(function ($permission) {
+                            return '<span class="badge bg-success">' . e($permission->name) . '</span>';
+                        })->implode(' ');
+                    })->rawColumns(['permissions']);
+                }
+            );
         }
 
         return view('admin.roles.index');
@@ -46,8 +44,6 @@ class RoleController extends Controller
         $request->validate([
             'name' => 'required|unique:roles,name',
             'permissions' => 'required'
-            // 'permissions' => 'array',
-            // 'permissions.*' => 'exists:permissions,id',
         ]);
 
         $role = Role::create($request->only('name'));
@@ -76,8 +72,7 @@ class RoleController extends Controller
     {
         $request->validate([
             'name' => 'required|unique:roles,name,' . $role->id,
-            'permissions' => 'array',
-            'permissions.*' => 'exists:permissions,id',
+            'permissions' => 'required'
         ]);
 
         $role->update($request->only('name'));

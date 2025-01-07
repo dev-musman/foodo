@@ -13364,6 +13364,11 @@ span.flatpickr-weekday {
     top: 0;
     width: 260px;
 }
+
+textarea{
+    height: unset !important;
+}
+
 .form-control {
     display: block;
     width: 100%;

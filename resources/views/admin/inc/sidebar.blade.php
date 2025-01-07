@@ -21,13 +21,20 @@
                 </a>
             </li>
 
-            {{-- <li class="sidebar-item {{ Route::is('roles.*') ? 'active' : '' }}">
-                <a class="sidebar-link" href="{{ route('admin.roles.index') }}">
-                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Roles</span>
+            <li class="sidebar-item {{ Route::is('menu-types.*') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('admin.menu-types.index') }}">
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Menu Types</span>
                 </a>
             </li>
 
-            <li class="sidebar-item {{ Route::is('permissions.*') ? 'active' : '' }}">
+
+            <li class="sidebar-item {{ Route::is('menus.*') ? 'active' : '' }}">
+                <a class="sidebar-link" href="{{ route('admin.menus.index') }}">
+                    <i class="align-middle" data-feather="user"></i> <span class="align-middle">Menus</span>
+                </a>
+            </li>
+
+            {{-- <li class="sidebar-item {{ Route::is('permissions.*') ? 'active' : '' }}">
                 <a class="sidebar-link" href="{{ route('admin.permissions.index') }}">
                     <i class="align-middle" data-feather="user"></i> <span class="align-middle">permissions</span>
                 </a>

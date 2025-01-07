@@ -6,14 +6,10 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
+
             @php
-                if (isset($user)) {
-                    $method = 'put';
-                    $action = route('admin.users.update', $user);
-                } else {
-                    $method = 'post';
-                    $action = route('admin.users.store');
-                }
+                $action = isset($user) ? route('admin.users.update', $user) : route('admin.users.store');
+                $method = isset($user) ? 'PUT' : 'POST';
             @endphp
 
             <div class="d-flex align-items-center justify-content-between mb-4">
@@ -54,7 +50,8 @@
                                 <div class="form-group">
                                     <label for="role">Role</label>
 
-                                    <select class="form-control select2" name="roles[]" multiple="multiple" data-placeholder="Select a role">
+                                    <select class="form-control select2" name="roles[]" multiple="multiple"
+                                        data-placeholder="Select a role">
                                         <option value="" disabled>Select a role</option>
                                         @foreach ($roles as $role)
                                             <option value="{{ $role->name }}"

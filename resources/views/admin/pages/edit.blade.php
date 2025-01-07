@@ -6,14 +6,10 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
+
             @php
-                if (isset($page)) {
-                    $method = 'put';
-                    $action = route('admin.pages.update', $page);
-                } else {
-                    $method = 'post';
-                    $action = route('admin.pages.store');
-                }
+                $action = isset($page) ? route('admin.pages.update', $page) : route('admin.pages.store');
+                $method = isset($page) ? 'PUT' : 'POST';
             @endphp
 
             <div class="d-flex align-items-center justify-content-between mb-4">
@@ -69,7 +65,7 @@
                             <div class="col-sm-6 mb-4">
                                 <div class="form-group">
                                     <label>Status</label>
-                                    <select class="form-control select2" style="width: 100%;" name="status">
+                                    <select class="form-control" style="width: 100%;" name="status">
                                         @foreach (\App\Models\Page::$statuses as $k => $v)
                                             <option value="{{ $k }}"
                                                 {{ isset($page->status) && $k == $page->status ? 'selected' : '' }}>
