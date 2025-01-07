@@ -155,393 +155,79 @@
             <div class="col-md-9 p-0 mt-5" style="min-height: 44em;">
                 <div class="shadow bg-white">
                     <ul class="nav nav-tabs menu-tab " id="myTab" role="tablist">
+                        @php
+                            $menuTypes = \App\Models\MenuType::all();
+                        @endphp
+                        @foreach ($menuTypes as $key => $menuType)
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link py-4 " id="first-tab" data-bs-toggle="tab" data-bs-target="#first"
-                                type="button" role="tab" aria-controls="first" aria-selected="true">5 Days Menu</button>
+                            <button class="nav-link py-4 {{$key == 0 ? 'active' : ''}}" id="Menu{{$menuType->id}}-tab" data-bs-toggle="tab" data-bs-target="#Menu{{$menuType->id}}"
+                                type="button" role="tab" aria-controls="Menu{{$menuType->id}}" aria-selected="true">
+                                {{$menuType->type}}
+                            </button>
                         </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link py-4" id="second-tab" data-bs-toggle="tab" data-bs-target="#second"
-                                type="button" role="tab" aria-controls="second" aria-selected="false">7 Days Menu</button>
-                        </li>
-                        <li class="nav-item" role="presentation">
-                            <button class="nav-link py-4 active" id="custom-tab" data-bs-toggle="tab"
-                                data-bs-target="#custom" type="button" role="tab" aria-controls="custom"
-                                aria-selected="false">Custom Menu</button>
-                        </li>
+                        @endforeach
                     </ul>
                     <div class="tab-content py-5" id="myTabContent">
-                        <div class="tab-pane fade" id="first" role="tabpanel" aria-labelledby="first-tab">
-                            <div class="row justify-content-center">
-                                <div class="col-md-10">
-                                    <!-- Set up your HTML -->
-                                    <div class="owlFirst owl-carousel">
-                                        @for ($i = 1 ; $i < 5 ; $i++)                                        
+                        @foreach ($menuTypes as $key => $menuType)
+                        <div class="tab-pane fade {{$key == 0 ? 'show active' : ''}}" id="Menu{{$menuType->id}}" role="tabpanel" aria-labelledby="Menu{{$menuType->id}}-tab">
+                            <div class="row justify-content-center menuRow{{$menuType->id}}">
+                                @php
+                                    $menuArr['type_id'][$menuType->id]['weeks'] = $menuType->menus->groupBy('week');
+                                @endphp
+                                @if ($menuType->id != 3)
+                                <div class="col-md-10 menuTab{{$menuType->id}} menuTab">                                
+                                    <div class="owl{{$key}} owl-carousel">
+                                        @foreach ($menuType->menus->groupBy('week')  as $weekNum => $week)   
                                         <div class="row">
                                             <div class="col-md-12">
-                                                <h5 class="text-site-danger">Week {{$i}}</h5>
+                                                <h5 class="text-site-danger">Week {{$weekNum}}</h5>
                                             </div>
+                                            @foreach ($week as $menu)                                              
                                             <div class="col-md-6 my-4">
                                                 <div class="d-flex">
                                                     <div class="col-2 px-2">
-                                                        <img src="{{ asset('assets/images/blog/blog-02.jpg') }}"
+                                                        <img src="{{ asset($menu->image) }}"
                                                             alt="" class="rounded-circle">
                                                     </div>
                                                     <div class="col-10 px-2">
                                                         <div class="menu-title mb-2">
-                                                            <p class="menu-name">Tandoori Chicken</p>
+                                                            <p class="menu-name">{{$menu->name}}</p>
                                                             <div class="menu-divider"></div>
-                                                            <p class="menu-day text-site-danger">Mon</p>
+                                                            <p class="menu-day text-site-danger">{{$menu->day}}</p>
                                                         </div>
-                                                        <div class="menu-desc">
-                                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                            Cupiditate
-                                                            
-                                                        </div>
+                                                        <div class="menu-desc">{{$menu->description}}</div>
                                                     </div>
                                                 </div>
                                             </div>
-                                            <div class="col-md-6 my-4">
-                                                <div class="d-flex">
-                                                    <div class="col-2 px-2">
-                                                        <img src="{{ asset('assets/images/blog/blog-02.jpg') }}"
-                                                            alt="" class="rounded-circle">
-                                                    </div>
-                                                    <div class="col-10 px-2">
-                                                        <div class="menu-title mb-2">
-                                                            <p class="menu-name">Tandoori Chicken</p>
-                                                            <div class="menu-divider"></div>
-                                                            <p class="menu-day text-site-danger">Mon</p>
-                                                        </div>
-                                                        <div class="menu-desc">
-                                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                            Cupiditate
-                                                            
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 my-4">
-                                                <div class="d-flex">
-                                                    <div class="col-2 px-2">
-                                                        <img src="{{ asset('assets/images/blog/blog-02.jpg') }}"
-                                                            alt="" class="rounded-circle">
-                                                    </div>
-                                                    <div class="col-10 px-2">
-                                                        <div class="menu-title mb-2">
-                                                            <p class="menu-name">Tandoori Chicken</p>
-                                                            <div class="menu-divider"></div>
-                                                            <p class="menu-day text-site-danger">Mon</p>
-                                                        </div>
-                                                        <div class="menu-desc">
-                                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                            Cupiditate
-                                                            
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 my-4">
-                                                <div class="d-flex">
-                                                    <div class="col-2 px-2">
-                                                        <img src="{{ asset('assets/images/blog/blog-02.jpg') }}"
-                                                            alt="" class="rounded-circle">
-                                                    </div>
-                                                    <div class="col-10 px-2">
-                                                        <div class="menu-title mb-2">
-                                                            <p class="menu-name">Tandoori Chicken</p>
-                                                            <div class="menu-divider"></div>
-                                                            <p class="menu-day text-site-danger">Mon</p>
-                                                        </div>
-                                                        <div class="menu-desc">
-                                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                            Cupiditate
-                                                            
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 my-4">
-                                                <div class="d-flex">
-                                                    <div class="col-2 px-2">
-                                                        <img src="{{ asset('assets/images/blog/blog-02.jpg') }}"
-                                                            alt="" class="rounded-circle">
-                                                    </div>
-                                                    <div class="col-10 px-2">
-                                                        <div class="menu-title mb-2">
-                                                            <p class="menu-name">Tandoori Chicken</p>
-                                                            <div class="menu-divider"></div>
-                                                            <p class="menu-day text-site-danger">Mon</p>
-                                                        </div>
-                                                        <div class="menu-desc">
-                                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                            Cupiditate
-                                                            
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
+                                            @endforeach
                                         </div>
-                                        @endfor
+                                        @endforeach
                                     </div>
                                     <div class="row pt-5">
                                         <div class="col-md-6 col-4 text-start">
                                             <div class="custom-owl-nav d-inline-flex">
-                                                <button type="button" role="presentation" class="custom-owl-prev me-1" data-number="1">
+                                                <button type="button" role="presentation" class="custom-owl-prev me-1" data-number="{{$key}}">
                                                     <i class="fa fa-arrow-left" aria-hidden="true"></i>
                                                 </button>
-                                                <button type="button" role="presentation" class="custom-owl-next ms-1" data-number="1">
+                                                <button type="button" role="presentation" class="custom-owl-next ms-1" data-number="{{$key}}">
                                                     <i class="fa fa-arrow-right" aria-hidden="true"></i>
                                                 </button>
                                             </div>
                                         </div>
                                         <div class="col-md-6 col-8 text-end">
                                             <button
-                                                class="btn btn-lg text-uppercase p-4 rounded-5 btn-site-primary w-auto">Select
+                                                class="btn btn-lg text-uppercase p-4 rounded-5 btn-site-primary w-auto selectMenu" data-id="{{$menuType->id}}">Select
                                                 Menu as Above</button>
                                         </div>
-
                                     </div>
                                 </div>
+                                @else
+                                
+                                @endif
                             </div>
                         </div>
-                        <div class="tab-pane fade" id="second" role="tabpanel" aria-labelledby="second-tab">
-                        <div class="row justify-content-center">
-                                <div class="col-md-10">
-                                    <!-- Set up your HTML -->
-                                    <div class="owlSecond owl-carousel">
-                                        @for ($j = 1 ; $j < 5 ; $j++)                                        
-                                        <div class="row">
-                                            <div class="col-md-12">
-                                                <h5 class="text-site-danger">Week {{$j}}</h5>
-                                            </div>
-                                            <div class="col-md-6 my-4">
-                                                <div class="d-flex">
-                                                    <div class="col-2 px-2">
-                                                        <img src="{{ asset('assets/images/blog/blog-02.jpg') }}"
-                                                            alt="" class="rounded-circle">
-                                                    </div>
-                                                    <div class="col-10 px-2">
-                                                        <div class="menu-title mb-2">
-                                                            <p class="menu-name">Tandoori Chicken</p>
-                                                            <div class="menu-divider"></div>
-                                                            <p class="menu-day text-site-danger">Mon</p>
-                                                        </div>
-                                                        <div class="menu-desc">
-                                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                            Cupiditate
-                                                            
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 my-4">
-                                                <div class="d-flex">
-                                                    <div class="col-2 px-2">
-                                                        <img src="{{ asset('assets/images/blog/blog-02.jpg') }}"
-                                                            alt="" class="rounded-circle">
-                                                    </div>
-                                                    <div class="col-10 px-2">
-                                                        <div class="menu-title mb-2">
-                                                            <p class="menu-name">Tandoori Chicken</p>
-                                                            <div class="menu-divider"></div>
-                                                            <p class="menu-day text-site-danger">Mon</p>
-                                                        </div>
-                                                        <div class="menu-desc">
-                                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                            Cupiditate
-                                                            
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 my-4">
-                                                <div class="d-flex">
-                                                    <div class="col-2 px-2">
-                                                        <img src="{{ asset('assets/images/blog/blog-02.jpg') }}"
-                                                            alt="" class="rounded-circle">
-                                                    </div>
-                                                    <div class="col-10 px-2">
-                                                        <div class="menu-title mb-2">
-                                                            <p class="menu-name">Tandoori Chicken</p>
-                                                            <div class="menu-divider"></div>
-                                                            <p class="menu-day text-site-danger">Mon</p>
-                                                        </div>
-                                                        <div class="menu-desc">
-                                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                            Cupiditate
-                                                            
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 my-4">
-                                                <div class="d-flex">
-                                                    <div class="col-2 px-2">
-                                                        <img src="{{ asset('assets/images/blog/blog-02.jpg') }}"
-                                                            alt="" class="rounded-circle">
-                                                    </div>
-                                                    <div class="col-10 px-2">
-                                                        <div class="menu-title mb-2">
-                                                            <p class="menu-name">Tandoori Chicken</p>
-                                                            <div class="menu-divider"></div>
-                                                            <p class="menu-day text-site-danger">Mon</p>
-                                                        </div>
-                                                        <div class="menu-desc">
-                                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                            Cupiditate
-                                                            
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 my-4">
-                                                <div class="d-flex">
-                                                    <div class="col-2 px-2">
-                                                        <img src="{{ asset('assets/images/blog/blog-02.jpg') }}"
-                                                            alt="" class="rounded-circle">
-                                                    </div>
-                                                    <div class="col-10 px-2">
-                                                        <div class="menu-title mb-2">
-                                                            <p class="menu-name">Tandoori Chicken</p>
-                                                            <div class="menu-divider"></div>
-                                                            <p class="menu-day text-site-danger">Mon</p>
-                                                        </div>
-                                                        <div class="menu-desc">
-                                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                            Cupiditate
-                                                            
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 my-4">
-                                                <div class="d-flex">
-                                                    <div class="col-2 px-2">
-                                                        <img src="{{ asset('assets/images/blog/blog-02.jpg') }}"
-                                                            alt="" class="rounded-circle">
-                                                    </div>
-                                                    <div class="col-10 px-2">
-                                                        <div class="menu-title mb-2">
-                                                            <p class="menu-name">Tandoori Chicken</p>
-                                                            <div class="menu-divider"></div>
-                                                            <p class="menu-day text-site-danger">Mon</p>
-                                                        </div>
-                                                        <div class="menu-desc">
-                                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                            Cupiditate
-                                                            
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="col-md-6 my-4">
-                                                <div class="d-flex">
-                                                    <div class="col-2 px-2">
-                                                        <img src="{{ asset('assets/images/blog/blog-02.jpg') }}"
-                                                            alt="" class="rounded-circle">
-                                                    </div>
-                                                    <div class="col-10 px-2">
-                                                        <div class="menu-title mb-2">
-                                                            <p class="menu-name">Tandoori Chicken</p>
-                                                            <div class="menu-divider"></div>
-                                                            <p class="menu-day text-site-danger">Mon</p>
-                                                        </div>
-                                                        <div class="menu-desc">
-                                                            Lorem ipsum dolor sit amet, consectetur adipisicing elit.
-                                                            Cupiditate
-                                                            
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        @endfor
-                                    </div>
-                                    <div class="row pt-5">
-                                        <div class="col-md-6 col-4 text-start">
-                                            <div class="custom-owl-nav d-inline-flex">
-                                                <button type="button" role="presentation" class="custom-owl-prev me-1" data-number="2">
-                                                    <i class="fa fa-arrow-left" aria-hidden="true"></i>
-                                                </button>
-                                                <button type="button" role="presentation" class="custom-owl-next ms-1" data-number="2">
-                                                    <i class="fa fa-arrow-right" aria-hidden="true"></i>
-                                                </button>
-                                            </div>
-                                        </div>
-                                        <div class="col-md-6 col-8 text-end">
-                                            <button
-                                                class="btn btn-lg text-uppercase p-4 rounded-5 btn-site-primary w-auto">Select
-                                                Menu as Above</button>
-                                        </div>
+                        @endforeach
 
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="tab-pane fade show active" id="custom" role="tabpanel" aria-labelledby="custom-tab">
-                            <div class="row justify-content-center">
-                                <div class="col-md-10">
-                                    <div class="text-center">
-                                        <h5 class="text-site-danger">Fill out the information below</h5>
-                                        <div class="row text-start">
-                                            <div class="col-md-6 mb-3">
-                                                <label for="name" class="form-label">Name</label>
-                                                <input type="text" name="name" class="site-input from-control-lg" id="name"
-                                                    placeholder="Enter Your Name">
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="phone" class="form-label">Phone</label>
-                                                <input type="number" name="phone_number" class="site-input from-control-lg"
-                                                    id="phone" placeholder="Enter Your Phone">
-                                            </div>
-                                        </div>
-                                        <div class="row text-start">
-                                            <div class="col-md-6 mb-3">
-                                                <label for="company_name" class="form-label">Company Name</label>
-                                                <input type="text" name="company_name" class="site-input from-control-lg"
-                                                    id="company_name" placeholder="Enter Your Name">
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="persons" class="form-label">Menu for how many persons</label>
-                                                <input type="number" name="persons" class="site-input from-control-lg"
-                                                    id="persons" placeholder="Enter Numbers of Persons">
-                                            </div>
-                                        </div>
-                                        <div class="row text-start">
-                                            <div class="col-md-6 mb-3">
-                                                <label for="email" class="form-label">Email</label>
-                                                <input type="email" name="email" class="site-input from-control-lg"
-                                                    id="email" placeholder="Enter Your Email">
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="address" class="form-label">Delivery Address</label>
-                                                <input type="text" name="address" class="site-input from-control-lg"
-                                                    id="address" placeholder="Enter Your Address">
-                                            </div>
-                                        </div>
-                                        <div class="row text-start">
-                                            <div class="col-md-6 mb-3">
-                                                <label for="menu_type" class="form-label">Menu Type</label>
-                                                <select name="menu_type" class="site-select" id="menu_type">
-                                                    <option value="">Select an Option</option>
-                                                    <option value="">5 Days a week</option>
-                                                </select>
-                                            </div>
-                                            <div class="col-md-6 mb-3">
-                                                <label for="address" class="form-label">Expected Start Date</label>
-                                                <input type="date" name="address" class="site-input from-control-lg"
-                                                    id="address" placeholder="Select Date">
-                                            </div>
-                                        </div>
-                                        <div class="my-5">
-                                            <button class="btn btn-site-primary btn-lg w-auto py-4 px-5 text-uppercase">Next
-                                                Step</button>
-                                        </div>
-                                    </div>
-
-                                </div>
-                            </div>
-                        </div>
                     </div>
                 </div>
             </div>
@@ -764,11 +450,119 @@
     </div>
 </div>
 <!-- blog area end -->
+<input type="hidden" value="{{json_encode($menuArr)}}" id="menues">
+
 @endsection
 @push('script')
     <script>
+        const menuFrom =    `<div class="col-md-10 menuFrom">                                
+                                <div class="text-center">
+                                    <h5 class="text-site-danger">Fill out the information below</h5>
+                                    <div class="row text-start">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="name" class="form-label">Name</label>
+                                            <input type="text" name="name" class="site-input required from-control-lg" id="name"
+                                                placeholder="Enter Your Name">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="phone" class="form-label">Phone</label>
+                                            <input type="number" name="phone" class="site-input required from-control-lg"
+                                                id="phone" placeholder="Enter Your Phone">
+                                        </div>
+                                    </div>
+                                    <div class="row text-start">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="company" class="form-label">Company Name</label>
+                                            <input type="text" name="company" class="site-input required from-control-lg"
+                                                id="company" placeholder="Enter Your Name">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="persons" class="form-label">Menu for how many persons</label>
+                                            <input type="number" name="persons" class="site-input required from-control-lg"
+                                                id="persons" placeholder="Enter Numbers of Persons">
+                                        </div>
+                                    </div>
+                                    <div class="row text-start">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="email" class="form-label">Email</label>
+                                            <input type="email" name="email" class="site-input required from-control-lg"
+                                                id="email" placeholder="Enter Your Email">
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="address" class="form-label">Delivery Address</label>
+                                            <input type="text" name="address" class="site-input required from-control-lg"
+                                                id="address" placeholder="Enter Your Address">
+                                        </div>
+                                    </div>
+                                    <div class="row text-start">
+                                        <div class="col-md-6 mb-3">
+                                            <label for="menu" class="form-label">Menu Type</label>
+                                            <select name="menu" class="site-select" id="menu">
+                                                <option value="1">5 Days a week</option>
+                                                <option value="2">7 Days a week</option>
+                                            </select>
+                                        </div>
+                                        <div class="col-md-6 mb-3">
+                                            <label for="date" class="form-label">Expected Start Date</label>
+                                            <input type="date" name="date" class="site-input required from-control-lg"
+                                                id="date" placeholder="Select Date">
+                                        </div>
+                                    </div>
+                                    <div class="my-5">
+                                        <button class="btn btn-site-primary btn-lg w-auto py-4 px-5 text-uppercase view-detail">Next
+                                            Step</button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="orderDetail d-none">
+                                <div class="col-md-11">
+                                    <div class="row weeksDetail">
+                                        
+                                    </div>
+                                </div>
+                                <hr class="my-3">
+                                <div class="col-md-11">
+                                    <div class="row pt-5">
+                                        <h5 class="text-site-danger">Order Details</h5>
+                                        <div class="col-md-10">
+                                            <ul class="list-group list-group-horizontal m-0 orderDetailList">
+                                                <li class="list-group-item order-lable">Name: </li>
+                                                <li class="list-group-item order-data data-name">Shams Aftab</li>
+                                                <li class="list-group-item order-lable">Email: </li>
+                                                <li class="list-group-item order-data data-email">Shams Aftab</li>
+                                            </ul>
+                                            <ul class="list-group list-group-horizontal m-0 orderDetailList">
+                                                <li class="list-group-item order-lable">Phone: </li>
+                                                <li class="list-group-item order-data data-phone">Shams Aftab</li>
+                                                <li class="list-group-item order-lable">Delivery Address</li>
+                                                <li class="list-group-item order-data data-address">Shams Aftab</li>
+                                            </ul>
+                                            <ul class="list-group list-group-horizontal m-0 orderDetailList">
+                                                <li class="list-group-item order-lable">Company Name: </li>
+                                                <li class="list-group-item order-data data-company">Shams Aftab</li>
+                                                <li class="list-group-item order-lable">Menu Type: </li>
+                                                <li class="list-group-item order-data data-menu">Shams Aftab</li>
+                                            </ul>
+                                            <ul class="list-group list-group-horizontal m-0 orderDetailList">
+                                                <li class="list-group-item order-lable">Number of individuals: </li>
+                                                <li class="list-group-item order-data data-persons">Shams Aftab</li>
+                                                <li class="list-group-item order-lable">Expected Start Date: </li>
+                                                <li class="list-group-item order-data data-date">Shams Aftab</li>
+                                            </ul>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-11 text-end mt-3">
+                                    <button class="btn btn-lg view-form text-uppercase p-4 px-5 rounded-5 btn-light w-auto">Back</button>
+                                    <button class="btn btn-lg text-uppercase p-4 rounded-5 btn-site-primary w-auto">Confirm</button>
+                                </div>
+                            </div>`;
+
+        const menuArray = $('#menues').val();
+        var menuObj = JSON.parse(menuArray);
+
         $(document).ready(function () {
-            var firstOwl = $(".owlFirst").owlCarousel({
+            var firstOwl = $(".owl0").owlCarousel({
                 loop: false,
                 margin: 10,
                 responsiveClass: true,
@@ -789,7 +583,7 @@
                     }
                 }
             });
-            var secondOwl = $(".owlSecond").owlCarousel({
+            var secondOwl = $(".owl1").owlCarousel({
                 loop: false,
                 margin: 10,
                 responsiveClass: true,
@@ -812,23 +606,99 @@
             });
             
             $(document).on('click', '.custom-owl-prev', function () {
-                if($(this).data('number') == 1)
-                {
-                    firstOwl.trigger('prev.owl.carousel');                
-                }else{
-                    secondOwl.trigger('prev.owl.carousel');                
-                }
+                var owl = $(this).data('number') == 0 ? firstOwl : secondOwl;
+                owl.trigger('prev.owl.carousel');                
             })
             $(document).on('click', '.custom-owl-next', function () {
-                if($(this).data('number') == 1)
-                {
-                    firstOwl.trigger('next.owl.carousel');                
-                }else{
-                    secondOwl.trigger('next.owl.carousel');                
-                }
+                var owl = $(this).data('number') == 0 ? firstOwl : secondOwl;
+                owl.trigger('next.owl.carousel');                
             })
         });
-       
+       $(document).on('click' , '.nav-link' , function(){
+            $('.menuTab').removeClass('d-none');
+            $('.menuFrom').empty();
+            $('.orderDetail').empty();
+       })
+        $(document).on('click' , '.selectMenu' , function() {
+            var menuId = $(this).data('id');
+            const menus = menuObj.type_id[menuId]['weeks'];
+            
+            $('.menuTab'+menuId).addClass('d-none');
+            $('.menuRow'+menuId).append(menuFrom)
+            $('#menu').val(menuId);
+            $('#menu').prop('disabled', true);
+            $('.data-menu').text(menuId == 1 ? '5 Days Menu' : '7 Days Menu');
+            for (var i = 0; i < 4; i++) {
+                // console.log(menus , i)
+                const weekData = menus[i+1];
+                let weekCol = `<div class="col-md-3 p-md-0 mb-4 mb-md-0">
+                            <div class="col-title">
+                                <div>
+                                    <span class="rounded-circle">
+                                        <i class="fa fa-check-circle text-danger" aria-hidden="true"></i>
+                                    </span>
+                                    <div class="week-divider week-divider${i+1}"></div>
+                                </div>
+                                <h5 class="text-site-danger">Week ${i+1}</h5>
+                            </div>`;
+                weekData.forEach((item ,index) => {
+                    weekCol += `<div class="menu-item">
+                            <span class="item-day">${item.day}</span>
+                            <span class="item-name">&#8226; ${item.name}</span>
+                        </div>`;
+                })
+                weekCol += `</div>`;
+                console.log(weekCol)
+                $('.weeksDetail').append(weekCol);
 
+            }
+
+        })
+        $(document).on('click', '.view-detail' , function(){
+            if (!validate()) return false;
+            $('.menuFrom').addClass('d-none');
+            $('.orderDetail').removeClass('d-none');
+        })
+        $(document).on('click', '.view-form' , function(){
+            $('.menuFrom').removeClass('d-none');
+            $('.orderDetail').addClass('d-none');
+        })
+        $(document).on('change' , '.site-input' , function(){
+            var attr =$(this).attr('name');
+            var val =$(this).val();
+            $('.data-'+attr).text(val);
+        })
+        function validate() {
+            var valid = true;
+            var div = "";
+            $(".alert-danger").remove();
+            $(".required:visible").each(function () {
+                if (
+                    $(this).val() == "" ||
+                    $(this).val() === null ||
+                    $(this).attr("type") == "radio" ||
+                    ($(this).attr("type") == "checkbox" &&
+                        $('[name="' + $(this).attr("name") + '"]:checked').val() ==
+                            undefined)
+                ) {
+                    $(this).attr("type") == "checkbox" ? (div = ".row") : (div = "div");
+                    var name = $(this).attr("name");
+                    // console.log(name);
+                    $(this)
+                        .closest(div)
+                        .append(
+                            '<div class="alert-danger" data-field=' +
+                                name +
+                                ">This field is required</div>"
+                        );
+                    valid = false;
+                }
+            });
+            if (!valid) {
+                var input = $(".alert-danger:first").attr("data-field");
+                $('[name="' + input + '"]').focus();
+            }
+            return valid;
+        }
     </script>
 @endpush
