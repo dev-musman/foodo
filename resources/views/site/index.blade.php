@@ -175,14 +175,14 @@
                                     $menuArr['type_id'][$menuType->id]['weeks'] = $menuType->menus->groupBy('week');
                                 @endphp
                                 @if ($menuType->id != 3)
-                                <div class="col-md-10 menuTab{{$menuType->id}} menuTab">                                
+                                <div class="col-md-10 menuTab{{$menuType->id}} menuTab">
                                     <div class="owl{{$key}} owl-carousel">
-                                        @foreach ($menuType->menus->groupBy('week')  as $weekNum => $week)   
+                                        @foreach ($menuType->menus->groupBy('week')  as $weekNum => $week)
                                         <div class="row">
                                             <div class="col-md-12">
                                                 <h5 class="text-site-danger">Week {{$weekNum}}</h5>
                                             </div>
-                                            @foreach ($week as $menu)                                              
+                                            @foreach ($week as $menu)
                                             <div class="col-md-6 my-4">
                                                 <div class="d-flex">
                                                     <div class="col-2 px-2">
@@ -222,7 +222,7 @@
                                     </div>
                                 </div>
                                 @else
-                                
+
                                 @endif
                             </div>
                         </div>
@@ -455,7 +455,7 @@
 @endsection
 @push('script')
     <script>
-        const menuFrom =    `<div class="col-md-10 menuFrom">                                
+        const menuFrom =    `<div class="col-md-10 menuFrom">
                                 <div class="text-center">
                                     <h5 class="text-site-danger">Fill out the information below</h5>
                                     <div class="row text-start">
@@ -517,7 +517,7 @@
                             <div class="orderDetail d-none">
                                 <div class="col-md-11">
                                     <div class="row weeksDetail">
-                                        
+
                                     </div>
                                 </div>
                                 <hr class="my-3">
@@ -604,14 +604,14 @@
                     }
                 }
             });
-            
+
             $(document).on('click', '.custom-owl-prev', function () {
                 var owl = $(this).data('number') == 0 ? firstOwl : secondOwl;
-                owl.trigger('prev.owl.carousel');                
+                owl.trigger('prev.owl.carousel');
             })
             $(document).on('click', '.custom-owl-next', function () {
                 var owl = $(this).data('number') == 0 ? firstOwl : secondOwl;
-                owl.trigger('next.owl.carousel');                
+                owl.trigger('next.owl.carousel');
             })
         });
        $(document).on('click' , '.nav-link' , function(){
@@ -622,7 +622,7 @@
         $(document).on('click' , '.selectMenu' , function() {
             var menuId = $(this).data('id');
             const menus = menuObj.type_id[menuId]['weeks'];
-            
+
             $('.menuTab'+menuId).addClass('d-none');
             $('.menuRow'+menuId).append(menuFrom)
             $('#menu').val(menuId);
