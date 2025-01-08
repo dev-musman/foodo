@@ -71,4 +71,9 @@ class Menu extends Model
     //         ? ['mon' => 'Mon', 'tue' => 'Tue', 'wed' => 'Wed', 'thu' => 'Thu', 'fri' => 'Fri']
     //         : ['mon' => 'Mon', 'tue' => 'Tue', 'wed' => 'Wed', 'thu' => 'Thu', 'fri' => 'Fri', 'sat' => 'Sat', 'sun' => 'Sun'];
     // }
+
+    public function mealPlans()
+    {
+        return $this->hasMany(MealPlan::class);
+    }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StoreMenuRequest;
 use App\Http\Requests\UpdateMenuRequest;
+use App\Models\MealPlan;
 use App\Models\Menu;
 use App\Models\MenuType;
 use Illuminate\Http\Request;
@@ -156,4 +157,73 @@ class MenuController extends Controller
 
         return response()->json(['availableDays' => array_values($availableDays)]);
     }
+
+
+    public function search(Request $request)
+{
+    $query = Menu::query();
+
+    if ($request->has('search') && $request->type == 'search') {
+        $query->where('name', 'like', '%' . $request->search . '%');
+    }
+
+    // if ($request->has('week') && $request->week) {
+    //     $query->where('week', $request->week);
+    // }
+
+    // if ($request->has('day') && $request->day) {
+    //     $query->where('day', $request->day);
+    // }
+
+     if ($request->has('type') && $request->type == 'menu-type') {
+        $query->where('menu_type_id', $request->search);
+    }
+
+    $menus = $query->get();
+
+    return $menus;
+}
+
+
+public function update_plan(Request $request)
+{
+    // dd($request->all());
+    $validated = $request->validate([
+        'week' => 'required|integer',
+        'day' => 'required|integer',
+        // 'meal_id' => 'required|exists:meals,id',
+        'meal_id' => 'required|exists:menus,id',
+    ]);
+    MealPlan::updateOrCreate(
+        ['user_id' => 1, 'week' => $validated['week'], 'day' => $validated['day']],
+        ['menu_id' => $validated['meal_id']]
+    );
+
+    return response()->json(['message' => 'Meal plan updated successfully.']);
+}
+
+
+public function remove(Request $request)
+{
+    $week = $request->week;
+    $day = $request->day;
+
+    MealPlan::where('week', $week)
+        ->where('day', $day)
+        ->delete();
+
+    return response()->json(['message' => 'Meal removed successfully.']);
+}
+
+public function show($week)
+{
+    $mealPlans = MealPlan::where('week', $week)
+        ->join('meals', 'meal_plans.meal_id', '=', 'meals.id') // Join meals table to get meal details
+        ->select('meal_plans.day', 'meals.name as meal_name', 'meals.image', 'meals.description')
+        ->get();
+
+    return response()->json($mealPlans);
+}
+
+
 }
