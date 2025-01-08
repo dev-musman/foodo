@@ -160,7 +160,7 @@
                         @endphp
                         @foreach ($menuTypes as $key => $menuType)
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link py-4 {{$key == 0 ? 'active' : ''}}" id="Menu{{$menuType->id}}-tab" data-bs-toggle="tab" data-bs-target="#Menu{{$menuType->id}}"
+                            <button class="nav-link py-4 {{$key == 2 ? 'active' : ''}}" id="Menu{{$menuType->id}}-tab" data-bs-toggle="tab" data-bs-target="#Menu{{$menuType->id}}"
                                 type="button" role="tab" aria-controls="Menu{{$menuType->id}}" aria-selected="true">
                                 {{$menuType->type}}
                             </button>
@@ -169,7 +169,7 @@
                     </ul>
                     <div class="tab-content py-5" id="myTabContent">
                         @foreach ($menuTypes as $key => $menuType)
-                        <div class="tab-pane fade {{$key == 0 ? 'show active' : ''}}" id="Menu{{$menuType->id}}" role="tabpanel" aria-labelledby="Menu{{$menuType->id}}-tab">
+                        <div class="tab-pane fade {{$key == 2 ? 'show active' : ''}}" id="Menu{{$menuType->id}}" role="tabpanel" aria-labelledby="Menu{{$menuType->id}}-tab">
                             <div class="row justify-content-center menuRow{{$menuType->id}}">
                                 @php
                                     $menuArr['type_id'][$menuType->id]['weeks'] = $menuType->menus->groupBy('week');
@@ -185,11 +185,11 @@
                                             @foreach ($week as $menu)                                              
                                             <div class="col-md-6 my-4">
                                                 <div class="d-flex">
-                                                    <div class="col-2 px-2">
+                                                    <div class="col-3 px-2">
                                                         <img src="{{ asset($menu->image) }}"
-                                                            alt="" class="rounded-circle">
+                                                            alt="" class="rounded-circle px-2">
                                                     </div>
-                                                    <div class="col-10 px-2">
+                                                    <div class="col-9 px-2">
                                                         <div class="menu-title mb-2">
                                                             <p class="menu-name">{{$menu->name}}</p>
                                                             <div class="menu-divider"></div>
@@ -222,7 +222,51 @@
                                     </div>
                                 </div>
                                 @else
-                                
+                                <div class="col-md-11 menuTab{{$menuType->id}} menuTab">
+                                    <div class="row">
+                                        <div class="col-md-7">
+                                            <div id="customStepFrom">
+                                                
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="col-md-5">
+                                            <div class="row mb-4">
+                                                <div class="col-12">
+                                                    <h5 class="text-site-danger mb-2">Select Your Meal</h5>
+                                                </div>
+                                                <div class="col-6">
+                                                    <input type="text" name="meal" class="site-input required from-control-lg" id="meal" placeholder="Search Meals">    
+                                                </div>
+                                                <div class="col-6">
+                                                    <select name="type" class="site-select custom-meal-selector" id="type">
+                                                        <option value="1">5 Days a week</option>
+                                                        <option value="2">7 Days a week</option>
+                                                    </select>   
+                                                </div>
+                                            </div>
+                                            <div class="row mealUl"  style="max-height: 30em; overflow-y:auto">
+                                            @foreach ($menuType->menus->unique('name') as $menu)                                              
+                                            <div class="col-12 my-3 meal-item" data-name="{{$menu->name}}" data-id="{{$menu->id}}">
+                                                <div class="d-flex">
+                                                    <div class="col-3 px-2">
+                                                        <img src="{{ asset($menu->image) }}"
+                                                            alt="" class="rounded-circle">
+                                                    </div>
+                                                    <div class="col-9 px-2">
+                                                        <div class="menu-title mb-2">
+                                                            <p class="menu-name">{{$menu->name}}</p>
+                                                            <div class="menu-divider"></div>
+                                                        </div>
+                                                        <div class="menu-desc">{{$menu->description}}</div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
                                 @endif
                             </div>
                         </div>
@@ -454,6 +498,7 @@
 
 @endsection
 @push('scripts')
+    
     <script>
         const menuFrom =    `<div class="col-md-10 menuFrom">                                
                                 <div class="text-center">
@@ -562,6 +607,7 @@
         var menuObj = JSON.parse(menuArray);
 
         $(document).ready(function () {
+            createCustomStepsForm();
             var firstOwl = $(".owl0").owlCarousel({
                 loop: false,
                 margin: 10,
@@ -699,6 +745,223 @@
                 $('[name="' + input + '"]').focus();
             }
             return valid;
+        }
+        $(document).on('change' , '.custom-meal-selector' , function(){
+            emptyMealArray = [];
+            removedDaysArray = null;
+            selectedMealArray = [];
+            currentIndex = 0;
+            currentDayIndex = 0;
+            removedDaysArray = null;
+            $('#customStepFrom').empty();
+            createCustomStepsForm()
+        })
+        function createCustomStepsForm()
+        {
+            let html = ``;
+            for (var i = 1; i < 5; i++) {
+                html += `<h5 class="text-site-danger mb-2 text-center">
+                            <div class="custom-divider startNode${i}"></div>
+                            <span class="d-grid">
+                                <i class="fa fa-circle fs-6 icon${i}"></i>
+                            </span>
+                            <div class="custom-divider endNode${i}"></div>
+                        </h5>
+                        <section class="pt-0">
+                            <h5 class="text-site-danger">
+                                Week ${i}
+                            </h5>
+                            <div class="custom-week${i}">
+                                
+                            </div>
+                        </section>`;
+            }
+            $('#customStepFrom').html(html);
+            createCustomItemBox()
+            $("#customStepFrom").show().steps({
+                headerTag: "h5",
+                bodyTag: "section",
+                transitionEffect: "slideLeft",
+                stepsOrientation: "vertical"
+            });
+            $('a[href="#next"]')
+            .addClass('disabled btn-light')    // Add the 'disabled' class
+            .attr('href', '#new'); 
+        }
+        let emptyMealArray = [];
+        let selectedMealArray = [];
+        let currentIndex = 0;
+        let currentDayIndex = 0;
+        let removedDaysArray;
+        function createCustomItemBox()
+        {
+            const weekDays = {
+                1 : ["Mon","Tue","Wed","Thu","Fri",],
+                2 : ["Mon","Tue","Wed","Thu","Fri","Sat","Sun",]
+            };
+            const days = weekDays[$('.custom-meal-selector').val()];
+            for (var i = 1; i < 5; i++) {
+                let html = ``;
+                emptyMealArray.push([]);
+                days.forEach((value , index) => {
+                    emptyMealArray[i-1].push(value);
+                    html += `<div class="col-12 mb-4">
+                                <div class="add-item-custom-btn bg-light customDiv${value}${i}">
+                                    <span class="custom-add-span customAdd${value}${i}">
+                                        <i class="fa fa-plus"></i>
+                                    </span>
+                                    <span class="custom-remove-span d-none customRemove${value}${i}" data-day="${value}" data-week="${i}">
+                                        <i class="fa fa-minus"></i>
+                                    </span>
+                                    <p class="ms-4 item${value}${i}">Add Item</p>
+                                </div>
+                                <input type="hidden" class="input${value}${i} customInputData" name="meal_id[]" data-day="${value}" data-week="${i}" data-name="${i}" />
+                            </div>`;
+                })
+                $('.custom-week'+i).html(html);
+            }
+            removedDaysArray = JSON.parse(JSON.stringify(emptyMealArray));
+        }
+        $(document).on('click', '.custom-remove-span' , function()
+        {
+            let index = $(this).data('week');
+            let day = $(this).data('day');
+            $('.customRemove'+day+index).addClass('d-none');
+            $('.customAdd'+day+index).removeClass('d-none');
+            $('.item'+day+index).text('Add Item');
+            $('.customDiv'+day+index).removeClass('bg-light').addClass('bg-light');
+            index = index-1;
+            if (index >= 0 && index < emptyMealArray.length) {
+                if (!emptyMealArray[index].includes(day)) {
+                    emptyMealArray[index].unshift(day);
+                    if(emptyMealArray[index].length === 1)
+                    {
+                        currentIndex--;
+                    }
+                }
+            }
+            $('.mealUl').removeClass('bg-light');
+            $('.mealUl').css('cursor' , 'auto');
+            $('.meal-item').css('cursor' , 'pointer');
+            $('a[href="#next"]')
+            .addClass('disabled btn-light')    // Add the 'disabled' class
+            .attr('href', '#new'); 
+        })
+        $(document).on('click' , '.meal-item' , function(){
+            if($('a[href="#next"]').length == 1 )
+            {
+                return false;
+            }
+            var id = $(this).data('id');
+            var name = $(this).data('name');
+            if (currentIndex < emptyMealArray.length) {
+                var week = currentIndex+1;
+                var day = emptyMealArray[currentIndex][currentDayIndex];
+                $('.input'+day+week).val(id);
+                $('.input'+day+week).attr('data-name' , name);
+                $('.item'+day+week).text(name);
+                $('.customRemove'+day+week).removeClass('d-none');
+                $('.customAdd'+day+week).addClass('d-none');
+                $('.customDiv'+day+week).addClass('bg-light').removeClass('bg-light');
+                // Remove a day from the current sub-array
+                emptyMealArray[currentIndex].splice(currentDayIndex, 1);
+                
+                // If the sub-array is empty, move to the next index
+                if (emptyMealArray[currentIndex].length === 0) {
+                    $('.mealUl').addClass('bg-light');
+                    $('.mealUl').css('cursor' , 'not-allowed');
+                    $('.meal-item').css('cursor' , 'not-allowed');
+                    $('a[href="#new"]')
+            .removeClass('disabled btn-light')    // Add the 'disabled' class
+            .attr('href', '#next'); 
+                    currentIndex++;
+                    currentDayIndex = 0; // Reset day index for the next array
+                }
+            }
+        })
+        $(document).on('click', 'a[href="#next"]', function(event) {
+            event.preventDefault(); // Prevent the default anchor click behavior
+            $('a[href="#next"]')
+            .addClass('disabled btn-light')    // Add the 'disabled' class
+            .attr('href', '#new'); 
+            $('.mealUl').removeClass('bg-light');
+            $('.mealUl').css('cursor' , 'auto');
+            $('.meal-item').css('cursor' , 'pointer');
+            
+        });
+        $(document).on('click', 'a[href="#previous"]', function(event) {
+            event.preventDefault(); // Prevent the default anchor click behavior
+            $('a[href="#new"]')
+            .removeClass('disabled btn-light')    // Add the 'disabled' class
+            .attr('href', '#next'); 
+            
+        });
+        $(document).on('click', 'a[href="#finish"]', function(event) {
+            var menuId = 3;
+            var array = [];
+            $('.customInputData').each((index , ele) =>{
+                var obj = {
+                    'id' : $(ele).val(),
+                    'week' : $(ele).data('week'),
+                    'day' : $(ele).data('day'),
+                    'name' : $(ele).data('name')
+                };
+                array.push(obj)
+            })
+            var menu = array.reduce((acc, item) => {
+                // Initialize an array for the week if it doesn't exist
+                if (!acc[item.week]) {
+                    acc[item.week] = [];
+                }
+                // Add the item to the corresponding week array
+                acc[item.week].push(item);
+                return acc;
+            }, {});
+            $('.menuTab'+menuId).addClass('d-none');
+            $('.menuRow'+menuId).append(menuFrom)
+            $('#menu').val(menuId);
+            $('#menu').prop('disabled', true);
+            $('.data-menu').text(menuId == 1 ? '5 Days Menu' : '7 Days Menu');
+            for (var i = 1; i < 5; i++) {
+                // console.log(menus , i)
+                const weekData = menu[i];
+                let weekCol = `<div class="col-md-3 p-md-0 mb-4 mb-md-0">
+                            <div class="col-title">
+                                <div>
+                                    <span class="rounded-circle">
+                                        <i class="fa fa-check-circle text-danger" aria-hidden="true"></i>
+                                    </span>
+                                    <div class="week-divider week-divider${i}"></div>
+                                </div>
+                                <h5 class="text-site-danger">Week ${i}</h5>
+                            </div>`;
+                weekData.forEach((item ,index) => {
+                    weekCol += `<div class="menu-item">
+                            <span class="item-day">${item.day}</span>
+                            <span class="item-name">&#8226; ${item.name}</span>
+                        </div>`;
+                })
+                weekCol += `</div>`;
+                console.log(weekCol)
+                $('.weeksDetail').append(weekCol);
+
+            }
+            
+        });
+        $(document).on("keyup", "#meal", function (e) {
+            var value = $(this).val().toLowerCase();
+            searchMeal(value);
+        });
+        function searchMeal(value) {
+            var ul = $(".mealUl");
+            //get all list but not the one having search input
+            var li = ul.find(".col-12");
+            //hide all lis
+            li.hide();
+            li.filter(function () {
+                var text = $(this).find(".menu-name").text().toLowerCase();
+                return text.indexOf(value) >= 0;
+            }).show();
         }
     </script>
 @endpush

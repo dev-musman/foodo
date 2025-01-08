@@ -54,7 +54,7 @@
     <!-- main js -->
     <script src="{{asset('assets/js/main.js')}}"></script>
     <script src="{{asset('assets/css/plugins/owlcarousel/dist/owl.carousel.min.js')}}"></script>
-
+    <script src="{{asset('assets/js/plugins/jquery-steps/jquery.steps.js')}}"></script>
     @stack('scripts')
 </body>
 
