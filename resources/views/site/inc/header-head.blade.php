@@ -5,15 +5,17 @@
     <!-- favicon -->
     <link rel="shortcut icon" type="image/x-icon" href="assets/images/favicon.png">
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    @if (isset($page->meta_title) || isset($page->title))
-        <title>{{ $page->meta_title ?? $page->title }} | {{ $page->title ?? 'Foodo' }}</title>
+    @if(isset($page->meta_title) || isset($page->title))
+        <title>{{ $page->meta_title ?? $page->title }} |
+            {{ $page->title ?? 'Foodo' }}</title>
     @else
         <title>@yield('title') | {{ $title ?? 'Foodo' }}</title>
     @endif
 
-    <meta name="description" content="@yield('seo_description', isset($page->meta_description) ? $page->meta_description : '')">
+    <meta name="description"
+        content="@yield('seo_description', isset($page->meta_description) ? $page->meta_description : '')">
 
-    @if (isset($page->meta_keywords))
+    @if(isset($page->meta_keywords))
         <meta name="keywords" content="{{ $page->meta_keywords }}">
     @endif
 
