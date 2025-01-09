@@ -160,7 +160,7 @@
                         @endphp
                         @foreach ($menuTypes as $key => $menuType)
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link py-4 {{$key == 2 ? 'active' : ''}}" id="Menu{{$menuType->id}}-tab" data-bs-toggle="tab" data-bs-target="#Menu{{$menuType->id}}"
+                            <button class="nav-link py-4 {{$key == 0 ? 'active' : ''}}" id="Menu{{$menuType->id}}-tab" data-bs-toggle="tab" data-bs-target="#Menu{{$menuType->id}}"
                                 type="button" role="tab" aria-controls="Menu{{$menuType->id}}" aria-selected="true">
                                 {{$menuType->type}}
                             </button>
@@ -169,13 +169,13 @@
                     </ul>
                     <div class="tab-content py-5" id="myTabContent">
                         @foreach ($menuTypes as $key => $menuType)
-                        <div class="tab-pane fade {{$key == 2 ? 'show active' : ''}}" id="Menu{{$menuType->id}}" role="tabpanel" aria-labelledby="Menu{{$menuType->id}}-tab">
-                            <div class="row justify-content-center menuRow{{$menuType->id}}">
+                        <div class="tab-pane fade {{$key == 0 ? 'show active' : ''}}" id="Menu{{$menuType->id}}" role="tabpanel" aria-labelledby="Menu{{$menuType->id}}-tab">
+                            <div class="row justify-content-center px-2 menuRow{{$menuType->id}}">
                                 @php
                                     $menuArr['type_id'][$menuType->id]['weeks'] = $menuType->menus->groupBy('week');
                                 @endphp
                                 @if ($menuType->id != 3)
-                                <div class="col-md-10 menuTab{{$menuType->id}} menuTab">                                
+                                <div class="col-md-11 menuTab{{$menuType->id}} menuTab">                                
                                     <div class="owl{{$key}} owl-carousel">
                                         @foreach ($menuType->menus->groupBy('week')  as $weekNum => $week)   
                                         <div class="row">
@@ -560,13 +560,13 @@
                                 </div>
                             </div>
                             <div class="orderDetail d-none">
-                                <div class="col-md-11">
+                                <div class="col-md-12 px-5">
                                     <div class="row weeksDetail">
                                         
                                     </div>
                                 </div>
                                 <hr class="my-3">
-                                <div class="col-md-11">
+                                <div class="col-md-12 px-5">
                                     <div class="row pt-5">
                                         <h5 class="text-site-danger">Order Details</h5>
                                         <div class="col-md-10">
@@ -595,11 +595,18 @@
                                                 <li class="list-group-item order-data data-date">Shams Aftab</li>
                                             </ul>
                                         </div>
+                                        <div class="col-md-2">
+                                        <img src="/assets/images/order-confirmation.gif" class="orderPlacedImg d-none" />
+                                        </div>
                                     </div>
                                 </div>
-                                <div class="col-md-11 text-end mt-3">
+                                <div class="col-md-12 orderConfirmed text-end mt-3 px-5">
                                     <button class="btn btn-lg view-form text-uppercase p-4 px-5 rounded-5 btn-light w-auto">Back</button>
-                                    <button class="btn btn-lg text-uppercase p-4 rounded-5 btn-site-primary w-auto">Confirm</button>
+                                    <button class="btn btn-lg place-order text-uppercase p-4 rounded-5 btn-site-primary w-auto">Confirm</button>
+                                </div>
+                                <div class="col-md-12 orderPlaced d-md-none d-none text-md-end mt-3 bg-site-danger p-3 d-md-flex justify-content-around align-items-center">
+                                    <p class="fs-5 text-white m-0">Your Order has been Confirmed! You’ll soon receive a confirmation message on your Email.</p>
+                                    <button class="btn btn-lg text-uppercase p-4 rounded-5 btn-warning w-auto" style="border-radius: 12px;background-color: #FBB03B;border-color: #FBB03B;">Back To Home</button>
                                 </div>
                             </div>`;
 
@@ -664,6 +671,7 @@
             $('.menuTab').removeClass('d-none');
             $('.menuFrom').empty();
             $('.orderDetail').empty();
+            resetCustomFrom();
        })
         $(document).on('click' , '.selectMenu' , function() {
             var menuId = $(this).data('id');
@@ -747,14 +755,7 @@
             return valid;
         }
         $(document).on('change' , '.custom-meal-selector' , function(){
-            emptyMealArray = [];
-            removedDaysArray = null;
-            selectedMealArray = [];
-            currentIndex = 0;
-            currentDayIndex = 0;
-            removedDaysArray = null;
-            $('#customStepFrom').empty();
-            createCustomStepsForm()
+            resetCustomFrom()
         })
         function createCustomStepsForm()
         {
@@ -840,12 +841,7 @@
                     }
                 }
             }
-            $('.mealUl').removeClass('bg-light');
-            $('.mealUl').css('cursor' , 'auto');
-            $('.meal-item').css('cursor' , 'pointer');
-            $('a[href="#next"]')
-            .addClass('disabled btn-light')    // Add the 'disabled' class
-            .attr('href', '#new'); 
+            resetCustomFromUi();
         })
         $(document).on('click' , '.meal-item' , function(){
             if($('a[href="#next"]').length == 1 )
@@ -881,12 +877,7 @@
         })
         $(document).on('click', 'a[href="#next"]', function(event) {
             event.preventDefault(); // Prevent the default anchor click behavior
-            $('a[href="#next"]')
-            .addClass('disabled btn-light')    // Add the 'disabled' class
-            .attr('href', '#new'); 
-            $('.mealUl').removeClass('bg-light');
-            $('.mealUl').css('cursor' , 'auto');
-            $('.meal-item').css('cursor' , 'pointer');
+            resetCustomFromUi();
             
         });
         $(document).on('click', 'a[href="#previous"]', function(event) {
@@ -897,8 +888,9 @@
             
         });
         $(document).on('click', 'a[href="#finish"]', function(event) {
-            var menuId = 3;
+            var menuId = $('.custom-meal-selector').val();
             var array = [];
+            $('.weeksDetail').empty();
             $('.customInputData').each((index , ele) =>{
                 var obj = {
                     'id' : $(ele).val(),
@@ -906,6 +898,7 @@
                     'day' : $(ele).data('day'),
                     'name' : $(ele).data('name')
                 };
+                console.log($(ele).val())
                 array.push(obj)
             })
             var menu = array.reduce((acc, item) => {
@@ -917,8 +910,8 @@
                 acc[item.week].push(item);
                 return acc;
             }, {});
-            $('.menuTab'+menuId).addClass('d-none');
-            $('.menuRow'+menuId).append(menuFrom)
+            $('.menuTab3').addClass('d-none');
+            $('.menuRow3').append(menuFrom)
             $('#menu').val(menuId);
             $('#menu').prop('disabled', true);
             $('.data-menu').text(menuId == 1 ? '5 Days Menu' : '7 Days Menu');
@@ -963,5 +956,31 @@
                 return text.indexOf(value) >= 0;
             }).show();
         }
+        function resetCustomFromUi()
+        {
+            $('.mealUl').removeClass('bg-light');
+            $('.mealUl').css('cursor' , 'auto');
+            $('.meal-item').css('cursor' , 'pointer');
+            $('a[href="#next"]')
+            .addClass('disabled btn-light')    // Add the 'disabled' class
+            .attr('href', '#new'); 
+        }
+        function resetCustomFrom()
+        {
+            emptyMealArray = [];
+            removedDaysArray = null;
+            selectedMealArray = [];
+            currentIndex = 0;
+            currentDayIndex = 0;
+            removedDaysArray = null;
+            $('#customStepFrom').empty();
+            createCustomStepsForm();
+            resetCustomFromUi();
+        }
+        $(document).on('click' , '.place-order' , function(){
+            $('.orderConfirmed').addClass('d-none');
+            $('.orderPlaced').removeClass('d-md-none d-none');
+            $('.orderPlacedImg').removeClass('d-none');
+        })
     </script>
 @endpush

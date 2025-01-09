@@ -218,12 +218,14 @@
 .col-title>div>span {
     border: 2px solid #c73938;
     display: flex;
-    width: 22px;
-    height: 22px;
+    width: 23px;
+    height: 23px;
     align-items: center;
     justify-content: center;
 }
-
+.bg-site-danger{
+    background-color: #c73938 !important;
+}
 .btn-light {
     background-color: #d7d7d7 !important;
     border-radius: 12px;
@@ -248,7 +250,8 @@
 }
 
 .orderDetail {
-    display: contents;
+    display: block;
+    padding: 3px;
 }
 
 .week-divider4 {
