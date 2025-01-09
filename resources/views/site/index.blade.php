@@ -785,7 +785,7 @@
             $('a[href="#next"]')
             .addClass('disabled btn-light')    // Add the 'disabled' class
             .attr('href', '#new'); 
-            $('a[href="#finish"]').text('Next');
+            $('a[href="#finish"]').addClass('d-none').text('Next');
         }
         let emptyMealArray = [];
         let selectedMealArray = [];
@@ -866,8 +866,10 @@
                     $('.mealUl').css('cursor' , 'not-allowed');
                     $('.meal-item').css('cursor' , 'not-allowed');
                     $('a[href="#new"]')
-            .removeClass('disabled btn-light')    // Add the 'disabled' class
-            .attr('href', '#next'); 
+                    .removeClass('disabled btn-light')    // Add the 'disabled' class
+                    .attr('href', '#next'); 
+                    $('a[href="#finish"]')
+                    .removeClass('d-none'); 
                     currentIndex++;
                     currentDayIndex = 0; // Reset day index for the next array
                 }
@@ -876,14 +878,24 @@
         $(document).on('click', 'a[href="#next"]', function(event) {
             event.preventDefault(); // Prevent the default anchor click behavior
             resetCustomFromUi();
-            
         });
         $(document).on('click', 'a[href="#previous"]', function(event) {
             event.preventDefault(); // Prevent the default anchor click behavior
-            $('a[href="#new"]')
-            .removeClass('disabled btn-light')    // Add the 'disabled' class
-            .attr('href', '#next'); 
-            
+            var count = 0;
+            $('.customInputData').each((index , ele) =>{
+                if($(ele).val())
+                {
+                    count++;
+                }
+            });
+            var moveArray = [5,10,15,20,7,14,21,28];
+            if(moveArray.includes(count)){
+                $('a[href="#new"]')
+                .removeClass('disabled btn-light')    // Add the 'disabled' class
+                .attr('href', '#next'); 
+                $('a[href="#finish"]')
+                .removeClass('d-none'); 
+            }
         });
         $(document).on('click', 'a[href="#finish"]', function(event) {
             var menuId = $('.custom-meal-selector').val();
@@ -959,6 +971,8 @@
             $('a[href="#next"]')
             .addClass('disabled btn-light')    // Add the 'disabled' class
             .attr('href', '#new'); 
+            $('a[href="#finish"]')
+            .addClass('d-none')
         }
         function resetCustomFrom()
         {
