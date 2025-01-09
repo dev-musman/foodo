@@ -560,13 +560,13 @@
                                 </div>
                             </div>
                             <div class="orderDetail d-none">
-                                <div class="col-md-12 px-5">
+                                <div class="col-md-12 px-md-5">
                                     <div class="row weeksDetail">
                                         
                                     </div>
                                 </div>
                                 <hr class="my-3">
-                                <div class="col-md-12 px-5">
+                                <div class="col-md-12 px-md-5">
                                     <div class="row pt-5">
                                         <h5 class="text-site-danger">Order Details</h5>
                                         <div class="col-md-10">
