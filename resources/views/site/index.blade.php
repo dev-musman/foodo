@@ -683,7 +683,6 @@
             $('#menu').prop('disabled', true);
             $('.data-menu').text(menuId == 1 ? '5 Days Menu' : '7 Days Menu');
             for (var i = 0; i < 4; i++) {
-                // console.log(menus , i)
                 const weekData = menus[i+1];
                 let weekCol = `<div class="col-md-3 p-md-0 mb-4 mb-md-0">
                             <div class="col-title">
@@ -702,7 +701,6 @@
                         </div>`;
                 })
                 weekCol += `</div>`;
-                console.log(weekCol)
                 $('.weeksDetail').append(weekCol);
 
             }
@@ -737,7 +735,6 @@
                 ) {
                     $(this).attr("type") == "checkbox" ? (div = ".row") : (div = "div");
                     var name = $(this).attr("name");
-                    // console.log(name);
                     $(this)
                         .closest(div)
                         .append(
@@ -788,6 +785,7 @@
             $('a[href="#next"]')
             .addClass('disabled btn-light')    // Add the 'disabled' class
             .attr('href', '#new'); 
+            $('a[href="#finish"]').text('Next');
         }
         let emptyMealArray = [];
         let selectedMealArray = [];
@@ -898,7 +896,6 @@
                     'day' : $(ele).data('day'),
                     'name' : $(ele).data('name')
                 };
-                console.log($(ele).val())
                 array.push(obj)
             })
             var menu = array.reduce((acc, item) => {
@@ -916,7 +913,6 @@
             $('#menu').prop('disabled', true);
             $('.data-menu').text(menuId == 1 ? '5 Days Menu' : '7 Days Menu');
             for (var i = 1; i < 5; i++) {
-                // console.log(menus , i)
                 const weekData = menu[i];
                 let weekCol = `<div class="col-md-3 p-md-0 mb-4 mb-md-0">
                             <div class="col-title">
@@ -935,7 +931,6 @@
                         </div>`;
                 })
                 weekCol += `</div>`;
-                console.log(weekCol)
                 $('.weeksDetail').append(weekCol);
 
             }
