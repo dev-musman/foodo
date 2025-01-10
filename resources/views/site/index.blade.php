@@ -578,7 +578,7 @@
 @push('scripts')
     
     <script>
-        const menuFrom =    `<div class="col-md-10 menuFrom">
+        const menuFrom = `<div class="col-md-10 menuFrom">
                                 <div class="text-center">
                                     <h5 class="text-site-danger">Fill out the information below</h5>
                                     <div class="row text-start">
@@ -613,21 +613,21 @@
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="address" class="form-label">Delivery Address</label>
-                                            <input type="text" name="address" class="site-input required from-control-lg"
+                                            <input type="text" name="delivery_address" class="site-input required from-control-lg"
                                                 id="address" placeholder="Enter Your Address">
                                         </div>
                                     </div>
                                     <div class="row text-start">
                                         <div class="col-md-6 mb-3">
                                             <label for="menu" class="form-label">Menu Type</label>
-                                            <select name="menu" class="site-select" id="menu">
+                                            <select name="menu_type_id" class="site-select" id="menu">
                                                 <option value="1">5 Days a week</option>
                                                 <option value="2">7 Days a week</option>
                                             </select>
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="date" class="form-label">Expected Start Date</label>
-                                            <input type="date" name="date" class="site-input required from-control-lg"
+                                            <input type="date" name="start_date" class="site-input required from-control-lg"
                                                 id="date" placeholder="Select Date">
                                         </div>
                                     </div>
@@ -650,27 +650,27 @@
                                         <div class="col-md-10">
                                             <ul class="list-group list-group-horizontal m-0 orderDetailList">
                                                 <li class="list-group-item order-lable">Name: </li>
-                                                <li class="list-group-item order-data data-name">Shams Aftab</li>
+                                                <li class="list-group-item order-data data-name"></li>
                                                 <li class="list-group-item order-lable">Email: </li>
-                                                <li class="list-group-item order-data data-email">Shams Aftab</li>
+                                                <li class="list-group-item order-data data-email"></li>
                                             </ul>
                                             <ul class="list-group list-group-horizontal m-0 orderDetailList">
                                                 <li class="list-group-item order-lable">Phone: </li>
-                                                <li class="list-group-item order-data data-phone">Shams Aftab</li>
+                                                <li class="list-group-item order-data data-phone"></li>
                                                 <li class="list-group-item order-lable">Delivery Address</li>
-                                                <li class="list-group-item order-data data-address">Shams Aftab</li>
+                                                <li class="list-group-item order-data data-delivery_address"></li>
                                             </ul>
                                             <ul class="list-group list-group-horizontal m-0 orderDetailList">
                                                 <li class="list-group-item order-lable">Company Name: </li>
-                                                <li class="list-group-item order-data data-company">Shams Aftab</li>
+                                                <li class="list-group-item order-data data-company"></li>
                                                 <li class="list-group-item order-lable">Menu Type: </li>
-                                                <li class="list-group-item order-data data-menu">Shams Aftab</li>
+                                                <li class="list-group-item order-data data-menu"></li>
                                             </ul>
                                             <ul class="list-group list-group-horizontal m-0 orderDetailList">
                                                 <li class="list-group-item order-lable">Number of individuals: </li>
-                                                <li class="list-group-item order-data data-persons">Shams Aftab</li>
+                                                <li class="list-group-item order-data data-persons"></li>
                                                 <li class="list-group-item order-lable">Expected Start Date: </li>
-                                                <li class="list-group-item order-data data-date">Shams Aftab</li>
+                                                <li class="list-group-item order-data data-start_date"></li>
                                             </ul>
                                         </div>
                                         <div class="col-md-2">
@@ -685,6 +685,7 @@
                                 <div class="col-md-12 orderPlaced d-md-none d-none text-md-end mt-3 bg-site-danger p-3 d-md-flex justify-content-around align-items-center">
                                     <p class="fs-5 text-white m-0">Your Order has been Confirmed! You’ll soon receive a confirmation message on your Email.</p>
                                     <button class="btn btn-lg text-uppercase p-4 rounded-5 btn-warning w-auto" style="border-radius: 12px;background-color: #FBB03B;border-color: #FBB03B;">Back To Home</button>
+                                    <button class="btn btn-lg text-uppercase p-4 rounded-5 btn-site-primary w-auto" id="confirmOrder">Confirm</button>
                                 </div>
                             </div>`;
 
@@ -736,16 +737,16 @@
                 }
             });
 
-            $(document).on('click', '.custom-owl-prev', function () {
+            $(document).on('click', '.custom-owl-prev', function() {
                 var owl = $(this).data('number') == 0 ? firstOwl : secondOwl;
                 owl.trigger('prev.owl.carousel');
             })
-            $(document).on('click', '.custom-owl-next', function () {
+            $(document).on('click', '.custom-owl-next', function() {
                 var owl = $(this).data('number') == 0 ? firstOwl : secondOwl;
                 owl.trigger('next.owl.carousel');
             })
         });
-       $(document).on('click' , '.nav-link' , function(){
+        $(document).on('click', '.nav-link', function() {
             $('.menuTab').removeClass('d-none');
             $('.menuFrom').empty();
             $('.orderDetail').empty();
@@ -755,8 +756,8 @@
             var menuId = $(this).data('id');
             const menus = menuObj.type_id[menuId]['weeks'];
 
-            $('.menuTab'+menuId).addClass('d-none');
-            $('.menuRow'+menuId).append(menuFrom)
+            $('.menuTab' + menuId).addClass('d-none');
+            $('.menuRow' + menuId).append(menuFrom)
             $('#menu').val(menuId);
             $('#menu').prop('disabled', true);
             $('.data-menu').text(menuId == 1 ? '5 Days Menu' : '7 Days Menu');
@@ -772,7 +773,7 @@
                                 </div>
                                 <h5 class="text-site-danger">Week ${i+1}</h5>
                             </div>`;
-                weekData.forEach((item ,index) => {
+                weekData.forEach((item, index) => {
                     weekCol += `<div class="menu-item">
                             <span class="item-day">${item.day}</span>
                             <span class="item-name">&#8226; ${item.name}</span>
@@ -784,41 +785,42 @@
             }
 
         })
-        $(document).on('click', '.view-detail' , function(){
+        $(document).on('click', '.view-detail', function() {
             if (!validate()) return false;
             $('.menuFrom').addClass('d-none');
             $('.orderDetail').removeClass('d-none');
         })
-        $(document).on('click', '.view-form' , function(){
+        $(document).on('click', '.view-form', function() {
             $('.menuFrom').removeClass('d-none');
             $('.orderDetail').addClass('d-none');
         })
-        $(document).on('change' , '.site-input' , function(){
-            var attr =$(this).attr('name');
-            var val =$(this).val();
-            $('.data-'+attr).text(val);
+        $(document).on('change', '.site-input', function() {
+            var attr = $(this).attr('name');
+            var val = $(this).val();
+            $('.data-' + attr).text(val);
         })
+
         function validate() {
             var valid = true;
             var div = "";
-            $(".alert-danger").remove();
-            $(".required:visible").each(function () {
+            $(".text-danger").remove();
+            $(".required:visible").each(function() {
                 if (
                     $(this).val() == "" ||
                     $(this).val() === null ||
                     $(this).attr("type") == "radio" ||
                     ($(this).attr("type") == "checkbox" &&
                         $('[name="' + $(this).attr("name") + '"]:checked').val() ==
-                            undefined)
+                        undefined)
                 ) {
                     $(this).attr("type") == "checkbox" ? (div = ".row") : (div = "div");
                     var name = $(this).attr("name");
                     $(this)
                         .closest(div)
                         .append(
-                            '<div class="alert-danger" data-field=' +
-                                name +
-                                ">This field is required</div>"
+                            '<div class="text-danger" data-field=' +
+                            name +
+                            ">This field is required</div>"
                         );
                     valid = false;
                 }
@@ -1069,5 +1071,54 @@
             $('.orderPlaced').removeClass('d-md-none d-none');
             $('.orderPlacedImg').removeClass('d-none');
         })
+
+        $(document).on('click', '#confirmOrder', async function() {
+
+
+            let result = await swal.fire({
+                title: "Are you sure?",
+                text: "You won't be able to cancel this!",
+                type: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#3085d6",
+                cancelButtonColor: "#d33",
+                confirmButtonText: "Yes, confirm it!",
+            });
+
+            if (result.value) {
+                const data = {};
+
+                $('.menuFrom input, .menuFrom select').each(function() {
+                    const fieldName = $(this).attr('name');
+                    const fieldValue = $(this).val().trim();
+                    data[fieldName] = fieldValue;
+                });
+
+                await $.ajax({
+                    type: "POST",
+                    url: "/create-order",
+                    data: data,
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    },
+                    success: function(response) {
+                        if (response.success) {
+                            swal.fire("Success!", response.message, "success").then(() => {
+                                window.location.reload();
+                            });
+                        }
+                        console.log(response.order);
+                    },
+                    error: function(xhr) {
+                        const errors = xhr.responseJSON.errors;
+                        let errorMessage = "Please correct the following errors:\n\n";
+                        for (const field in errors) {
+                            errorMessage += `${errors[field].join(', ')}\n`;
+                        }
+                        alert(errorMessage);
+                    }
+                });
+            }
+        });
     </script>
 @endpush

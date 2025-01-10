@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Traits;
+
 use Yajra\DataTables\Facades\DataTables;
 
 trait HasDataTables
@@ -22,4 +23,7 @@ trait HasDataTables
 
         return $dataTable->escapeColumns([])->make(true);
     }
+
+
+    
 }

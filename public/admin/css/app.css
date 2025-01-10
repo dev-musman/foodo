@@ -12106,7 +12106,7 @@ a.sidebar-link {
     cursor: pointer;
     display: block;
     font-weight: 400;
-    padding: 0.625rem 1.625rem;
+    padding: 0.8rem 1.625rem;
     position: relative;
     text-decoration: none;
     transition: background 0.1s ease-in-out;
@@ -13440,3 +13440,29 @@ label {
 
 /*# sourceMappingURL=app.css.map*/
 
+.collapse-history {
+    margin-top: 10px;
+    border-radius: 8px;
+}
+.pagination .page-item .page-link {
+    color: #007bff;
+    border: 1px solid #ddd;
+    border-radius: 0.25rem;
+    margin: 0 2px;
+    padding: 5px 8px
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #007bff;
+    color: white;
+    border-color: #007bff;
+}
+
+.pagination .page-item .page-link:hover {
+    background-color: #e9ecef;
+    color: #007bff;
+}
+.pagination{
+    display: flex;
+    list-style: none;
+}

@@ -46,4 +46,6 @@
         rel="stylesheet">
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/owlcarousel/dist/assets/owl.carousel.min.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/css/plugins/owlcarousel/dist/assets/owl.theme.default.min.css') }}">
+ <!-- sweet alert -->
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.15.3/sweetalert2.min.css" />
 </head>

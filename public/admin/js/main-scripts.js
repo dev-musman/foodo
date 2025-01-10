@@ -1,6 +1,5 @@
 $(".standart-form").on("submit", async function (e) {
     e.preventDefault();
-
     try {
         let $form = $(this);
 
@@ -89,3 +88,4 @@ $(document).on("click", ".removeItem", async function (e) {
 $(document).ready(function () {
     $(".select2").select2();
 });
+

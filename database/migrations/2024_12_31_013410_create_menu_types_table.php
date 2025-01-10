@@ -16,6 +16,8 @@ return new class extends Migration
             $table->string("type");
             $table->unsignedTinyInteger('days_count')->default(7);
             $table->timestamps();
+            $table->softDeletes();
+            $table->foreignId('deleted_by')->nullable()->constrained('users')->onDelete('cascade');
         });
     }
 

@@ -19,7 +19,10 @@ return new class extends Migration
             $table->mediumText("meta_description");
             $table->string("meta_keywords");
             $table->enum("status", ['published', 'draft'])->default("published");
+            $table->string("view_path");
             $table->timestamps();
+            $table->softDeletes();
+            $table->foreignId('deleted_by')->nullable()->constrained('users')->onDelete('cascade');
         });
     }
 

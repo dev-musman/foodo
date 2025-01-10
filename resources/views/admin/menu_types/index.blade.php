@@ -32,7 +32,7 @@
     <!-- /.content -->
 @endsection
 
-@section('js')
+@push('js')
     <script src="{{ asset('admin/js/menu.js') }}"></script>
-@endsection
+@endpush
 

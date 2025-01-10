@@ -5,10 +5,13 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\StorePageRequest;
 use App\Http\Requests\UpdatePageRequest;
-use Illuminate\Support\Str;
 use App\Models\Page;
+use Illuminate\Support\Str;
 use App\Traits\HasDataTables;
-use Illuminate\Http\Request;
+use App\Helpers\{
+    LogActivity,
+    Common
+};
 
 class PageController extends Controller
 {
@@ -17,7 +20,7 @@ class PageController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = Page::query();
+            $query = Page::latest();
             return $this->dataTable($query, 'pages');
         }
 
@@ -31,35 +34,21 @@ class PageController extends Controller
 
     public function store(StorePageRequest $request)
     {
-
-        try {
-            $data = $request->all();
-            if (!$data['slug']) {
-                $data['slug'] = Str::slug($data['title']);
-            }
-
-            $page = Page::create($data);
-
-            $response['success'] = true;
-            $response['message'] = 'Page successfully created.';
-            $response['redirect'] = route('admin.pages.index');
-
-            return response()->json($response);
-        } catch (\Exception $exception) {
-            return response()->json([
-                'success' => false,
-                'request' => $request->type,
-                'message' => $exception->getMessage(),
-                'line'    => $exception->getLine(),
-                'file'    => $exception->getFile()
-            ]);
+        $data = $request->all();
+        if (!$data['slug']) {
+            $data['slug'] = Str::slug($data['title']);
         }
-    }
 
+        $page = Page::create($data);
 
-    public function show(string $id)
-    {
-        //
+        if ($page) {
+            LogActivity::addToLog('page', 'insert', $page, null);
+        }
+        return response()->json([
+            'success' => true,
+            'message' => 'Page successfully created.',
+            'redirect' => route('admin.pages.index')
+        ]);
     }
 
     public function edit(Page $page)
@@ -69,53 +58,32 @@ class PageController extends Controller
 
     public function update(UpdatePageRequest $request, Page $page)
     {
-        try {
-            $data = $request->all();
+        $data = $request->all();
 
-            if (!$data['slug']) {
-                $data['slug'] = Str::slug($data['title']);
-            }
-
-            $page->update($data);
-
-            $response['success'] = true;
-            $response['message'] = 'Page successfully updated.';
-            $response['redirect'] = route('admin.pages.index');
-
-            if ($request->ajax()) {
-                return response()->json($response);
-            }
-
-            return redirect($response['redirect']);
-        } catch (\Exception $exception) {
-            return response()->json([
-                'success' => false,
-                'request' => $request->type,
-                'message' => $exception->getMessage(),
-                'line'    => $exception->getLine(),
-                'file'    => $exception->getFile()
-            ]);
+        if (!$data['slug']) {
+            $data['slug'] = Str::slug($data['title']);
         }
+
+        $changes_exist = Common::get_changes($page, $data);
+        if ($changes_exist) {
+            LogActivity::addToLog('page', 'update', null, $changes_exist);
+            $page->update($data);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Page successfully updated.',
+            'redirect' => route('admin.pages.index')
+        ]);
     }
 
-    public function destroy(Request $request, Page $page)
+    public function destroy(Page $page)
     {
+        $page->delete();
 
-        try {
-            $page->delete();
-
-            $response['success'] = true;
-            $response['message'] = 'Page successfully deleted.';
-
-            return response()->json($response);
-        } catch (\Exception $exception) {
-            return response()->json([
-                'success' => false,
-                'request' => $request->type,
-                'message' => $exception->getMessage(),
-                'line'    => $exception->getLine(),
-                'file'    => $exception->getFile()
-            ]);
-        }
+        return response()->json([
+            'success' => true,
+            'message' => 'Page successfully deleted.'
+        ]);
     }
 }

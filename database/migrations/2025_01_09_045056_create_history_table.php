@@ -11,9 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('meal_plans', function (Blueprint $table) {
+        Schema::create('history', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('menu_type_id')->constrained('menu_types')->onDelete('cascade');
+            $table->string("entity");
+            $table->enum("action", ["insert", 'update', 'delete']);
+            $table->longText("values")->nullable();
+            $table->longText("changes")->nullable();
+            $table->string('url');
+            $table->string('method');
+            $table->string('ip');
+            $table->string('agent')->nullable();
             $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
             $table->timestamps();
         });
@@ -24,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('meal_plans');
+        Schema::dropIfExists('history');
     }
 };

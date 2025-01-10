@@ -7,6 +7,11 @@ use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use Spatie\Permission\Models\Role;
 use App\Traits\HasDataTables;
+use App\Helpers\{
+    LogActivity,
+    Common
+};
+
 
 class RoleController extends Controller
 {
@@ -16,7 +21,7 @@ class RoleController extends Controller
     {
 
         if (request()->ajax()) {
-            $query = Role::with('permissions')->get();
+            $query = Role::with('permissions')->latest();
             return $this->dataTable(
                 $query,
                 'roles',
@@ -43,23 +48,22 @@ class RoleController extends Controller
     {
         $request->validate([
             'name' => 'required|unique:roles,name',
-            'permissions' => 'required'
         ]);
 
-        $role = Role::create($request->only('name'));
+        $data = $request->all();
+
+        $role = Role::create([
+            'name' => $data['name'],
+        ]);
+
         $role->permissions()->sync($request->permissions);
+        LogActivity::addToLog('role', 'insert', $data, null);
 
-
-        $response['success'] = true;
-        $response['message'] = 'Role successfully created.';
-        $response['redirect'] = route('admin.roles.index');
-
-        return response()->json($response);
-    }
-
-    public function show(string $id)
-    {
-        //
+        return response()->json([
+            'success' => true,
+            'message' => 'Role successfully updated.',
+            'redirect' => route('admin.roles.index')
+        ]);
     }
 
     public function edit(Role $role)
@@ -72,37 +76,32 @@ class RoleController extends Controller
     {
         $request->validate([
             'name' => 'required|unique:roles,name,' . $role->id,
-            'permissions' => 'required'
         ]);
 
-        $role->update($request->only('name'));
-        $role->permissions()->sync($request->permissions);
+        $data = $request->all();
 
+        $changes_exist = Common::get_changes($role, $data);
+        if ($changes_exist) {
+            LogActivity::addToLog('role', 'update', null, $changes_exist);
+            $role->update(['name' => $data['name']]);
+        }
 
-        $response['success'] = true;
-        $response['message'] = 'Role successfully updated.';
-        $response['redirect'] = route('admin.roles.index');
+        $role->permissions()->sync($data['permissions']);
 
-        return response()->json($response);
+        return response()->json([
+            'success' => true,
+            'message' => 'Role successfully updated.',
+            'redirect' => route('admin.roles.index')
+        ]);
     }
 
-    public function destroy(Request $request, Role $role)
+    public function destroy(Role $role)
     {
-        try {
-            $role->delete();
+        $role->delete();
 
-            $response['success'] = true;
-            $response['message'] = 'Role successfully deleted.';
-
-            return response()->json($response);
-        } catch (\Exception $exception) {
-            return response()->json([
-                'success' => false,
-                'request' => $request->type,
-                'message' => $exception->getMessage(),
-                'line'    => $exception->getLine(),
-                'file'    => $exception->getFile()
-            ]);
-        }
+        return response()->json([
+            'success' => true,
+            'message' => 'Role successfully deleted.'
+        ]);
     }
 }

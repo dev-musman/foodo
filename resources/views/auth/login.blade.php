@@ -37,7 +37,7 @@
                                         <div class="mb-3">
                                             <label class="form-label">Email</label>
                                             <input class="form-control form-control-lg" type="email" name="email"
-                                                value="{{ old('email') }}" placeholder="Enter your email" />
+                                                value="{{ old('email') ?? "admin@gmail.com" }}" placeholder="Enter your email" />
                                             @error('email')
                                                 <p class="mt-2 text-danger">
                                                     {{ $message }}
@@ -47,7 +47,7 @@
                                         <div class="mb-3">
                                             <label class="form-label">Password</label>
                                             <input class="form-control form-control-lg" type="password" name="password"
-                                                placeholder="Enter your password" />
+                                                placeholder="Enter your password" value="12345678"/>
                                             @error('password')
                                                 <p class="mt-2 text-danger">
                                                     {{ $message }}

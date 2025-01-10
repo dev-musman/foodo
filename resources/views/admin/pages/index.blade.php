@@ -36,6 +36,6 @@
     <!-- /.content -->
 @endsection
 
-@section('js')
+@push('js')
     <script src="{{ asset('admin/js/pages.js') }}"></script>
-@endsection
+@endpush

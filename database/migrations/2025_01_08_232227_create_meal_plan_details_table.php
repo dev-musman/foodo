@@ -18,6 +18,8 @@ return new class extends Migration
             $table->enum('day', ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']);
             $table->unsignedTinyInteger('week');
             $table->timestamps();
+            $table->softDeletes();
+            $table->foreignId('deleted_by')->nullable()->constrained('users')->onDelete('cascade');
         });
     }
 
