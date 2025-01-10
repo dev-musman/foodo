@@ -5,62 +5,82 @@
                 <div class="col-lg-12">
                     <!-- main footer area start -->
                     <div class="main-footer-wrapper-one">
-                        <div class="single-footer-wized-one logo-area" data-sal="slide-up" data-sal-delay="150" data-sal-duration="800">
+                        <div class="single-footer-wized-one logo-area" data-sal="slide-up" data-sal-delay="150"
+                            data-sal-duration="800">
                             <a href="index.html" class="logo">
-                                <img src="assets/images/logo/01.svg" alt="logo">
+                                <img src="{{ asset('assets/images/footer/logo.png') }}"
+                                    alt="logo">
                             </a>
                             <p class="disc-f">
-                                Be the first to know about new collections, special events, and what’s going on at Our Place. We are creative
+                                The best catering and meal services provider.
                             </p>
                             <div class="query-list">
-                                <span class="sub-text">Book a table</span>
-                                <a href="tel:88899900011">
-                                    <span class="text-heading">888 999 000 11</span>
-                                </a>
+                                <ul>
+                                    <li>
+                                        <i class="fa-solid fa-location-dot"></i>
+                                        Office 1506, Al Hafeez Executive, 30 Firdous Mkt Rd, Block C3 Block C 3 Gulberg III, Lahore, Punjab 54760, Pakistan
+                                    </li>
+                                    <li><a href="mailto:support@foodo.com.pk"><i
+                                                class="fa-solid fa-envelope"></i>support@foodo.com.pk</a></li>
+                                </ul>
                             </div>
                         </div>
-                        <div class="single-footer-wized-one get-in-touch" data-sal="slide-up" data-sal-delay="350" data-sal-duration="800">
-                            <div class="footer-header-two get-touch">
-                                <h6 class="title">Get In Touch</h6>
-                                <div class="get-touch">
+                        
+                        <div class="single-footer-wized-one pages" data-sal="slide-up" data-sal-delay="250"
+                            data-sal-duration="800">
+                            <div class="footer-header-two pages">
+                                <h6 class="title p-0 ps-md-5">Quick Links</h6>
+                                <div class="pages">
                                     <ul>
-                                        <li><i class="fa-solid fa-location-dot"></i>Silk St, Barbican, London E2Y, UK</li>
-                                        <li><a href="tel:39055123456"><i class="fa-solid fa-phone-flip"></i>+39-055-123456</a></li>
-                                        <li><a href="mailto:booking@webexample.com"><i class="fa-solid fa-envelope-open"></i>booking@webexample.com</a></li>
+                                        <li><a href="#"><i class="fa-solid fa-angle-right"></i> About Us</a></li>
+                                        <li><a href="#"><i class="fa-solid fa-angle-right"></i> Our Menu</a></li>
+                                        <li><a href="#"><i class="fa-solid fa-angle-right"></i>Our Chef</a></li>
+                                        <li><a href="#"><i class="fa-solid fa-angle-right"></i> Reservation</a></li>
+                                        <li><a href="#"><i class="fa-solid fa-angle-right"></i> Contact Us</a></li>
                                     </ul>
-                                    <div class="rts-social-wrapper">
-                                        <ul>
-                                            <li><a href="#"><i class="fa-brands fa-facebook-f"></i></a></li>
-                                            <li><a href="#"><i class="fa-brands fa-twitter"></i></a></li>
-                                            <li><a href="#"><i class="fa-brands fa-behance"></i></a></li>
-                                            <li><a href="#"><i class="fa-brands fa-youtube"></i></a></li>
-                                            <li><a href="#"><i class="fa-brands fa-linkedin-in"></i></a></li>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single-footer-wized-one pages" data-sal="slide-up" data-sal-delay="250"
+                            data-sal-duration="800">
+                            <div class="footer-header-two pages">
+                                <h6 class="title p-0 ps-md-5">Useful Links</h6>
+                                <div class="pages">
+                                    <ul>
+                                        <li><a href="#"> 
+                                            <i class="fa-solid fa-angle-right"></i>
+                                            About Us</a></li>
+                                        <li><a href="#"><i class="fa-solid fa-angle-right"></i> Our Menu</a></li>
+                                        <li><a href="#"><i class="fa-solid fa-angle-right"></i>Our Chef</a></li>
+                                        <li><a href="#"><i class="fa-solid fa-angle-right"></i> Reservation</a></li>
+                                        <li><a href="#"><i class="fa-solid fa-angle-right"></i> Contact Us</a></li>
+                                    </ul>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="single-footer-wized-one get-in-touch" data-sal="slide-up" data-sal-delay="350"
+                            data-sal-duration="800">
+                            <div class="footer-header-two get-touch">
+                                <h6 class="title">Newsletter</h6>
+                                <p class="disc-f text-white m-0">
+                                    Stay updated with our deals and offerings by subscribing to our newsletter.
+                                </p>
+                                <div class="get-touch">
+                                    <div class="d-flex my-5">
+                                        <input type="text" class="from-control bg-white form-control-lg w-75" placeholder="Enter Your Email" style="height: 50px;">
+                                        <button class="btn btn-warning border-none w-auto px-5 fs-4 rounded-0">Send</button>
+                                    </div>
+                                    <div class="rts-social-wrapper m-0 d-flex align-items-center text-white">
+                                        Payment:
+                                        <ul class="ps-4">
+                                            <li><i class="fa-brands fa-cc-visa"></i></li>
+                                            <li><i class="fa-brands fa-cc-paypal"></i></li>
+                                            <li><i class="fa-brands fa-cc-mastercard"></i></li>
+                                            <li><i class="fa-brands fa-cc-stripe"></i></li>
                                         </ul>
                                     </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="single-footer-wized-one pages" data-sal="slide-up" data-sal-delay="250" data-sal-duration="800">
-                            <div class="footer-header-two pages">
-                                <h6 class="title">Pages</h6>
-                                <div class="pages">
-                                    <ul>
-                                        <li><a href="about.html"> About Us</a></li>
-                                        <li><a href="menu-list.html"> Our Menu</a></li>
-                                        <li><a href="our-chef.html">Our Chef</a></li>
-                                        <li><a href="reservation.html"> Reservation</a></li>
-                                        <li><a href="contact.html"> Contact Us</a></li>
-                                    </ul>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="single-footer-wized-one gallery" data-sal="slide-up" data-sal-delay="550" data-sal-duration="800">
-                            <div class="gallery-item"><img src="assets/images/gallery/sm-01.jpg" alt=""></div>
-                            <div class="gallery-item"><img src="assets/images/gallery/sm-02.jpg" alt=""></div>
-                            <div class="gallery-item"><img src="assets/images/gallery/sm-03.jpg" alt=""></div>
-                            <div class="gallery-item"><img src="assets/images/gallery/sm-04.jpg" alt=""></div>
-                            <div class="gallery-item"><img src="assets/images/gallery/sm-05.jpg" alt=""></div>
-                            <div class="gallery-item"><img src="assets/images/gallery/sm-06.jpg" alt=""></div>
                         </div>
                     </div>
                     <!-- ,main footer area end -->
@@ -90,7 +110,9 @@
     <!-- progress area start -->
     <div class="progress-wrap">
         <svg class="progress-circle svg-content" width="100%" height="100%" viewBox="-1 -1 102 102">
-            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98" style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919, 307.919; stroke-dashoffset: 307.919;"></path>
+            <path d="M50,1 a49,49 0 0,1 0,98 a49,49 0 0,1 0,-98"
+                style="transition: stroke-dashoffset 10ms linear 0s; stroke-dasharray: 307.919, 307.919; stroke-dashoffset: 307.919;">
+            </path>
         </svg>
     </div>
     <!-- progress area end -->
@@ -110,4 +132,3 @@
 
     <div id="anywhere-home" class="">
     </div>
-
