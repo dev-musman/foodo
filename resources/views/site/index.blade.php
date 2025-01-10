@@ -680,12 +680,12 @@
                                 </div>
                                 <div class="col-md-12 orderConfirmed text-end mt-3 px-5">
                                     <button class="btn btn-lg view-form text-uppercase p-4 px-5 rounded-5 btn-light w-auto">Back</button>
-                                    <button class="btn btn-lg place-order text-uppercase p-4 rounded-5 btn-site-primary w-auto">Confirm</button>
+                                    <button class="btn  place-order  btn-lg text-uppercase p-4 rounded-5 btn-site-primary w-auto" id="confirmOrder">Confirm</button>
                                 </div>
                                 <div class="col-md-12 orderPlaced d-md-none d-none text-md-end mt-3 bg-site-danger p-3 d-md-flex justify-content-around align-items-center">
                                     <p class="fs-5 text-white m-0">Your Order has been Confirmed! You’ll soon receive a confirmation message on your Email.</p>
                                     <button class="btn btn-lg text-uppercase p-4 rounded-5 btn-warning w-auto" style="border-radius: 12px;background-color: #FBB03B;border-color: #FBB03B;">Back To Home</button>
-                                    <button class="btn btn-lg text-uppercase p-4 rounded-5 btn-site-primary w-auto" id="confirmOrder">Confirm</button>
+                                    
                                 </div>
                             </div>`;
 

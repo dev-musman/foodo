@@ -8,10 +8,9 @@ use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Page extends Model
 {
-    use HasFactory;
-    //  SoftDeletes;
+    use HasFactory, SoftDeletes;
 
-    // protected $dates = ['deleted_at'];
+    protected $dates = ['deleted_at'];
 
     protected $fillable = [
         'title',
@@ -29,11 +28,11 @@ class Page extends Model
         'draft'     => 'Draft',
     ];
 
-    // protected static function booted()
-    // {
-    //     static::deleting(function ($page) {
-    //         $page->deleted_by = auth()->id();
-    //         $page->save();
-    //     });
-    // }
+    protected static function booted()
+    {
+        static::deleting(function ($page) {
+            $page->deleted_by = auth()->id();
+            $page->save();
+        });
+    }
 }
