@@ -11,15 +11,16 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('menus', function (Blueprint $table) {
+        Schema::create('meal_plans', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
             $table->foreignId('menu_type_id')->constrained('menu_types')->onDelete('cascade');
-            $table->unsignedTinyInteger('week');
-            $table->enum('day', ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']);
-            $table->decimal('price', 8, 2);
-            $table->text('description')->nullable();
-            $table->string('image')->nullable();
+            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->string('company');
+            $table->string('phone');
+            $table->string('persons');
+            $table->mediumText('delivery_address');
+            $table->date('start_date');
+            $table->enum('status', ['pending', 'in-progress', 'completed', 'cancelled'])->default('pending');
             $table->timestamps();
             $table->softDeletes();
             $table->foreignId('deleted_by')->nullable()->constrained('users')->onDelete('cascade');
@@ -31,6 +32,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('menus_');
+        Schema::dropIfExists('meal_plans');
     }
 };

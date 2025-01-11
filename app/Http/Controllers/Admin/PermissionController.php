@@ -6,6 +6,10 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Spatie\Permission\Models\Permission;
 use App\Traits\HasDataTables;
+use App\Helpers\{
+    LogActivity,
+    Common
+};
 
 class PermissionController extends Controller
 {
@@ -13,7 +17,7 @@ class PermissionController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = Permission::query();
+            $query = Permission::latest();
             return $this->dataTable($query, 'permissions');
         }
 
@@ -30,21 +34,18 @@ class PermissionController extends Controller
         $request->validate([
             'name' => 'required|unique:permissions',
         ]);
+        $data = $request->only('name');
+        $permission = Permission::create($data);
+        if ($permission) {
+            LogActivity::addToLog('permission', 'insert', $data, null);
+        }
 
-        $permission = Permission::create($request->only('name'));
-
-        $response['success'] = true;
-        $response['message'] = 'Permission successfully created.';
-        $response['redirect'] = route('admin.permissions.index');
-
-        return response()->json($response);
+        return response()->json([
+            'success' => true,
+            'message' => 'Permission successfully created.',
+            'redirect' => route('admin.permissions.index')
+        ]);
     }
-
-    public function show(string $id)
-    {
-        //
-    }
-
 
     public function edit(Permission $permission)
     {
@@ -57,32 +58,28 @@ class PermissionController extends Controller
             'name' => 'required|unique:permissions,name,' . $permission->id,
         ]);
 
-        $permission->update($request->only('name'));
+        $data = $request->only('name');
 
-        $response['success'] = true;
-        $response['message'] = 'Permission successfully updated.';
-        $response['redirect'] = route('admin.permissions.index');
+        $changes_exist = Common::get_changes($permission, $data);
+        if ($changes_exist) {
+            LogActivity::addToLog('permission', 'update', null, $changes_exist);
+            $permission->update($data);
+        }
 
-        return response()->json($response);
+        return response()->json([
+            'success' => true,
+            'message' => 'Permission successfully created.',
+            'redirect' => route('admin.permissions.index')
+        ]);
     }
 
-    public function destroy(Request $request, Permission $permission)
+    public function destroy(Permission $permission)
     {
-        try {
-            $permission->delete();
+        $permission->delete();
 
-            $response['success'] = true;
-            $response['message'] = 'Permission successfully deleted.';
-
-            return response()->json($response);
-        } catch (\Exception $exception) {
-            return response()->json([
-                'success' => false,
-                'request' => $request->type,
-                'message' => $exception->getMessage(),
-                'line'    => $exception->getLine(),
-                'file'    => $exception->getFile()
-            ]);
-        }
+        return response()->json([
+            'success' => true,
+            'message' => 'Permission successfully deleted.'
+        ]);
     }
 }

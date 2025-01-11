@@ -1,29 +1,31 @@
 @extends('layouts.admin')
-@section('title', 'Users')
+@section('title', 'orders')
+
 
 @section('content')
 
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
-            <div class="d-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3">All Users</h1>
-                <a href="{{ route('admin.users.create') }}" class="btn btn-primary">Add New</a>
-            </div>
+                <h1 class="h3 mb-3">All Orders</h1>
             <div class="card card-solid">
                 <div class="card-body">
                     <div class="table-responsive">
-                        <table id="usersDataTable" class="table table-bordered table-hover">
+                        <table id="ordersDataTable" class="table table-bordered table-hover">
                             <thead>
                                 <tr>
                                     <th>#</th>
-                                    <th>Name</th>
-                                    <th>Email</th>
-                                    <th>Roles</th>
-                                    <th>Permissions</th>
+                                    <th>Type</th>
+                                    <th>User Name</th>
+                                    <th>Phone</th>
+                                    <th>Delivery Adress</th>
+                                    <th>Expected Start Date</th>
+                                    <th>Persons</th>
+                                    <th>Status</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>
+                            <tbody></tbody>
                         </table>
                     </div>
                 </div>
@@ -35,5 +37,5 @@
 @endsection
 
 @push('js')
-    <script src="{{ asset('admin/js/users.js') }}"></script>
+    <script src="{{ asset('admin/js/orders.js') }}"></script>
 @endpush

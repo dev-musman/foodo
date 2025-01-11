@@ -38,14 +38,18 @@
                                     <span data-field="email" class="invalid-feedback"></span>
                                 </div>
                             </div>
-                            <div class="col-sm-6 mb-3">
-                                <div class="form-group">
-                                    <label>Password</label>
-                                    <input type="password" class="form-control" name="password"
-                                        placeholder="User password...">
-                                    <span data-field="password" class="invalid-feedback"></span>
+
+                            @empty($user)
+                                <div class="col-sm-6 mb-3">
+                                    <div class="form-group">
+                                        <label>Password</label>
+                                        <input type="password" class="form-control" name="password"
+                                            placeholder="User password...">
+                                        <span data-field="password" class="invalid-feedback"></span>
+                                    </div>
                                 </div>
-                            </div>
+                            @endempty
+
                             <div class="col-sm-6 mb-3">
                                 <div class="form-group">
                                     <label for="role">Role</label>

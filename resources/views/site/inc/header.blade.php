@@ -6,7 +6,7 @@
                     <div class="header-main-wrapper">
                         <div class="logo-area">
                             <a href="index.html" class="logo">
-                                <img src="assets/images/logo/foodo-logo.png" alt="image-logo">
+                                <img src="{{ asset('assets/images/logo/foodo-logo.png') }}" alt="image-logo">
                             </a>
                         </div>
                         <div class="rts-header-mid">
@@ -14,8 +14,8 @@
                             <div class="main-nav-desk nav-area">
                                 <nav>
                                     <ul>
-                                        <li><a class="nav-link" href="#">Home</a></li>
-                                        <li><a class="nav-link" href="#">About Us</a></li>
+                                        <li><a class="nav-link" href="{{ url('/') }}">Home</a></li>
+                                        <li><a class="nav-link" href="{{ url('/about-us') }}">About Us</a></li>
                                         <li><a class="nav-link" href="#">Services</a></li>
                                         <li><a class="nav-link" href="#">Pricing</a></li>
                                         <li><a class="nav-link" href="#">Blog</a></li>

@@ -75,6 +75,17 @@
                                     <span data-field="status" class="invalid-feedback"></span>
                                 </div>
                             </div>
+
+                            <div class="col-sm-6 mb-4">
+                                <div class="form-group">
+                                    <label>View Path</label>
+                                    <input type="text" class="form-control" name="view_path"
+                                        value="{{ $page->view_path ?? '' }}" placeholder="View Path...">
+                                    <span data-field="view_path" class="invalid-feedback"></span>
+                                </div>
+                            </div>
+
+
                         </div>
                     </div>
                     <!-- /.card-body -->

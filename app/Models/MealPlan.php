@@ -3,10 +3,14 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class MealPlan extends Model
 {
-       protected $fillable = ['menu_id', 'user_id', 'week', 'day'];
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
+
+    protected $fillable = ['menu_type_id', 'user_id', 'persons', 'delivery_address', 'start_date', 'phone', 'company' ,'status'];
 
     public function menu()
     {
@@ -16,5 +20,18 @@ class MealPlan extends Model
     public function user()
     {
         return $this->belongsTo(User::class);
+    }
+
+    public function menuType()
+    {
+        return $this->belongsTo(MenuType::class);
+    }
+
+    protected static function booted()
+    {
+        static::deleting(function ($mealPlan) {
+            $mealPlan->deleted_by = auth()->id();
+            $mealPlan->save();
+        });
     }
 }

@@ -6,15 +6,18 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateUserRequest;
 use App\Http\Requests\UpdateUserRequest;
 use App\Models\User;
-use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Spatie\Permission\Models\Role;
 use App\Traits\HasDataTables;
+use App\Helpers\{
+    LogActivity,
+    Common
+};
 
 class USerController extends Controller
 {
     use HasDataTables;
-    public function index(Request $request)
+    public function index()
     {
 
         if (request()->ajax()) {
@@ -61,17 +64,13 @@ class USerController extends Controller
             'password' => Hash::make($request->password),
         ]);
         $user->syncRoles($request->roles);
+        LogActivity::addToLog('user', 'insert', $user, null);
 
-        $response['success'] = true;
-        $response['message'] = 'user successfully created.';
-        $response['redirect'] = route('admin.users.index');
-
-        return response()->json($response);
-    }
-
-    public function show(string $id)
-    {
-        //
+        return response()->json([
+            'success' => true,
+            'message' => 'user successfully created.',
+            'redirect' => route('admin.users.index')
+        ]);
     }
 
     public function edit(User $user)
@@ -87,33 +86,28 @@ class USerController extends Controller
             $data['password'] = Hash::make($request->password);
         }
 
-        $user->update($data);
+        $changes_exist = Common::get_changes($user, $data);
+        if ($changes_exist) {
+            LogActivity::addToLog('users', 'update', null, $changes_exist);
+            $user->update($data);
+        }
+
         $user->syncRoles($request->roles);
 
-        $response['success'] = true;
-        $response['message'] = 'user successfully updated.';
-        $response['redirect'] = route('admin.users.index');
-
-        return response()->json($response);
+        return response()->json([
+            'success' => true,
+            'message' => 'user successfully updated.',
+            'redirect' => route('admin.users.index')
+        ]);
     }
 
-    public function destroy(Request $request, User $user)
+    public function destroy(User $user)
     {
-        try {
-            $user->delete();
+        $user->delete();
 
-            $response['success'] = true;
-            $response['message'] = 'User successfully deleted.';
-
-            return response()->json($response);
-        } catch (\Exception $exception) {
-            return response()->json([
-                'success' => false,
-                'request' => $request->type,
-                'message' => $exception->getMessage(),
-                'line'    => $exception->getLine(),
-                'file'    => $exception->getFile()
-            ]);
-        }
+        return response()->json([
+            'success' => true,
+            'message' => 'User successfully deleted.'
+        ]);
     }
 }

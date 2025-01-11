@@ -6,6 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Models\MenuType;
 use App\Traits\HasDataTables;
 use Illuminate\Http\Request;
+use App\Helpers\{
+    LogActivity,
+    Common
+};
+
 
 class MenuTypesController extends Controller
 {
@@ -14,7 +19,7 @@ class MenuTypesController extends Controller
     public function index()
     {
         if (request()->ajax()) {
-            $query = MenuType::query();
+            $query = MenuType::latest();
             return $this->dataTable($query, 'menu-types');
         }
 
@@ -32,32 +37,21 @@ class MenuTypesController extends Controller
         $request->validate([
             'type' => 'required|unique:menu_types,type',
         ]);
-        try {
-            $data = $request->all();
 
-            $menuType = MenuType::create($data);
+        $data = $request->all();
+        $menuType = MenuType::create($data);
 
-            $response['success'] = true;
-            $response['message'] = 'Menu Type successfully created.';
-            $response['redirect'] = route('admin.menu-types.index');
-
-            return response()->json($response);
-        } catch (\Exception $exception) {
-            return response()->json([
-                'success' => false,
-                'request' => $request->type,
-                'message' => $exception->getMessage(),
-                'line'    => $exception->getLine(),
-                'file'    => $exception->getFile()
-            ]);
+        if ($menuType) {
+            LogActivity::addToLog('menu-type', 'insert', $menuType, null);
         }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Menu Type successfully created.',
+            'redirect' => route('admin.menu-types.index'),
+        ]);
     }
 
-
-    public function show(string $id)
-    {
-        //
-    }
 
     public function edit(MenuType $menuType)
     {
@@ -69,34 +63,29 @@ class MenuTypesController extends Controller
         $request->validate([
             'type' => 'required|unique:menu_types,type,' . $menuType->id,
         ]);
-        try {
-            $data = $request->all();
 
+        $data = $request->all();
 
+        $changes_exist = Common::get_changes($menuType, $data);
+        if ($changes_exist) {
+            LogActivity::addToLog('menu-type', 'update', null, $changes_exist);
             $menuType->update($data);
-
-            $response['success'] = true;
-            $response['message'] = 'Menu Type successfully updated.';
-            $response['redirect'] = route('admin.menu-types.index');
-
-            if ($request->ajax()) {
-                return response()->json($response);
-            }
-
-            return redirect($response['redirect']);
-        } catch (\Exception $exception) {
-            return response()->json([
-                'success' => false,
-                'request' => $request->type,
-                'message' => $exception->getMessage(),
-                'line'    => $exception->getLine(),
-                'file'    => $exception->getFile()
-            ]);
         }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Menu Type successfully updated.',
+            'redirect' => route('admin.menu-types.index'),
+        ]);
     }
 
-    public function destroy(string $id)
+    public function destroy(MenuType $menuType)
     {
-        //
+        $menuType->delete();
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Menu type successfully deleted.'
+        ]);
     }
 }

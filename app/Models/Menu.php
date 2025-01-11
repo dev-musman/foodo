@@ -4,9 +4,14 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
+use Illuminate\Database\Eloquent\SoftDeletes;
+
 
 class Menu extends Model
 {
+    use SoftDeletes;
+    protected $dates = ['deleted_at'];
+
     protected $fillable = [
         'name',
         'menu_type_id',
@@ -59,7 +64,6 @@ class Menu extends Model
 
     public function deleteImage()
     {
-        // dd($this->image);
         if ($this->image && Storage::exists(str_replace('/storage/', '', $this->image))) {
             Storage::delete(str_replace('/storage/', '', $this->image));
         }
@@ -75,5 +79,13 @@ class Menu extends Model
     public function mealPlans()
     {
         return $this->hasMany(MealPlan::class);
+    }
+
+    protected static function booted()
+    {
+        static::deleting(function ($menu) {
+            $menu->deleted_by = auth()->id();
+            $menu->save();
+        });
     }
 }

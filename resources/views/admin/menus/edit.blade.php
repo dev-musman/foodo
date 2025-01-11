@@ -104,8 +104,6 @@
                                         <img src="{{ asset($menu->image) }}" alt="Menu Image" class="img-fluid mt-2"
                                             style="max-width: 150px;">
                                     @endif
-                                    {{-- <img id="image-preview" class="img-fluid mt-2 d-none" style="max-width: 150px;"
-                                        alt="Image Preview"> --}}
                                     <span data-field="image" class="invalid-feedback"></span>
                                 </div>
                             </div>
@@ -133,7 +131,7 @@
     </section>
 @endsection
 
-@section('js')
+@push('js')
     <script src="{{ asset('admin/js/menu.js') }}"></script>
-@endsection
+@endpush
 

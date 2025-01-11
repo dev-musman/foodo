@@ -27,6 +27,7 @@ class StorePageRequest extends FormRequest
             'meta_title' => 'required',
             'meta_description' => 'required',
             'meta_keywords' => 'required',
+            'view_path' => 'required',
         ];
     }
 }
