@@ -601,7 +601,7 @@
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="persons" class="form-label">Menu for how many persons</label>
-                                            <input type="number" name="persons" value="30" class="site-input required from-control-lg"
+                                            <input type="number" name="persons" class="site-input required from-control-lg"
                                                 id="persons" placeholder="Enter Numbers of Persons">
                                         </div>
                                     </div>
@@ -769,7 +769,6 @@
                                 <div>
                                     <span class="rounded-circle">
                                         <div class="rounded-circle bg-danger p-1 checkIcon text-white m-1">&#10004;</div>
-                                        <i class="fa fa-check-circle text-danger" aria-hidden="true"></i>
                                     </span>
                                     <div class="week-divider week-divider${i+1}"></div>
                                 </div>
@@ -1031,10 +1030,9 @@
                 let weekCol = `<div class="col-md-3 p-md-0 mb-4 mb-md-0">
                             <div class="col-title">
                                 <div>
-                                    <div class="rounded-circle">
+                                    <span class="rounded-circle">
                                         <div class="rounded-circle bg-danger p-1 checkIcon text-white m-1">&#10004;</div>
-                                        <i class="fa fa-check-circle text-danger" aria-hidden="true"></i>
-                                    </div>
+                                    </span>
                                     <div class="week-divider week-divider${i}"></div>
                                 </div>
                                 <h5 class="text-site-danger">Week ${i}</h5>
