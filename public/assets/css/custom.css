@@ -396,6 +396,7 @@ ul li a:hover{
 }
 .our-services-grid-border{
     padding: 35px 20px !important;
+    min-height: 19em;
 }
 .our-services-grid-border > p.desc{
     animation: none !important;
