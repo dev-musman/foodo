@@ -15,12 +15,12 @@
                                 <nav>
                                     <ul>
                                         <li><a class="nav-link" href="{{ url('/') }}">Home</a></li>
-                                        <li><a class="nav-link" href="{{ url('/about-us') }}">About Us</a></li>
-                                        <li><a class="nav-link" href="#">Services</a></li>
-                                        <li><a class="nav-link" href="#">Menu</a></li>
-                                        <li><a class="nav-link" href="#">Pricing</a></li>
-                                        <li><a class="nav-link" href="#">Blog</a></li>
-                                        <li><a class="nav-link" href="#">Contact</a></li>
+                                        <li><a class="nav-link" href="#about">About Us</a></li>
+                                        <li><a class="nav-link" href="#services">Services</a></li>
+                                        <li><a class="nav-link" href="#menu-section">Menu</a></li>
+                                        <li><a class="nav-link" href="#pricing">Pricing</a></li>
+                                        <li><a class="nav-link" href="#blog">Blog</a></li>
+                                        <li><a class="nav-link" href="tel:+92 337 0777019">Contact</a></li>
                                     </ul>
                                 </nav>
                             </div>
@@ -57,13 +57,13 @@
             <div class="mobile-menu d-block d-lg-none">
                 <nav class="nav-main mainmenu-nav mt--30">
                     <ul class="mainmenu" id="mobile-menu-active">
-                        <li><a class="nav-link" href="#">Home</a></li>
-                        <li><a class="nav-link" href="#">About Us</a></li>
-                        <li><a class="nav-link" href="#">Services</a></li>
-                        <li><a class="nav-link" href="#">Menu</a></li>
-                        <li><a class="nav-link" href="#">Pricing</a></li>
-                        <li><a class="nav-link" href="#">Blog</a></li>
-                        <li><a class="nav-link" href="#">Contact</a></li>
+                        <li><a class="nav-link" href="{{ url('/') }}">Home</a></li>
+                        <li><a class="nav-link" href="#about">About Us</a></li>
+                        <li><a class="nav-link" href="#services">Services</a></li>
+                        <li><a class="nav-link" href="#menu-section">Menu</a></li>
+                        <li><a class="nav-link" href="#pricing">Pricing</a></li>
+                        <li><a class="nav-link" href="#blog">Blog</a></li>
+                        <li><a class="nav-link" href="tel:+92 337 0777019">Contact</a></li>
                     </ul>
                 </nav>
             </div>

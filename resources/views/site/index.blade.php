@@ -10,14 +10,14 @@
                     <h1 class="p-title"><span class="text-danger">Homemade Khana</span> <span class="fw-normal">Right to Your Office</span></h1>
                     <p class="desc fs-1">Make Your Teams Happy with Ghar ka Khana</p>
                     <div class="banner-home-button d-flex">
-                        <a href="#" class="order-btn-contact">Contact Us</a>
-                        <a href="#" class="order-btn-see-menu">SEE Menu</a>
+                        <a href="tel:+92 337 0777019" class="order-btn-contact text-uppercase">Contact Us</a>
+                        <a href="#menu" class="order-btn-see-menu text-uppercase">SEE Menu</a>
                     </div>
                     <div></div>
                 </div>
             </div>
             <div class="col-lg-6">
-                <div class="" data-sal="zoom-in" data-sal-delay="600" data-sal-duration="600">
+                <div class=" d-none d-md-block" data-sal="zoom-in" data-sal-delay="600" data-sal-duration="600">
                     <img src="{{ asset('assets/images/banner/home-banner-image.png') }}"
                         alt="banner-right-image">
                 </div>
@@ -27,7 +27,7 @@
 </div>
 <!-- banner end -->
 
-<div class="rts-about-area rts-section-gapTopBotm bg-white">
+<div class="rts-about-area rts-section-gapTopBotm bg-white" id="about">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-10">
@@ -51,7 +51,7 @@
                             </ul>
                             <br>
                             <div class="banner-home-button mt-5">
-                                <a href="#" class="btn btn-site-primary w-auto text-uppercase px-5 py-3 fs-5 booking-btn">Get Started</a>
+                                <a href="#menu" class="btn btn-site-primary w-auto text-uppercase px-5 py-3 fs-5 booking-btn">Get Started</a>
                             </div>
                         </div>
                     </div>
@@ -97,7 +97,7 @@
                         affordable within your set budget.</p>
                     <br>
                     <div class="banner-home-button pb-3">
-                    <a href="#" class="btn btn-site-primary w-auto text-uppercase px-5 py-3 fs-5 booking-btn">About Us</a>
+                    <a href="#about" class="btn btn-site-primary w-auto text-uppercase px-5 py-3 fs-5 booking-btn">About Us</a>
                     </div>
                 </div>
             </div>
@@ -111,7 +111,7 @@
     </div>
 </div>
 
-<div class="rts-about-area rts-section-gapTopBotm" style="background-color: #F9F7F2;">
+<div class="rts-about-area rts-section-gapTopBotm" style="background-color: #F9F7F2;" id="services">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-5">
@@ -178,7 +178,7 @@
 </div>
 
 <!-- menu area start -->
-<div class="rts-about-area rts-section-gapTopBotm bg-white menu-bg">
+<div class="rts-about-area rts-section-gapTopBotm bg-white menu-bg" id="menu-section">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-10 text-center">
@@ -443,7 +443,7 @@
 </div>
 <!-- testimonial area end -->
 
-<div class="rts-about-area rts-section-gapTopBotm" style="background-color: #F9F7F2;">
+<div class="rts-about-area rts-section-gapTopBotm" style="background-color: #F9F7F2;" id="pricing">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-12 text-center mb-4">
@@ -471,7 +471,7 @@
                             Free Delivery
                         </li>
                     </ul>
-                    <button class="btn btn-site-primary w-auto text-uppercase px-5 py-3 fs-5 booking-btn">Book Now</button>
+                    <a href="tel:+92 337 0777019" class="btn btn-site-primary w-auto text-uppercase px-5 py-3 fs-5 booking-btn">Book Now</a>
                 </div>
             </div>
             <div class="col-md-3">
@@ -499,7 +499,7 @@
                             Free Delivery
                         </li>
                     </ul>
-                    <button class="btn btn-site-primary w-auto text-uppercase px-5 py-3 fs-5 booking-btn">Book Now</button>
+                    <a href="tel:+92 337 0777019" class="btn btn-site-primary w-auto text-uppercase px-5 py-3 fs-5 booking-btn">Book Now</a>
                 </div>
             </div>
         </div>
@@ -512,13 +512,13 @@
             <div class="col-md-7 text-center">
                 <h5 class="p-title text-white">Ready to Book The Catering For <br> Your Special Event?</h5>
                 <p class="desc text-white">Get our best corporate lunch catering services for your special event and ensure a <br>smooth interplay of flavors and aromas emanating from our delicious food.</p>
-                <button class="btn btn-warning border-none w-auto py-3 px-5 fs-4 rounded-0 text-uppercase">Schedule Taste Testing</button>
+                <a href="tel:+92 337 0777019" class="btn btn-warning border-none w-auto py-3 px-5 fs-4 rounded-0 text-uppercase">Schedule Taste Testing</a>
             </div>
         </div>
     </div>
 </div>
 <!-- blog area start -->
-<div class="rts-blog-area rts-blog-area-2 rts-section-gap">
+<div class="rts-blog-area rts-blog-area-2 rts-section-gap" id="blog">
     <div class="container">
         <div class="row text-center justify-content-center">
             <div class="col-md-12 text-center mb-5">
@@ -601,7 +601,7 @@
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="persons" class="form-label">Menu for how many persons</label>
-                                            <input type="number" name="persons" class="site-input required from-control-lg"
+                                            <input type="number" name="persons" value="30" class="site-input required from-control-lg"
                                                 id="persons" placeholder="Enter Numbers of Persons">
                                         </div>
                                     </div>
@@ -632,6 +632,7 @@
                                         </div>
                                     </div>
                                     <div class="my-5">
+                                        <button class="btn btn-lg text-uppercase p-4 px-5 rounded-5 btn-light w-auto back-btn" style="border-radius: 12px !important;">Back</button>
                                         <button class="btn btn-site-primary btn-lg w-auto py-4 px-5 text-uppercase view-detail">Next
                                             Step</button>
                                     </div>
@@ -757,7 +758,7 @@
             const menus = menuObj.type_id[menuId]['weeks'];
 
             $('.menuTab' + menuId).addClass('d-none');
-            $('.menuRow' + menuId).append(menuFrom)
+            $('.menuRow' + menuId).append(menuFrom);
             $('#menu').val(menuId);
             $('#menu').prop('disabled', true);
             $('.data-menu').text(menuId == 1 ? '5 Days Menu' : '7 Days Menu');
@@ -802,7 +803,7 @@
 
         function validate() {
             var valid = true;
-            var div = "";
+            var div = "div";
             $(".text-danger").remove();
             $(".required:visible").each(function() {
                 if (
@@ -824,6 +825,37 @@
                         );
                     valid = false;
                 }
+                if($(this).attr('name') === 'persons' && parseInt($(this).val() , 10) < 30 && valid)
+                {
+                    $(this)
+                        .closest(div)
+                        .append(
+                            '<div class="text-danger" data-field=' +
+                            name +
+                            ">Menu is available for minimum 30 persons</div>"
+                        );
+                    valid = false;
+                }
+                if($(this).attr('name') === 'start_date' && valid)
+                {
+                    let dateValue = new Date($(this).val());  // Convert it to a Date object
+                    let today = new Date();               // Get today's date
+
+                    // Set the time of today's date to 00:00:00 for accurate comparison
+                    today.setHours(0, 0, 0, 0);
+
+                    if (dateValue <= today) {
+                        $(this)
+                            .closest(div)
+                            .append(
+                                '<div class="text-danger" data-field=' +
+                                name +
+                                ">Menu is available for minimum 30 persons</div>"
+                            );
+                        valid = false;
+                    }
+                }
+
             });
             if (!valid) {
                 var input = $(".alert-danger:first").attr("data-field");
@@ -845,7 +877,7 @@
                             </span>
                             <div class="custom-divider endNode${i}"></div>
                         </h5>
-                        <section class="pt-0">
+                        <section class="pt-0" data-week="${i}">
                             <h5 class="text-site-danger">
                                 Week ${i}
                             </h5>
@@ -931,8 +963,9 @@
             if (currentIndex < emptyMealArray.length) {
                 var week = currentIndex+1;
                 var day = emptyMealArray[currentIndex][currentDayIndex];
-                $('.input'+day+week).val(id);
-                $('.input'+day+week).attr('data-name' , name);
+                var inputClass = '.input'+day+week;
+                $(inputClass).val(id);
+                $(inputClass).attr('data-name' , name);
                 $('.item'+day+week).text(name);
                 $('.customRemove'+day+week).removeClass('d-none');
                 $('.customAdd'+day+week).addClass('d-none');
@@ -958,54 +991,28 @@
         $(document).on('click', 'a[href="#next"]', function(event) {
             event.preventDefault(); // Prevent the default anchor click behavior
             resetCustomFromUi();
+            checkCurrentTabFillMenu();
         });
         $(document).on('click', 'a[href="#previous"]', function(event) {
             event.preventDefault(); // Prevent the default anchor click behavior
-            var count = 0;
-            $('.customInputData').each((index , ele) =>{
-                if($(ele).val())
-                {
-                    count++;
-                }
-            });
-            var moveArray = [5,10,15,20,7,14,21,28];
-            if(moveArray.includes(count)){
-                $('a[href="#new"]')
-                .removeClass('disabled btn-light')    // Add the 'disabled' class
-                .attr('href', '#next'); 
-                $('a[href="#finish"]')
-                .removeClass('d-none'); 
-            }
+            checkCurrentTabFillMenu();
         });
         $(document).on('click', 'a[href="#finish"]', function(event) {
             var menuId = $('.custom-meal-selector').val();
-            var array = [];
             $('.weeksDetail').empty();
-            $('.customInputData').each((index , ele) =>{
-                var obj = {
-                    'id' : $(ele).val(),
-                    'week' : $(ele).data('week'),
-                    'day' : $(ele).data('day'),
-                    'name' : $(ele).data('name')
-                };
-                array.push(obj)
-            })
-            var menu = array.reduce((acc, item) => {
-                // Initialize an array for the week if it doesn't exist
-                if (!acc[item.week]) {
-                    acc[item.week] = [];
-                }
-                // Add the item to the corresponding week array
-                acc[item.week].push(item);
-                return acc;
-            }, {});
+            
+            var menu = getCustomMealData();
+            var tabHtml = $('.menuRow3').children('.menuTab3').html();
+            $('.menuRow3').empty()
+            var divHtml = `<div class="col-md-11 menuTab3 menuTab">`+tabHtml+`</div>`
+            $('.menuRow3').append(divHtml)
             $('.menuTab3').addClass('d-none');
             $('.menuRow3').append(menuFrom)
             $('#menu').val(menuId);
             $('#menu').prop('disabled', true);
             $('.data-menu').text(menuId == 1 ? '5 Days Menu' : '7 Days Menu');
             for (var i = 1; i < 5; i++) {
-                const weekData = menu[i];
+                var weekData = menu[i];
                 let weekCol = `<div class="col-md-3 p-md-0 mb-4 mb-md-0">
                             <div class="col-title">
                                 <div>
@@ -1066,12 +1073,56 @@
             createCustomStepsForm();
             resetCustomFromUi();
         }
-        $(document).on('click' , '.place-order' , function(){
+
+        function orderPlaced() {
             $('.orderConfirmed').addClass('d-none');
             $('.orderPlaced').removeClass('d-md-none d-none');
             $('.orderPlacedImg').removeClass('d-none');
-        })
+        }
+        function getCustomMealData()
+        {
+            var array = [];
 
+            $('.customInputData').each((index , ele) =>{
+                var obj = {
+                    'id' : $(ele).val(),
+                    'week' : $(ele).attr('data-week'),
+                    'day' : $(ele).attr('data-day'),
+                    'name' : $(ele).attr('data-name')
+                };
+                array.push(obj)
+            })
+            return array.reduce((acc, item) => {
+                // Initialize an array for the week if it doesn't exist
+                if (!acc[item.week]) {
+                    acc[item.week] = [];
+                }
+                // Add the item to the corresponding week array
+                acc[item.week].push(item);
+                return acc;
+            }, {});
+        }
+        function checkCurrentTabFillMenu()
+        {
+            var week = $('.body.current').data('week');
+            var arr = getCustomMealData();
+
+            const count = arr[week].reduce((sum, item) => {
+                // Convert `id` to a number (default to 0 if it's not a number)
+                const idValue = item.id === '' ? 0 : 1;
+                return sum + idValue;
+            }, 0);
+            if(count === 5 || count === 7){
+                $('a[href="#new"]')
+                .removeClass('disabled btn-light')    // Add the 'disabled' class
+                .attr('href', '#next'); 
+            }
+            else{
+                $('a[href="#next"]')
+                .addClass('disabled btn-light')    // Add the 'disabled' class
+                .attr('href', '#new'); 
+            }
+        }
         $(document).on('click', '#confirmOrder', async function() {
 
 
@@ -1120,5 +1171,9 @@
                 });
             }
         });
+        $(document).on('click' , '.back-btn' , function(){
+            $('.menuFrom').addClass('d-none')
+            $('.menuTab').removeClass('d-none')
+        })
     </script>
 @endpush

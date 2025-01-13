@@ -11,17 +11,17 @@
                                 <img src="{{ asset('assets/images/footer/logo.png') }}"
                                     alt="logo">
                             </a>
-                            <p class="disc-f">
+                            <p class="disc-f fs-4">
                                 The best catering and meal services provider.
                             </p>
                             <div class="query-list">
                                 <ul>
-                                    <li>
+                                    <li class="fs-4">
                                         <i class="fa-solid fa-location-dot"></i>
                                         Office 1506, Al Hafeez Executive, 30 Firdous Mkt Rd, Block C3 Block C 3 Gulberg III, Lahore, Punjab 54760, Pakistan
                                     </li>
-                                    <li><a href="mailto:support@foodo.com.pk"><i
-                                                class="fa-solid fa-envelope"></i>support@foodo.com.pk</a></li>
+                                    <li class="fs-4"><a href="mailto:info@foodo.com.pk"><i
+                                                class="fa-solid fa-envelope"></i>info@foodo.com.pk</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -32,10 +32,10 @@
                                 <h6 class="title p-0 ps-md-5">Quick Links</h6>
                                 <div class="pages">
                                     <ul>
-                                        <li><a href="#"><i class="fa-solid fa-angle-right"></i> About Us</a></li>
-                                        <li><a href="#"><i class="fa-solid fa-angle-right"></i> Our Menu</a></li>
-                                        <li><a href="#"><i class="fa-solid fa-angle-right"></i>Our Chef</a></li>
-                                        <li><a href="#"><i class="fa-solid fa-angle-right"></i> Reservation</a></li>
+                                        <li><a href="#about"><i class="fa-solid fa-angle-right"></i> About Us</a></li>
+                                        <li><a href="#services"><i class="fa-solid fa-angle-right"></i> Services</a></li>
+                                        <li><a href="#menu-section"><i class="fa-solid fa-angle-right"></i>Menu</a></li>
+                                        <li><a href="#pricing"><i class="fa-solid fa-angle-right"></i> Pricing</a></li>
                                         <li><a href="#"><i class="fa-solid fa-angle-right"></i> Contact Us</a></li>
                                     </ul>
                                 </div>
@@ -47,13 +47,11 @@
                                 <h6 class="title p-0 ps-md-5">Useful Links</h6>
                                 <div class="pages">
                                     <ul>
-                                        <li><a href="#"> 
-                                            <i class="fa-solid fa-angle-right"></i>
-                                            About Us</a></li>
-                                        <li><a href="#"><i class="fa-solid fa-angle-right"></i> Our Menu</a></li>
-                                        <li><a href="#"><i class="fa-solid fa-angle-right"></i>Our Chef</a></li>
-                                        <li><a href="#"><i class="fa-solid fa-angle-right"></i> Reservation</a></li>
-                                        <li><a href="#"><i class="fa-solid fa-angle-right"></i> Contact Us</a></li>
+                                        <li><a href="#"><i class="fa-solid fa-angle-right"></i> Privacy Policy</a></li>
+                                        <li><a href="#"><i class="fa-solid fa-angle-right"></i>Terms and Conditions</a></li>
+                                        <li><a href="#"><i class="fa-solid fa-angle-right"></i> Disclaimer</a></li>
+                                        <li><a href="#"><i class="fa-solid fa-angle-right"></i> Elemets</a></li>
+                                        <li><a href="#"><i class="fa-solid fa-angle-right"></i> Support</a></li>
                                     </ul>
                                 </div>
                             </div>
@@ -62,7 +60,7 @@
                             data-sal-duration="800">
                             <div class="footer-header-two get-touch">
                                 <h6 class="title">Newsletter</h6>
-                                <p class="disc-f text-white m-0">
+                                <p class="disc-f text-white m-0 fs-4">
                                     Stay updated with our deals and offerings by subscribing to our newsletter.
                                 </p>
                                 <div class="get-touch">
@@ -70,7 +68,7 @@
                                         <input type="text" class="from-control bg-white form-control-lg w-75" placeholder="Enter Your Email" style="height: 50px;">
                                         <button class="btn btn-warning border-none w-auto px-5 fs-4 rounded-0">Send</button>
                                     </div>
-                                    <div class="rts-social-wrapper m-0 d-flex align-items-center text-white">
+                                    <div class="rts-social-wrapper m-0 d-flex align-items-center text-white fs-4">
                                         Payment:
                                         <ul class="ps-4">
                                             <li><i class="fa-brands fa-cc-visa"></i></li>
@@ -94,7 +92,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="copyright-footer-one">
-                            <p class="disc">Copyright © 2024. All Right Reserved.
+                            <p class="disc fs-5">Copyright © 2024. All Right Reserved.
                             </p>
                         </div>
                     </div>
