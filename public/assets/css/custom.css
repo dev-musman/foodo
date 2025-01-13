@@ -508,7 +508,9 @@ width: 100%;
 .banner-home-button .order-btn-see-menu {
     font-size: 12px !important;
 }
-
+.nav-link:focus, .nav-link:hover {
+    color: #c73938 !important;
+}
 
 /* jquery steps css */
 .steps::before{
