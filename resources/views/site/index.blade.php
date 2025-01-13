@@ -135,11 +135,11 @@
                     <div class="col-md-4">
                         <div class="our-services-grid-border mb-3">
                             <img src="{{ asset('assets/images/about/Corporate-Events-Icon.svg') }}"
-                                alt="" />
+                                alt="placeholder img" />
                             <h6 class="py-4 m-0">Corporate Events</h6>
                             <p class="desc mb-4">Elevate your corporate event with our premium catering services and customized menu.
                             </p>
-                            <a href="" class="service-link">
+                            <a href="#" class="service-link">
                                 Read more
                                 <i class="fa-solid fa-arrow-right"></i>
                             </a>
@@ -148,11 +148,11 @@
                     <div class="col-md-4">
                         <div class="our-services-grid-border mb-3">
                             <img src="{{ asset('assets/images/about/Wedding-Events-Icon.svg') }}"
-                                alt="" />
+                                alt="placeholder img" />
                             <h6 class="py-4 m-0">Wedding Events</h6>
                             <p class="desc mb-4">Uplift your event with an exquisite menu that lightens the space and boosts your
                                 energy.</p>
-                            <a href="" class="service-link">
+                            <a href="#" class="service-link">
                                 Read more
                                 <i class="fa-solid fa-arrow-right"></i>
                             </a>
@@ -161,11 +161,11 @@
                     <div class="col-md-4">
                         <div class="our-services-grid-border mb-3">
                             <img src="{{ asset('assets/images/about/Social-Events-Icon.svg') }}"
-                                alt="" />
+                                alt="placeholder img" />
                             <h6 class="py-4 m-0">Social Events</h6>
                             <p class="desc mb-4">Grace your social events with our personalized services that fulfill all the
                                 requirements.</p>
-                            <a href="" class="service-link">
+                            <a href="#" class="service-link">
                                 Read more
                                 <i class="fa-solid fa-arrow-right"></i>
                             </a>
@@ -223,7 +223,7 @@
                                                 <div class="d-flex">
                                                     <div class="col-3 px-2">
                                                         <img src="{{ asset($menu->image) }}"
-                                                            alt="" class="rounded-circle px-2">
+                                                            alt="placeholder img" class="rounded-circle px-2">
                                                     </div>
                                                     <div class="col-9 px-2">
                                                         <div class="menu-title mb-2">
@@ -287,7 +287,7 @@
                                                 <div class="d-flex">
                                                     <div class="col-3 px-2">
                                                         <img src="{{ asset($menu->image) }}"
-                                                            alt="" class="rounded-circle">
+                                                            alt="placeholder img" class="rounded-circle">
                                                     </div>
                                                     <div class="col-9 px-2">
                                                         <div class="menu-title mb-2">
@@ -335,7 +335,7 @@
                     </span>
                 <div class="border border-2 border-danger p-5 position-relative m-auto working-process">
                     <img src="{{ asset('assets/images/working-process/appointment.svg') }}"
-                        alt="" />
+                        alt="placeholder img" />
                 </div>
                 
                     </div>
@@ -349,7 +349,7 @@
                     </span>
                 <div class="border border-2 border-danger p-5 position-relative m-auto working-process">
                     <img src="{{ asset('assets/images/working-process/food.svg') }}"
-                        alt="" />
+                        alt="placeholder img" />
                 </div>
                 </div>
 
@@ -364,7 +364,7 @@
                     </span>
                 <div class="border border-2 border-danger p-5 position-relative m-auto working-process">
                     <img src="{{ asset('assets/images/working-process/catering.svg') }}"
-                        alt="" />
+                        alt="placeholder img" />
                 </div>
                 </div>
 
@@ -394,7 +394,7 @@
                                 <div class="content">
                                     <span class="w-foods-itilanio">Testimonial</span>
                                     <h4 class="text-danger">What They Say</h4>
-                                    <img src="{{asset('assets/images/team/01.webp')}}" class="rounded-circle border border-2 border-danger testimonial-img" alt="">
+                                    <img src="{{asset('assets/images/team/01.webp')}}" class="rounded-circle border border-2 border-danger testimonial-img" alt="placeholder img">
                                     <div class="rating my-3">
                                         <i class="fa-solid fa-star text-danger"></i>
                                         <i class="fa-solid fa-star text-danger"></i>
@@ -417,7 +417,7 @@
                                 <div class="content">
                                     <span class="w-foods-itilanio">Testimonial</span>
                                     <h4 class="text-danger">What They Say</h4>
-                                    <img src="{{asset('assets/images/team/01.webp')}}" class="rounded-circle border border-2 border-danger testimonial-img" alt="">
+                                    <img src="{{asset('assets/images/team/01.webp')}}" class="rounded-circle border border-2 border-danger testimonial-img" alt="placeholder img">
                                     <div class="rating my-3">
                                         <i class="fa-solid fa-star text-danger"></i>
                                         <i class="fa-solid fa-star text-danger"></i>
@@ -540,7 +540,7 @@
                             consectetur adipiscing elit, sed do
                             eiusmod tempor incididunt ut
                             labore et dolore magna</p>
-                        <a href="" class="service-link text-danger text-uppercase fs-5 fw-bold">
+                        <a href="#" class="service-link text-danger text-uppercase fs-5 fw-bold">
                             Read more
                             <i class="fa-solid fa-arrow-right"></i>
                         </a>
@@ -561,7 +561,7 @@
                             consectetur adipiscing elit, sed do
                             eiusmod tempor incididunt ut
                             labore et dolore magna</p>
-                        <a href="" class="service-link text-danger text-uppercase fs-5 fw-bold">
+                        <a href="#" class="service-link text-danger text-uppercase fs-5 fw-bold">
                             Read more
                             <i class="fa-solid fa-arrow-right"></i>
                         </a>
