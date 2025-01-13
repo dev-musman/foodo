@@ -394,7 +394,7 @@
                                 <div class="content">
                                     <span class="w-foods-itilanio">Testimonial</span>
                                     <h4 class="text-danger">What They Say</h4>
-                                    <img src="{{asset('assets/images/team/01.webp')}}" class="rounded-circle border border-2 border-danger testimonial-img" alt="placeholder img">
+                                    <img src="{{asset('assets/images/team/01.webp')}}" class="rounded-circle border border-2 border-danger testimonial-img m-auto" alt="placeholder img">
                                     <div class="rating my-3">
                                         <i class="fa-solid fa-star text-danger"></i>
                                         <i class="fa-solid fa-star text-danger"></i>

@@ -435,11 +435,13 @@ ul li a:hover{
     border: 1px solid #c73938;
 }
 .rts-testimonial-area .testimonial-area-inner .swiper-testimonial-main-wrapper .testimonial-wrapper .content{
-    display: block;
+    display: grid;
     padding: 0px !important;
     border-radius: 15px;
     text-align: center;
+    justify-content: center;
     margin: 10px !important;
+    align-items: center;
 }
 .rts-testimonial-area .testimonial-area-inner .swiper-testimonial-main-wrapper .testimonial-wrapper .content h3 {
     font-family: "Montserrat", sans-serif;
