@@ -20,20 +20,20 @@
     @endif
 
     <!-- fontawesome css -->
-    <link rel="stylesheet" href="{{ asset('assets/css/plugins/fontawesome-5.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/fontawesome-5.css') }}">
     <!-- fontawesome css -->
-    <link rel="stylesheet" href="{{ asset('assets/css/plugins/swiper.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/plugins/unicons.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/plugins/metismenu.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/plugins/magnific-popup.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/plugins/timepickers.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/plugins/aos.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/plugins/hover-revel.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/swiper.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/unicons.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/metismenu.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/magnific-popup.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/timepickers.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/aos.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/hover-revel.css') }}">
     <!-- bootstrap css -->
-    <link rel="stylesheet" href="{{ asset('assets/css/vendor/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/css/vendor/bootstrap.min.css') }}">
     <!-- main css -->
-    <link rel="stylesheet" href="{{ asset('assets/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/custom.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/css/custom.css') }}">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -44,8 +44,8 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset('assets/css/plugins/owlcarousel/dist/assets/owl.carousel.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('assets/css/plugins/owlcarousel/dist/assets/owl.theme.default.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/owlcarousel/dist/assets/owl.carousel.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/owlcarousel/dist/assets/owl.theme.default.min.css') }}">
  <!-- sweet alert -->
  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.15.3/sweetalert2.min.css" />
 </head>

@@ -9,7 +9,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title') | {{ env('APP_NAME') }}</title>
 
-    <link href="{{ asset('admin/css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('public/admin/css/app.css') }}" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
     <!-- DataTables CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.13.4/css/jquery.dataTables.min.css">
@@ -42,8 +42,8 @@
     {{-- select 2 --}}
     <script src="https://cdn.jsdelivr.net/npm/select2@4.1.0-rc.0/dist/js/select2.min.js"></script>
 
-    <script src="{{ asset('admin/js/app.js') }}"></script>
-    <script src="{{ asset('admin/js/main-scripts.js') }}"></script>
+    <script src="{{ asset('public/admin/js/app.js') }}"></script>
+    <script src="{{ asset('public/admin/js/main-scripts.js') }}"></script>
 
     @stack('js')
 

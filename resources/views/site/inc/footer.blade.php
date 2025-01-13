@@ -8,7 +8,7 @@
                         <div class="single-footer-wized-one logo-area" data-sal="slide-up" data-sal-delay="150"
                             data-sal-duration="800">
                             <a href="index.html" class="logo">
-                                <img src="{{ asset('assets/images/footer/logo.png') }}"
+                                <img src="{{ asset('public/assets/images/footer/logo.png') }}"
                                     alt="logo">
                             </a>
                             <p class="disc-f fs-4">

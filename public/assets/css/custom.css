@@ -1,12 +1,12 @@
 .menu-bg {
-    background-image: url('/assets/images/menu/section-bg.webp');
+    background-image: url('/public/assets/images/menu/section-bg.webp');
     background-size: cover;
     background-position: top;
     background-repeat: no-repeat;
     min-height: 59em;
 }
 .booking-bg {
-    background-image: url('/assets/images/home/booking-bg.png');
+    background-image: url('/public/assets/images/home/booking-bg.png');
     background-size: cover;
     background-position: top;
     background-repeat: no-repeat;

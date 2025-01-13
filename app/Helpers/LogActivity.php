@@ -29,9 +29,4 @@ class LogActivity
         History::create($log);
     }
 
-
-    public static function logActivityLists()
-    {
-        return History::latest()->get();
-    }
 }

@@ -18,7 +18,7 @@
             </div>
             <div class="col-lg-6">
                 <div class=" d-none d-md-block" data-sal="zoom-in" data-sal-delay="600" data-sal-duration="600">
-                    <img src="{{ asset('assets/images/banner/home-banner-image.png') }}"
+                    <img src="{{ asset('public/assets/images/banner/home-banner-image.png') }}"
                         alt="banner-right-image">
                 </div>
             </div>
@@ -34,7 +34,7 @@
                 <div class="row shadow">
                     <div class="col-md-6 p-0">
                         <div class="home-about-one-img">
-                            <img src="{{ asset('assets/images/about/home-about-image.png') }}"
+                            <img src="{{ asset('public/assets/images/about/home-about-image.png') }}"
                                 alt="about">
                         </div>
                     </div>
@@ -67,7 +67,7 @@
             <div class="col-md-5">
                 <div class="">
                     <h5 class="p-title d-flex">
-                        <img src="{{asset('assets/images/home/qoute.png')}}" alt="qoute"  class="me-3 qoute-img">
+                        <img src="{{asset('public/assets/images/home/qoute.png')}}" alt="qoute"  class="me-3 qoute-img">
                         The Food You Eat Should Be Perfect,
                         And This Is Our Responsibility
                     </h5>
@@ -103,7 +103,7 @@
             </div>
             <div class="col-md-5">
                 <div class="home-about-one-img">
-                    <img src="{{ asset('assets/images/about/home-about-img-2.png') }}"
+                    <img src="{{ asset('public/assets/images/about/home-about-img-2.png') }}"
                         alt="about">
                 </div>
             </div>
@@ -134,7 +134,7 @@
                 <div class="row">
                     <div class="col-md-4">
                         <div class="our-services-grid-border mb-3">
-                            <img src="{{ asset('assets/images/about/Corporate-Events-Icon.svg') }}"
+                            <img src="{{ asset('public/assets/images/about/Corporate-Events-Icon.svg') }}"
                                 alt="placeholder img" />
                             <h6 class="py-4 m-0">Corporate Events</h6>
                             <p class="desc mb-4">Elevate your corporate event with our premium catering services and customized menu.
@@ -147,7 +147,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="our-services-grid-border mb-3">
-                            <img src="{{ asset('assets/images/about/Wedding-Events-Icon.svg') }}"
+                            <img src="{{ asset('public/assets/images/about/Wedding-Events-Icon.svg') }}"
                                 alt="placeholder img" />
                             <h6 class="py-4 m-0">Wedding Events</h6>
                             <p class="desc mb-4">Uplift your event with an exquisite menu that lightens the space and boosts your
@@ -160,7 +160,7 @@
                     </div>
                     <div class="col-md-4">
                         <div class="our-services-grid-border mb-3">
-                            <img src="{{ asset('assets/images/about/Social-Events-Icon.svg') }}"
+                            <img src="{{ asset('public/assets/images/about/Social-Events-Icon.svg') }}"
                                 alt="placeholder img" />
                             <h6 class="py-4 m-0">Social Events</h6>
                             <p class="desc mb-4">Grace your social events with our personalized services that fulfill all the
@@ -222,7 +222,7 @@
                                             <div class="col-md-6 my-4">
                                                 <div class="d-flex">
                                                     <div class="col-3 px-2">
-                                                        <img src="{{ asset($menu->image) }}"
+                                                        <img src="{{ asset('public'.$menu->image) }}"
                                                             alt="placeholder img" class="rounded-circle px-2">
                                                     </div>
                                                     <div class="col-9 px-2">
@@ -334,7 +334,7 @@
                         01
                     </span>
                 <div class="border border-2 border-danger p-5 position-relative m-auto working-process">
-                    <img src="{{ asset('assets/images/working-process/appointment.svg') }}"
+                    <img src="{{ asset('public/assets/images/working-process/appointment.svg') }}"
                         alt="placeholder img" />
                 </div>
                 
@@ -348,7 +348,7 @@
                         02
                     </span>
                 <div class="border border-2 border-danger p-5 position-relative m-auto working-process">
-                    <img src="{{ asset('assets/images/working-process/food.svg') }}"
+                    <img src="{{ asset('public/assets/images/working-process/food.svg') }}"
                         alt="placeholder img" />
                 </div>
                 </div>
@@ -363,7 +363,7 @@
                         03
                     </span>
                 <div class="border border-2 border-danger p-5 position-relative m-auto working-process">
-                    <img src="{{ asset('assets/images/working-process/catering.svg') }}"
+                    <img src="{{ asset('public/assets/images/working-process/catering.svg') }}"
                         alt="placeholder img" />
                 </div>
                 </div>
@@ -394,7 +394,7 @@
                                 <div class="content">
                                     <span class="w-foods-itilanio">Testimonial</span>
                                     <h4 class="text-danger">What They Say</h4>
-                                    <img src="{{asset('assets/images/team/01.webp')}}" class="rounded-circle border border-2 border-danger testimonial-img m-auto" alt="placeholder img">
+                                    <img src="{{asset('public/assets/images/team/01.webp')}}" class="rounded-circle border border-2 border-danger testimonial-img m-auto" alt="placeholder img">
                                     <div class="rating my-3">
                                         <i class="fa-solid fa-star text-danger"></i>
                                         <i class="fa-solid fa-star text-danger"></i>
@@ -417,7 +417,7 @@
                                 <div class="content">
                                     <span class="w-foods-itilanio">Testimonial</span>
                                     <h4 class="text-danger">What They Say</h4>
-                                    <img src="{{asset('assets/images/team/01.webp')}}" class="rounded-circle border border-2 border-danger testimonial-img m-auto" alt="placeholder img">
+                                    <img src="{{asset('public/assets/images/team/01.webp')}}" class="rounded-circle border border-2 border-danger testimonial-img m-auto" alt="placeholder img">
                                     <div class="rating my-3">
                                         <i class="fa-solid fa-star text-danger"></i>
                                         <i class="fa-solid fa-star text-danger"></i>
@@ -529,7 +529,7 @@
             <div class="col-md-5">
                 <div class="blog-wrapper d-flex">
                     <div class="image-part col-5">
-                        <img src="{{ asset('assets/images/blog/blog-03.jpg') }}"
+                        <img src="{{ asset('public/assets/images/blog/blog-03.jpg') }}"
                             alt="blog" class="h-100 w-100 obj-fit-contain">
                     </div>
                     <div class="content text-start p-3 col-7">
@@ -550,7 +550,7 @@
             <div class="col-md-5">
                 <div class="blog-wrapper d-flex">
                     <div class="image-part col-5">
-                        <img src="{{ asset('assets/images/blog/blog-03.jpg') }}"
+                        <img src="{{ asset('public/assets/images/blog/blog-03.jpg') }}"
                             alt="blog" class="h-100 w-100 obj-fit-contain">
                     </div>
                     <div class="content text-start p-3 col-7">

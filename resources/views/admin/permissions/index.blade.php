@@ -32,5 +32,5 @@
 @endsection
 
 @push('js')
-    <script src="{{ asset('admin/js/roles_permissions.js') }}"></script>
+    <script src="{{ asset('public/admin/js/roles_permissions.js') }}"></script>
 @endpush

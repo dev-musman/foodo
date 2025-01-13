@@ -37,5 +37,5 @@
 @endsection
 
 @push('js')
-    <script src="{{ asset('admin/js/pages.js') }}"></script>
+    <script src="{{ asset('public/admin/js/pages.js') }}"></script>
 @endpush

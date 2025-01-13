@@ -6,7 +6,7 @@
                     <div class="header-main-wrapper">
                         <div class="logo-area">
                             <a href="index.html" class="logo">
-                                <img src="{{ asset('assets/images/logo/foodo-logo.png') }}" alt="image-logo">
+                                <img src="{{ asset('public/assets/images/logo/foodo-logo.png') }}" alt="image-logo">
                             </a>
                         </div>
                         <div class="rts-header-mid">
@@ -52,7 +52,6 @@
     <div id="side-bar" class="side-bar header-one">
         <div class="inner">
             <button class="close-icon-menu"><i class="far fa-times"></i></button>
-
             <!-- mobile menu area start -->
             <div class="mobile-menu d-block d-lg-none">
                 <nav class="nav-main mainmenu-nav mt--30">

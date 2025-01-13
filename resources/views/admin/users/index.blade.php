@@ -35,5 +35,5 @@
 @endsection
 
 @push('js')
-    <script src="{{ asset('admin/js/users.js') }}"></script>
+    <script src="{{ asset('public/admin/js/users.js') }}"></script>
 @endpush

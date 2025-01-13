@@ -33,6 +33,6 @@
 @endsection
 
 @push('js')
-    <script src="{{ asset('admin/js/menu.js') }}"></script>
+    <script src="{{ asset('public/admin/js/menu.js') }}"></script>
 @endpush
 
