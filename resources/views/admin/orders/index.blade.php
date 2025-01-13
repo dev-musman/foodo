@@ -37,5 +37,5 @@
 @endsection
 
 @push('js')
-    <script src="{{ asset('admin/js/orders.js') }}"></script>
+    <script src="{{ asset('public/admin/js/orders.js') }}"></script>
 @endpush

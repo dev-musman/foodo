@@ -101,7 +101,7 @@
                                     <label for="image">Image</label>
                                     <input type="file" id="image" class="form-control" name="image">
                                     @if (isset($menu) && $menu->image)
-                                        <img src="{{ asset($menu->image) }}" alt="Menu Image" class="img-fluid mt-2"
+                                        <img src="{{ asset('public/'.$menu->image) }}" alt="Menu Image" class="img-fluid mt-2"
                                             style="max-width: 150px;">
                                     @endif
                                     <span data-field="image" class="invalid-feedback"></span>
@@ -132,6 +132,6 @@
 @endsection
 
 @push('js')
-    <script src="{{ asset('admin/js/menu.js') }}"></script>
+    <script src="{{ asset('public/admin/js/menu.js') }}"></script>
 @endpush
 

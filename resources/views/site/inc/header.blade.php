@@ -6,7 +6,7 @@
                     <div class="header-main-wrapper">
                         <div class="logo-area">
                             <a href="index.html" class="logo">
-                                <img src="{{ asset('assets/images/logo/foodo-logo.png') }}" alt="image-logo">
+                                <img src="{{ asset('public/assets/images/logo/foodo-logo.png') }}" alt="image-logo">
                             </a>
                         </div>
                         <div class="rts-header-mid">
@@ -55,7 +55,7 @@
             <!-- inner menu area desktop start -->
             <div class="inner-main-wrapper-desk d-none d-lg-block">
                 <div class="thumbnail">
-                    <img src="assets/images/logo/01.svg" alt="dinenos">
+                    <img src="{{ asset('public/assets/images/logo/01.svg') }}" alt="dinenos">
                 </div>
                 <div class="banner-shape-area">
                     <span class="shape"></span>

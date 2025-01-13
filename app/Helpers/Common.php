@@ -34,9 +34,8 @@ class Common
 
         return $changes;
     }
+
 }
-
-
 
 
 // function get_changes($old, $new)
