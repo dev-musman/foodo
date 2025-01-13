@@ -22,6 +22,28 @@
                         alt="banner-right-image">
                 </div>
             </div>
+            <div class="col-lg-12">
+                <div>
+                    <ul class="d-flex list-unstyled m-0">
+                        <li>
+                            <a href="#">
+                                <img src="{{asset('public/assets/images/social/facebook.png')}}" alt="img" class="w-75 me-3">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{{asset('public/assets/images/social/instagram.png')}}" alt="img" class="w-75 me-3">
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <img src="{{asset('public/assets/images/social/x.png')}}" alt="img" class="w-75 me-3">
+                            </a>
+                        </li>
+                    </ul>
+                    <p class="fs-4 text-dark">Follow Our Socials</p>
+                </div>
+            </div>
         </div>
     </div>
 </div>
