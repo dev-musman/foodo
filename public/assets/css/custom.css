@@ -491,7 +491,14 @@ width: 100%;
 .header-four .header-main-wrapper .rts-header-right{
     justify-content: end !important;
 }
-
+.checkIcon{
+    height: -webkit-fill-available;
+    width: -webkit-fill-available;
+    font-size: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
 
 /* jquery steps css */

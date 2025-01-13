@@ -589,7 +589,7 @@
                                         </div>
                                         <div class="col-md-6 mb-3">
                                             <label for="phone" class="form-label">Phone</label>
-                                            <input type="number" name="phone" class="site-input required from-control-lg"
+                                            <input type="text" name="phone" class="site-input required from-control-lg"
                                                 id="phone" placeholder="Enter Your Phone">
                                         </div>
                                     </div>
@@ -768,6 +768,7 @@
                             <div class="col-title">
                                 <div>
                                     <span class="rounded-circle">
+                                        <div class="rounded-circle bg-danger p-1 checkIcon text-white m-1">&#10004;</div>
                                         <i class="fa fa-check-circle text-danger" aria-hidden="true"></i>
                                     </span>
                                     <div class="week-divider week-divider${i+1}"></div>
@@ -850,7 +851,21 @@
                             .append(
                                 '<div class="text-danger" data-field=' +
                                 name +
-                                ">Menu is available for minimum 30 persons</div>"
+                                ">Date is not available</div>"
+                            );
+                        valid = false;
+                    }
+                }
+                if($(this).attr('name') === 'phone' && valid)
+                {
+                    var condition = /^\d{11}$/.test($(this).val());
+                    if (!condition) {
+                        $(this)
+                            .closest(div)
+                            .append(
+                                '<div class="text-danger" data-field=' +
+                                name +
+                                ">Please enter correct phone number</div>"
                             );
                         valid = false;
                     }
@@ -1016,9 +1031,10 @@
                 let weekCol = `<div class="col-md-3 p-md-0 mb-4 mb-md-0">
                             <div class="col-title">
                                 <div>
-                                    <span class="rounded-circle">
+                                    <div class="rounded-circle">
+                                        <div class="rounded-circle bg-danger p-1 checkIcon text-white m-1">&#10004;</div>
                                         <i class="fa fa-check-circle text-danger" aria-hidden="true"></i>
-                                    </span>
+                                    </div>
                                     <div class="week-divider week-divider${i}"></div>
                                 </div>
                                 <h5 class="text-site-danger">Week ${i}</h5>
