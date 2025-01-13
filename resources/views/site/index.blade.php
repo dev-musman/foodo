@@ -26,17 +26,17 @@
                 <div class="ms-5 m-md-0">
                     <ul class="d-flex list-unstyled m-0">
                         <li>
-                            <a href="#">
+                            <a href="https://www.facebook.com/foodoofficial1/">
                                 <img src="{{asset('public/assets/images/social/facebook.png')}}" alt="img" class="w-75 me-3">
                             </a>
                         </li>
                         <li>
-                            <a href="#">
+                            <a href="https://www.instagram.com/foodoofficial1/">
                                 <img src="{{asset('public/assets/images/social/instagram.png')}}" alt="img" class="w-75 me-3">
                             </a>
                         </li>
-                        <li>
-                            <a href="#">
+                        <li class="d-none">
+                            <a href="https://www.linkedin.com/company/foodoofficial1/">
                                 <img src="{{asset('public/assets/images/social/x.png')}}" alt="img" class="w-75 me-3">
                             </a>
                         </li>
@@ -73,7 +73,7 @@
                             </ul>
                             <br>
                             <div class="banner-home-button mt-5">
-                                <a href="#menu-section" class="btn btn-site-primary w-auto text-uppercase px-5 py-3 fs-5 booking-btn">Get Started</a>
+                                <a href="tel:+92 337 0777019" class="btn btn-site-primary w-auto text-uppercase px-5 py-3 fs-5 booking-btn">Get Started</a>
                             </div>
                         </div>
                     </div>
