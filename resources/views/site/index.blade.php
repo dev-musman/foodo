@@ -938,7 +938,8 @@
                                     <span class="custom-remove-span d-none customRemove${value}${i}" data-day="${value}" data-week="${i}">
                                         <i class="fa fa-minus"></i>
                                     </span>
-                                    <p class="ms-4 item${value}${i}">Add Item</p>
+                                    <p class="ms-4 item${value}${i} mb-0">Add Item</p>
+                                    <p class="itemDay${value}${i}  ms-auto bg-danger text-white rounded-pill px-3">${value}</p>
                                 </div>
                                 <input type="hidden" class="input${value}${i} customInputData" name="meal_id[]" data-day="${value}" data-week="${i}" data-name="${i}" />
                             </div>`;
