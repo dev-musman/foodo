@@ -841,7 +841,7 @@
                     $(this)
                         .closest(div)
                         .append(
-                            '<div class="text-danger" data-field=' +
+                            '<div class="text-danger fs-6" data-field=' +
                             name +
                             ">This field is required</div>"
                         );
@@ -852,7 +852,7 @@
                     $(this)
                         .closest(div)
                         .append(
-                            '<div class="text-danger" data-field=' +
+                            '<div class="text-danger fs-6" data-field=' +
                             name +
                             ">Menu is available for minimum 30 persons</div>"
                         );
@@ -870,7 +870,7 @@
                         $(this)
                             .closest(div)
                             .append(
-                                '<div class="text-danger" data-field=' +
+                                '<div class="text-danger fs-6" data-field=' +
                                 name +
                                 ">Date is not available</div>"
                             );
@@ -884,7 +884,7 @@
                         $(this)
                             .closest(div)
                             .append(
-                                '<div class="text-danger" data-field=' +
+                                '<div class="text-danger fs-6" data-field=' +
                                 name +
                                 ">Please enter correct phone number</div>"
                             );
