@@ -11,7 +11,7 @@
                     <p class="desc fs-1">Make Your Teams Happy with Ghar ka Khana</p>
                     <div class="banner-home-button d-flex">
                         <a href="tel:+92 337 0777019" class="order-btn-contact text-uppercase">Contact Us</a>
-                        <a href="#menu" class="order-btn-see-menu text-uppercase">SEE Menu</a>
+                        <a href="#menu-section" class="order-btn-see-menu text-uppercase">SEE Menu</a>
                     </div>
                     <div></div>
                 </div>
@@ -73,7 +73,7 @@
                             </ul>
                             <br>
                             <div class="banner-home-button mt-5">
-                                <a href="#menu" class="btn btn-site-primary w-auto text-uppercase px-5 py-3 fs-5 booking-btn">Get Started</a>
+                                <a href="#menu-section" class="btn btn-site-primary w-auto text-uppercase px-5 py-3 fs-5 booking-btn">Get Started</a>
                             </div>
                         </div>
                     </div>
