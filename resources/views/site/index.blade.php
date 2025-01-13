@@ -23,7 +23,7 @@
                 </div>
             </div>
             <div class="col-lg-12">
-                <div>
+                <div class="ms-5 m-md-0">
                     <ul class="d-flex list-unstyled m-0">
                         <li>
                             <a href="#">
