@@ -501,6 +501,12 @@ width: 100%;
     align-items: center;
     justify-content: center;
 }
+.banner-home-button .order-btn-contact{
+    font-size: 12px !important;
+}
+.banner-home-button .order-btn-see-menu {
+    font-size: 12px !important;
+}
 
 
 /* jquery steps css */

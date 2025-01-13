@@ -286,7 +286,7 @@
                                             <div class="col-12 my-3 meal-item" data-name="{{$menu->name}}" data-id="{{$menu->id}}">
                                                 <div class="d-flex">
                                                     <div class="col-3 px-2">
-                                                        <img src="{{ asset($menu->image) }}"
+                                                        <img src="{{ asset('public'.$menu->image) }}"
                                                             alt="placeholder img" class="rounded-circle">
                                                     </div>
                                                     <div class="col-9 px-2">
@@ -535,7 +535,7 @@
                     <div class="content text-start p-3 col-7">
                         <h5 class="fs-3 mb-md-4 m-0">Catering Ideas for Baby
                         Showers In 2021</h5>
-                        <p class="m-0 fs-5"><i class="fa fa-clock pe-4"></i>October 18, 2021</p>
+                        <p class="m-0 fs-5"><i class="fa fa-clock pe-2"></i>October 18, 2021</p>
                         <p class="py-md-3 m-0 fs-5">Lorem ipsum dolor sit amet,
                             consectetur adipiscing elit, sed do
                             eiusmod tempor incididunt ut
@@ -556,7 +556,7 @@
                     <div class="content text-start p-3 col-7">
                         <h5 class="fs-3 mb-md-4 m-0">Catering Ideas for Baby
                         Showers In 2021</h5>
-                        <p class="m-0 fs-5"><i class="fa fa-clock pe-4"></i>October 18, 2021</p>
+                        <p class="m-0 fs-5"><i class="fa fa-clock pe-2"></i>October 18, 2021</p>
                         <p class="py-3 m-0 fs-5">Lorem ipsum dolor sit amet,
                             consectetur adipiscing elit, sed do
                             eiusmod tempor incididunt ut
