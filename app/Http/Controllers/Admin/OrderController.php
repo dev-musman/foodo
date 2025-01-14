@@ -17,18 +17,22 @@ use App\Helpers\{
 class OrderController extends Controller
 {
     use HasDataTables;
-    public function index()
+    public function index(Request $request)
     {
         if (request()->ajax()) {
-            $query = MealPlan::with('menuType')->latest();
+            $trash = $request->get("trash");
+            $q = MealPlan::with('menuType')->latest();
+            $query = $trash == "true" ? $q->onlyTrashed() : $q;
 
             return $this->dataTable($query, 'orders', function ($dataTable) {
                 $dataTable->addColumn('type', function ($plan) {
                     return $plan->menuType->type ?? '';
                 });
                 $dataTable->addColumn('name', function ($plan) {
-                    return $plan->user->name ?? '';
+                    return $plan->user ? '<a href="' . route('admin.users.edit', $plan->user->id) . '">' . $plan->user->name . '</a>' : '';
+
                 });
+
             });
         }
 
@@ -53,7 +57,7 @@ class OrderController extends Controller
 
             $user = $order->user;
 
-            if ($user && $data['status'] != "pending" ) {
+            if ($user && $data['status'] != "pending") {
                 try {
                     Mail::to($user->email)->send(new OrderStatusUpdated($order, 'user'));
                     // Mail::to($adminEmail)->send(new OrderStatusUpdated($order, 'admin'));

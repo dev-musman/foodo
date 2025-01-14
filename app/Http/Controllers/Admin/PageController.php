@@ -12,15 +12,18 @@ use App\Helpers\{
     LogActivity,
     Common
 };
+use Illuminate\Http\Request;
 
 class PageController extends Controller
 {
     use HasDataTables;
 
-    public function index()
+    public function index(Request $request)
     {
         if (request()->ajax()) {
-            $query = Page::latest();
+            $trash = $request->get("trash");
+            $q = Page::latest();
+            $query = $trash == "true" ? $q->onlyTrashed() : $q;
             return $this->dataTable($query, 'pages');
         }
 

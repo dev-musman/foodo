@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('history', function (Blueprint $table) {
             $table->id();
             $table->string("entity");
-            $table->enum("action", ["insert", 'update', 'delete']);
+            $table->enum("action", ["insert", 'update', 'restore']);
             $table->longText("values")->nullable();
             $table->longText("changes")->nullable();
             $table->string('url');

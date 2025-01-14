@@ -7,7 +7,14 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
+            <div class="d-flex align-items-center justify-content-between mb-4">
                 <h1 class="h3 mb-3">All Orders</h1>
+                @can('trash')
+                    <a href="{{ route('admin.orders', 'trash=true') }}" class="btn btn-danger me-2">View Trash</a>
+                @endcan
+            </div>
+
+
             <div class="card card-solid">
                 <div class="card-body">
                     <div class="table-responsive">

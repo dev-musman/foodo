@@ -30,7 +30,7 @@ class DashboardController extends Controller
             $query->where('user_id', $request->input('user'));
         }
 
-        $history = $query->latest()->paginate(10);
+        $history = $query->latest()->limit(10)->get();
         $users = User::all();
 
         return view('admin.history', compact('history', 'users'));

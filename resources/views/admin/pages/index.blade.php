@@ -9,7 +9,12 @@
         <div class="container-fluid">
             <div class="d-flex align-items-center justify-content-between mb-4">
                 <h1 class="h3">All Pages</h1>
-                <a href="{{ route('admin.pages.create') }}" class="btn btn-primary">Add New</a>
+                <div>
+                    @can('trash')
+                        <a href="{{ route('admin.pages.index', 'trash=true') }}" class="btn btn-danger me-2">View Trash</a>
+                    @endcan
+                    <a href="{{ route('admin.pages.create') }}" class="btn btn-primary">Add New</a>
+                </div>
             </div>
             <div class="card card-solid">
                 <div class="card-body">

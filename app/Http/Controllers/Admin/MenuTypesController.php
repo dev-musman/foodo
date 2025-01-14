@@ -16,10 +16,12 @@ class MenuTypesController extends Controller
 {
     use HasDataTables;
 
-    public function index()
+    public function index(Request $request)
     {
         if (request()->ajax()) {
-            $query = MenuType::latest();
+            $trash = $request->get("trash");
+            $q = MenuType::latest();
+            $query = $trash == "true" ? $q->onlyTrashed() : $q;
             return $this->dataTable($query, 'menu-types');
         }
 
@@ -33,12 +35,33 @@ class MenuTypesController extends Controller
 
     public function store(Request $request)
     {
-
         $request->validate([
-            'type' => 'required|unique:menu_types,type',
+            'type' => 'required|string|max:255',
         ]);
 
         $data = $request->all();
+
+        $existing = MenuType::withTrashed()->where('type', $data['type'])->first();
+        if ($existing) {
+            if ($existing->trashed()) {
+                $existing->restore();
+                $existing->update($data);
+
+                LogActivity::addToLog('menu-type', 'restore', $existing, null);
+
+                return response()->json([
+                    'success' => true,
+                    'message' => 'Menu Type successfully created.',
+                    'redirect' => route('admin.menu-types.index'),
+                ]);
+            } else {
+                return response()->json([
+                    'success' => false,
+                    'message' => 'The Menu Type already exists.',
+                ], 422);
+            }
+        }
+
         $menuType = MenuType::create($data);
 
         if ($menuType) {
@@ -51,6 +74,7 @@ class MenuTypesController extends Controller
             'redirect' => route('admin.menu-types.index'),
         ]);
     }
+
 
 
     public function edit(MenuType $menuType)

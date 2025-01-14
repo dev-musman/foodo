@@ -41,7 +41,7 @@
                                 <a href="{{ route('admin.history') }}" class="btn btn-danger w-100">Reset</a>
                             </div>
                         </div>
-                        
+
                     </form>
                 </div>
             </div>
@@ -62,6 +62,7 @@
                                     </tr>
                                 </thead>
                                 <tbody>
+                                    {{-- @dd($history); --}}
                                     @forelse ($history as $entry)
                                         <tr>
                                             <td>{{ ucfirst($entry->entity) }}</td>
@@ -71,7 +72,7 @@
                                                 @elseif($entry->action == 'insert')
                                                     <span class="badge bg-success">Inserted</span>
                                                 @else
-                                                    <span class="badge bg-danger">Deleted</span>
+                                                    <span class="badge bg-danger">restore</span>
                                                 @endif
                                             </td>
                                             <td>
@@ -119,11 +120,6 @@
                                     @endforelse
                                 </tbody>
                             </table>
-
-                            <!-- Pagination -->
-                            <div class="d-flex justify-content-end mt-3">
-                                {{ $history->render() }}
-                            </div>
                         </div>
                     </div>
                 </div>

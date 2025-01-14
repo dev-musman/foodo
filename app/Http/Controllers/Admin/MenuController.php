@@ -22,7 +22,10 @@ class MenuController extends Controller
     public function index(Request $request)
     {
         if ($request->ajax()) {
-            $query = Menu::with('menuType')->latest();
+            $trash = $request->get("trash");
+            $q = Menu::with('menuType')->latest();
+            $query = $trash == "true" ? $q->onlyTrashed() : $q;
+
             return $this->dataTable($query, 'menus', function ($dataTable) {
                 $dataTable->addColumn(
                     'image',
@@ -121,8 +124,9 @@ class MenuController extends Controller
         $fileName = time() . '_' . $file->getClientOriginalName();
         $filePath = $file->storeAs($directory, $fileName, 'public');
 
-        return '/storage/' . $filePath;
+        return 'public/storage/' . $filePath;
     }
+
 
     public function getAvailableDays(Request $request)
     {

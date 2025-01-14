@@ -26,9 +26,15 @@ class MenuType extends Model
 
     protected static function booted()
     {
-        static::deleting(function ($menu_type) {
-            $menu_type->deleted_by = auth()->id();
-            $menu_type->save();
+        static::deleting(function ($menuType) {
+            $menuType->deleted_by = auth()->id();
+            $menuType->save();
+
+            $menuType->menus()->each(function ($menu) {
+                $menu->deleted_by = auth()->id();
+                $menu->save();
+                $menu->delete();
+            });
         });
     }
 }

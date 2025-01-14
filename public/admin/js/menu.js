@@ -19,7 +19,7 @@ $(function () {
             {
                 data: "action",
                 name: "action",
-                searchable: false,
+                searchable: true,
                 bSortable: false,
             },
         ],

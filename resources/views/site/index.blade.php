@@ -706,8 +706,8 @@
             return valid;
         }
 
-        $(document).on('click', '#confirmOrder', async function() {
-
+        $(document).on('click', '#confirmOrder', async function(e) {
+            e.preventDefault();
 
             let result = await swal.fire({
                 title: "Are you sure?",

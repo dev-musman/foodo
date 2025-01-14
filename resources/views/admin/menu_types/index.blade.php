@@ -9,7 +9,10 @@
         <div class="container-fluid">
             <div class="d-flex align-items-center justify-content-between mb-4">
                 <h1 class="h3">All Menu Types</h1>
-                <a href="{{ route('admin.menu-types.create') }}" class="btn btn-primary">Add New</a>
+                <div>
+                    <a href="{{ route('admin.menu-types.index', 'trash=true') }}" class="btn btn-danger me-2">View Trash</a>
+                    <a href="{{ route('admin.menu-types.create') }}" class="btn btn-primary">Add New</a>
+                </div>
             </div>
             <div class="card card-solid">
                 <div class="card-body">
@@ -35,4 +38,3 @@
 @push('js')
     <script src="{{ asset('public/admin/js/menu.js') }}"></script>
 @endpush
-
