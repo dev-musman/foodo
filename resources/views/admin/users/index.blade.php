@@ -6,10 +6,18 @@
     <!-- Main content -->
     <section class="content">
         <div class="container-fluid">
+
             <div class="d-flex align-items-center justify-content-between mb-4">
                 <h1 class="h3">All Users</h1>
-                <a href="{{ route('admin.users.create') }}" class="btn btn-primary">Add New</a>
+                <div>
+                    @can('trash')
+                        <a href="{{ route('admin.users.index', 'trash=true') }}" class="btn btn-danger me-2">View Trash</a>
+                    @endcan
+                    <a href="{{ route('admin.users.create') }}" class="btn btn-primary">Add New</a>
+                </div>
             </div>
+
+
             <div class="card card-solid">
                 <div class="card-body">
                     <div class="table-responsive">

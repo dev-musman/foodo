@@ -10,7 +10,9 @@
             <div class="d-flex align-items-center justify-content-between mb-4">
                 <h1 class="h3">All Menu Types</h1>
                 <div>
-                    <a href="{{ route('admin.menu-types.index', 'trash=true') }}" class="btn btn-danger me-2">View Trash</a>
+                    @can('trash')
+                        <a href="{{ route('admin.menu-types.index', 'trash=true') }}" class="btn btn-danger me-2">View Trash</a>
+                    @endcan
                     <a href="{{ route('admin.menu-types.create') }}" class="btn btn-primary">Add New</a>
                 </div>
             </div>

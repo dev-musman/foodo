@@ -13,15 +13,20 @@ use App\Helpers\{
     LogActivity,
     Common
 };
+use Illuminate\Http\Request;
 
 class USerController extends Controller
 {
     use HasDataTables;
-    public function index()
+    public function index(Request $request)
     {
 
         if (request()->ajax()) {
-            $query = User::with('roles.permissions')->get();
+
+            $trash = $request->get("trash");
+            $q = User::with('roles.permissions')->latest();
+            $query = $trash == "true" ? $q->onlyTrashed() : $q;
+
             return $this->dataTable(
                 $query,
                 'users',
