@@ -432,41 +432,56 @@ $(document).on('click', 'a[href="#previous"]', function(event) {
     event.preventDefault(); // Prevent the default anchor click behavior
     checkCurrentTabFillMenu();
 });
-$(document).on('click', 'a[href="#finish"]', function(event) {
-    var menuId = $('.custom-meal-selector').val();
-    $('.weeksDetail').empty();
+$(document).on('click', 'a[href="#finish"]', async function(event) {
 
-    var menu = getCustomMealData();
-    var tabHtml = $('.menuRow3').children('.menuTab3').html();
-    $('.menuRow3').empty()
-    var divHtml = `<div class="col-md-11 menuTab3 menuTab">`+tabHtml+`</div>`
-    $('.menuRow3').append(divHtml)
-    $('.menuTab3').addClass('d-none');
-    $('.menuRow3').append(menuFrom)
-    $('#menu').val(menuId);
-    $('#menu').prop('disabled', true);
-    $('.data-menu').text(menuId == 1 ? '5 Days Menu' : '7 Days Menu');
-    for (var i = 1; i < 5; i++) {
-        var weekData = menu[i];
-        let weekCol = `<div class="col-md-3 p-md-0 mb-4 mb-md-0">
-                    <div class="col-title">
-                        <div>
-                            <span class="rounded-circle">
-                                <div class="rounded-circle bg-danger p-1 checkIcon text-white m-1">&#10004;</div>
-                            </span>
-                            <div class="week-divider week-divider${i}"></div>
-                        </div>
-                        <h5 class="text-site-danger">Week ${i}</h5>
+    let result = await swal.fire({
+        title: "Are you sure?",
+        text: "You won't be able to modify menu after confirmation!",
+        type: "warning",
+        showCancelButton: true,
+        confirmButtonColor: "#3085d6",
+        cancelButtonColor: "#d33",
+        confirmButtonText: "Yes, confirm it!",
+    });
+
+    if (result.value) {
+            
+        var menuId = $('.custom-meal-selector').val();
+        $('.weeksDetail').empty();
+
+        var menu = getCustomMealData();
+        var tabHtml = $('.menuRow3').children('.menuTab3').html();
+        $('.menuRow3').empty()
+        var divHtml = `<div class="col-md-11 menuTab3 menuTab">`+tabHtml+`</div>`
+        $('.menuRow3').append(divHtml)
+        $('.menuTab3').addClass('d-none');
+        $('.menuRow3').append(menuFrom)
+        $('#menu').val(menuId);
+        $('.back-btn').addClass('d-none');
+        $('#menu').prop('disabled', true);
+        $('.data-menu').text(menuId == 1 ? '5 Days Menu' : '7 Days Menu');
+        for (var i = 1; i < 5; i++) {
+            var weekData = menu[i];
+            let weekCol = `<div class="col-md-3 p-md-0 mb-4 mb-md-0">
+                        <div class="col-title">
+                            <div>
+                                <span class="rounded-circle">
+                                    <div class="rounded-circle bg-danger p-1 checkIcon text-white m-1">&#10004;</div>
+                                </span>
+                                <div class="week-divider week-divider${i}"></div>
+                            </div>
+                            <h5 class="text-site-danger">Week ${i}</h5>
+                        </div>`;
+            weekData.forEach((item ,index) => {
+                weekCol += `<div class="menu-item">
+                        <span class="item-day">${item.day}</span>
+                        <span class="item-name">&#8226; ${item.name}</span>
                     </div>`;
-        weekData.forEach((item ,index) => {
-            weekCol += `<div class="menu-item">
-                    <span class="item-day">${item.day}</span>
-                    <span class="item-name">&#8226; ${item.name}</span>
-                </div>`;
-        })
-        weekCol += `</div>`;
-        $('.weeksDetail').append(weekCol);
+            })
+            weekCol += `</div>`;
+            $('.weeksDetail').append(weekCol);
 
+        }
     }
 
 });
@@ -551,6 +566,11 @@ function checkCurrentTabFillMenu()
         $('a[href="#new"]')
         .removeClass('disabled btn-light')    // Add the 'disabled' class
         .attr('href', '#next');
+        if(week === 4)
+        {
+            $('a[href="#finish"]')
+            .removeClass('d-none');
+        }
     }
     else{
         $('a[href="#next"]')
