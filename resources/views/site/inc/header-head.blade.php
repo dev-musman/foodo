@@ -21,6 +21,7 @@
     <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/fontawesome-5.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/swiper.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/metismenu.css') }}">
+    <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/unicons.css') }}">
     <!-- bootstrap css -->
     <link rel="stylesheet" href="{{ asset('public/assets/css/vendor/bootstrap.min.css') }}">
     <!-- main css -->

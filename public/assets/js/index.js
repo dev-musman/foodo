@@ -110,17 +110,16 @@ const menuFrom = `<div class="col-md-10 menuFrom">
                         </div>
                     </div>`;
 
-const menuArray = $('#menues').val();
+const menuArray = $("#menues").val();
 var menuObj = JSON.parse(menuArray);
 
 $(document).ready(function () {
-    createCustomStepsForm();
     var firstOwl = $(".owl0").owlCarousel({
         loop: false,
         margin: 10,
         responsiveClass: true,
         dots: false,
-        navText: ['&#x27E8;', '&#x27E9;'],
+        navText: ["&#x27E8;", "&#x27E9;"],
         responsive: {
             0: {
                 items: 1,
@@ -133,15 +132,15 @@ $(document).ready(function () {
             1000: {
                 items: 1,
                 nav: true,
-            }
-        }
+            },
+        },
     });
     var secondOwl = $(".owl1").owlCarousel({
         loop: false,
         margin: 10,
         responsiveClass: true,
         dots: false,
-        navText: ['&#x27E8;', '&#x27E9;'],
+        navText: ["&#x27E8;", "&#x27E9;"],
         responsive: {
             0: {
                 items: 1,
@@ -154,85 +153,86 @@ $(document).ready(function () {
             1000: {
                 items: 1,
                 nav: true,
-            }
-        }
+            },
+        },
     });
 
-    $(document).on('click', '.custom-owl-prev', function() {
-        var owl = $(this).data('number') == 0 ? firstOwl : secondOwl;
-        owl.trigger('prev.owl.carousel');
-    })
-    $(document).on('click', '.custom-owl-next', function() {
-        var owl = $(this).data('number') == 0 ? firstOwl : secondOwl;
-        owl.trigger('next.owl.carousel');
-    })
+    createCustomStepsForm();
+    $(document).on("click", ".custom-owl-prev", function () {
+        var owl = $(this).data("number") == 0 ? firstOwl : secondOwl;
+        owl.trigger("prev.owl.carousel");
+    });
+    $(document).on("click", ".custom-owl-next", function () {
+        var owl = $(this).data("number") == 0 ? firstOwl : secondOwl;
+        owl.trigger("next.owl.carousel");
+    });
 });
-$(document).on('click', '.nav-link', function() {
-    $('.menuTab').removeClass('d-none');
-    $('.menuFrom').empty();
-    $('.orderDetail').empty();
+$(document).on("click", ".nav-link", function () {
+    $(".menuTab").removeClass("d-none");
+    $(".menuFrom").empty();
+    $(".orderDetail").empty();
     resetCustomFrom();
-})
-$(document).on('click' , '.selectMenu' , function() {
-    var menuId = $(this).data('id');
-    const menus = menuObj.type_id[menuId]['weeks'];
+});
+$(document).on("click", ".selectMenu", function () {
+    var menuId = $(this).data("id");
+    const menus = menuObj.type_id[menuId]["weeks"];
 
-    $('.menuTab' + menuId).addClass('d-none');
-    $('.menuRow' + menuId).append(menuFrom);
-    $('#menu').val(menuId);
-    $('#menu').prop('disabled', true);
-    $('.data-menu').text(menuId == 1 ? '5 Days Menu' : '7 Days Menu');
+    $(".menuTab" + menuId).addClass("d-none");
+    $(".menuRow" + menuId).append(menuFrom);
+    $("#menu").val(menuId);
+    $("#menu").prop("disabled", true);
+    $(".data-menu").text(menuId == 1 ? "5 Days Menu" : "7 Days Menu");
     for (var i = 0; i < 4; i++) {
-        const weekData = menus[i+1];
+        const weekData = menus[i + 1];
         let weekCol = `<div class="col-md-3 p-md-0 mb-4 mb-md-0">
                     <div class="col-title">
                         <div>
                             <span class="rounded-circle">
                                 <div class="rounded-circle bg-danger p-1 checkIcon text-white m-1">&#10004;</div>
                             </span>
-                            <div class="week-divider week-divider${i+1}"></div>
+                            <div class="week-divider week-divider${
+                                i + 1
+                            }"></div>
                         </div>
-                        <h5 class="text-site-danger">Week ${i+1}</h5>
+                        <h5 class="text-site-danger">Week ${i + 1}</h5>
                     </div>`;
         weekData.forEach((item, index) => {
             weekCol += `<div class="menu-item">
                     <span class="item-day">${item.day}</span>
                     <span class="item-name">&#8226; ${item.name}</span>
                 </div>`;
-        })
+        });
         weekCol += `</div>`;
-        $('.weeksDetail').append(weekCol);
-
+        $(".weeksDetail").append(weekCol);
     }
-
-})
-$(document).on('click', '.view-detail', function() {
+});
+$(document).on("click", ".view-detail", function () {
     if (!validate()) return false;
-    $('.menuFrom').addClass('d-none');
-    $('.orderDetail').removeClass('d-none');
-})
-$(document).on('click', '.view-form', function() {
-    $('.menuFrom').removeClass('d-none');
-    $('.orderDetail').addClass('d-none');
-})
-$(document).on('change', '.site-input', function() {
-    var attr = $(this).attr('name');
+    $(".menuFrom").addClass("d-none");
+    $(".orderDetail").removeClass("d-none");
+});
+$(document).on("click", ".view-form", function () {
+    $(".menuFrom").removeClass("d-none");
+    $(".orderDetail").addClass("d-none");
+});
+$(document).on("change", ".site-input", function () {
+    var attr = $(this).attr("name");
     var val = $(this).val();
-    $('.data-' + attr).text(val);
-})
+    $(".data-" + attr).text(val);
+});
 
 function validate() {
     var valid = true;
     var div = "div";
     $(".text-danger").remove();
-    $(".required:visible").each(function() {
+    $(".required:visible").each(function () {
         if (
             $(this).val() == "" ||
             $(this).val() === null ||
             $(this).attr("type") == "radio" ||
             ($(this).attr("type") == "checkbox" &&
                 $('[name="' + $(this).attr("name") + '"]:checked').val() ==
-                undefined)
+                    undefined)
         ) {
             $(this).attr("type") == "checkbox" ? (div = ".row") : (div = "div");
             var name = $(this).attr("name");
@@ -240,26 +240,28 @@ function validate() {
                 .closest(div)
                 .append(
                     '<div class="text-danger fs-6" data-field=' +
-                    name +
-                    ">This field is required</div>"
+                        name +
+                        ">This field is required</div>"
                 );
             valid = false;
         }
-        if($(this).attr('name') === 'persons' && parseInt($(this).val() , 10) < 30 && valid)
-        {
+        if (
+            $(this).attr("name") === "persons" &&
+            parseInt($(this).val(), 10) < 30 &&
+            valid
+        ) {
             $(this)
                 .closest(div)
                 .append(
                     '<div class="text-danger fs-6" data-field=' +
-                    name +
-                    ">Menu is available for minimum 30 persons</div>"
+                        name +
+                        ">Menu is available for minimum 30 persons</div>"
                 );
             valid = false;
         }
-        if($(this).attr('name') === 'start_date' && valid)
-        {
-            let dateValue = new Date($(this).val());  // Convert it to a Date object
-            let today = new Date();               // Get today's date
+        if ($(this).attr("name") === "start_date" && valid) {
+            let dateValue = new Date($(this).val()); // Convert it to a Date object
+            let today = new Date(); // Get today's date
 
             // Set the time of today's date to 00:00:00 for accurate comparison
             today.setHours(0, 0, 0, 0);
@@ -269,27 +271,25 @@ function validate() {
                     .closest(div)
                     .append(
                         '<div class="text-danger fs-6" data-field=' +
-                        name +
-                        ">Date is not available</div>"
+                            name +
+                            ">Date is not available</div>"
                     );
                 valid = false;
             }
         }
-        if($(this).attr('name') === 'phone' && valid)
-        {
+        if ($(this).attr("name") === "phone" && valid) {
             var condition = /^\d{11}$/.test($(this).val());
             if (!condition) {
                 $(this)
                     .closest(div)
                     .append(
                         '<div class="text-danger fs-6" data-field=' +
-                        name +
-                        ">Please enter correct phone number</div>"
+                            name +
+                            ">Please enter correct phone number</div>"
                     );
                 valid = false;
             }
         }
-
     });
     if (!valid) {
         var input = $(".alert-danger:first").attr("data-field");
@@ -297,11 +297,10 @@ function validate() {
     }
     return valid;
 }
-$(document).on('change' , '.custom-meal-selector' , function(){
-    resetCustomFrom()
-})
-function createCustomStepsForm()
-{
+$(document).on("change", ".custom-meal-selector", function () {
+    resetCustomFrom();
+});
+function createCustomStepsForm() {
     let html = ``;
     for (var i = 1; i < 5; i++) {
         html += `<h5 class="text-site-danger mb-2 text-center">
@@ -320,36 +319,35 @@ function createCustomStepsForm()
                     </div>
                 </section>`;
     }
-    $('#customStepFrom').html(html);
-    createCustomItemBox()
+    $("#customStepFrom").html(html);
+    createCustomItemBox();
     $("#customStepFrom").show().steps({
         headerTag: "h5",
         bodyTag: "section",
         transitionEffect: "slideLeft",
-        stepsOrientation: "vertical"
+        stepsOrientation: "vertical",
     });
     $('a[href="#next"]')
-    .addClass('disabled btn-light')    // Add the 'disabled' class
-    .attr('href', '#new');
-    $('a[href="#finish"]').addClass('d-none').text('Next');
+        .addClass("disabled btn-light") // Add the 'disabled' class
+        .attr("href", "#new");
+    $('a[href="#finish"]').addClass("d-none").text("Next");
 }
 let emptyMealArray = [];
 let selectedMealArray = [];
 let currentIndex = 0;
 let currentDayIndex = 0;
 let removedDaysArray;
-function createCustomItemBox()
-{
+function createCustomItemBox() {
     const weekDays = {
-        1 : ["Mon","Tue","Wed","Thu","Fri",],
-        2 : ["Mon","Tue","Wed","Thu","Fri","Sat","Sun",]
+        1: ["Mon", "Tue", "Wed", "Thu", "Fri"],
+        2: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
     };
-    const days = weekDays[$('.custom-meal-selector').val()];
+    const days = weekDays[$(".custom-meal-selector").val()];
     for (var i = 1; i < 5; i++) {
         let html = ``;
         emptyMealArray.push([]);
-        days.forEach((value , index) => {
-            emptyMealArray[i-1].push(value);
+        days.forEach((value, index) => {
+            emptyMealArray[i - 1].push(value);
             html += `<div class="col-12 mb-4">
                         <div class="add-item-custom-btn bg-light customDiv${value}${i}">
                             <span class="custom-add-span customAdd${value}${i}">
@@ -363,77 +361,76 @@ function createCustomItemBox()
                         </div>
                         <input type="hidden" class="input${value}${i} customInputData" name="meal_id[]" data-day="${value}" data-week="${i}" data-name="${i}" />
                     </div>`;
-        })
-        $('.custom-week'+i).html(html);
+        });
+        $(".custom-week" + i).html(html);
     }
     removedDaysArray = JSON.parse(JSON.stringify(emptyMealArray));
 }
-$(document).on('click', '.custom-remove-span' , function()
-{
-    let index = $(this).data('week');
-    let day = $(this).data('day');
-    $('.customRemove'+day+index).addClass('d-none');
-    $('.customAdd'+day+index).removeClass('d-none');
-    $('.item'+day+index).text('Add Item');
-    $('.customDiv'+day+index).removeClass('bg-light').addClass('bg-light');
-    index = index-1;
+$(document).on("click", ".custom-remove-span", function () {
+    let index = $(this).data("week");
+    let day = $(this).data("day");
+    $(".customRemove" + day + index).addClass("d-none");
+    $(".customAdd" + day + index).removeClass("d-none");
+    $(".item" + day + index).text("Add Item");
+    $(".customDiv" + day + index)
+        .removeClass("bg-light")
+        .addClass("bg-light");
+    index = index - 1;
     if (index >= 0 && index < emptyMealArray.length) {
         if (!emptyMealArray[index].includes(day)) {
             emptyMealArray[index].unshift(day);
-            if(emptyMealArray[index].length === 1)
-            {
+            if (emptyMealArray[index].length === 1) {
                 currentIndex--;
             }
         }
     }
     resetCustomFromUi();
-})
-$(document).on('click' , '.meal-item' , function(){
-    if($('a[href="#next"]').length == 1 )
-    {
+});
+$(document).on("click", ".meal-item", function () {
+    if ($('a[href="#next"]').length == 1) {
         return false;
     }
-    var id = $(this).data('id');
-    var name = $(this).data('name');
+    var id = $(this).data("id");
+    var name = $(this).data("name");
     if (currentIndex < emptyMealArray.length) {
-        var week = currentIndex+1;
+        var week = currentIndex + 1;
         var day = emptyMealArray[currentIndex][currentDayIndex];
-        var inputClass = '.input'+day+week;
+        var inputClass = ".input" + day + week;
         $(inputClass).val(id);
-        $(inputClass).attr('data-name' , name);
-        $('.item'+day+week).text(name);
-        $('.customRemove'+day+week).removeClass('d-none');
-        $('.customAdd'+day+week).addClass('d-none');
-        $('.customDiv'+day+week).addClass('bg-light').removeClass('bg-light');
+        $(inputClass).attr("data-name", name);
+        $(".item" + day + week).text(name);
+        $(".customRemove" + day + week).removeClass("d-none");
+        $(".customAdd" + day + week).addClass("d-none");
+        $(".customDiv" + day + week)
+            .addClass("bg-light")
+            .removeClass("bg-light");
         // Remove a day from the current sub-array
         emptyMealArray[currentIndex].splice(currentDayIndex, 1);
 
         // If the sub-array is empty, move to the next index
         if (emptyMealArray[currentIndex].length === 0) {
-            $('.mealUl').addClass('bg-light');
-            $('.mealUl').css('cursor' , 'not-allowed');
-            $('.meal-item').css('cursor' , 'not-allowed');
+            $(".mealUl").addClass("bg-light");
+            $(".mealUl").css("cursor", "not-allowed");
+            $(".meal-item").css("cursor", "not-allowed");
             $('a[href="#new"]')
-            .removeClass('disabled btn-light')    // Add the 'disabled' class
-            .attr('href', '#next');
-            $('a[href="#finish"]')
-            .removeClass('d-none');
+                .removeClass("disabled btn-light") // Add the 'disabled' class
+                .attr("href", "#next");
+            $('a[href="#finish"]').removeClass("d-none");
             currentIndex++;
             currentDayIndex = 0; // Reset day index for the next array
         }
     }
-})
-$(document).on('click', 'a[href="#next"]', function(event) {
+});
+$(document).on("click", 'a[href="#next"]', function (event) {
     event.preventDefault(); // Prevent the default anchor click behavior
     resetCustomFromUi();
     checkCurrentTabFillMenu();
 });
-$(document).on('click', 'a[href="#previous"]', function(event) {
+$(document).on("click", 'a[href="#previous"]', function (event) {
     event.preventDefault(); // Prevent the default anchor click behavior
     checkCurrentTabFillMenu();
 });
-$(document).on('click', 'a[href="#finish"]', async function(event) {
-
+$(document).on("click", 'a[href="#finish"]', async function (event) {
     let result = await swal.fire({
         title: "Are you sure?",
         text: "You won't be able to modify menu after confirmation!",
@@ -445,21 +442,21 @@ $(document).on('click', 'a[href="#finish"]', async function(event) {
     });
 
     if (result.value) {
-            
-        var menuId = $('.custom-meal-selector').val();
-        $('.weeksDetail').empty();
+        var menuId = $(".custom-meal-selector").val();
+        $(".weeksDetail").empty();
 
         var menu = getCustomMealData();
-        var tabHtml = $('.menuRow3').children('.menuTab3').html();
-        $('.menuRow3').empty()
-        var divHtml = `<div class="col-md-11 menuTab3 menuTab">`+tabHtml+`</div>`
-        $('.menuRow3').append(divHtml)
-        $('.menuTab3').addClass('d-none');
-        $('.menuRow3').append(menuFrom)
-        $('#menu').val(menuId);
-        $('.back-btn').addClass('d-none');
-        $('#menu').prop('disabled', true);
-        $('.data-menu').text(menuId == 1 ? '5 Days Menu' : '7 Days Menu');
+        var tabHtml = $(".menuRow3").children(".menuTab3").html();
+        $(".menuRow3").empty();
+        var divHtml =
+            `<div class="col-md-11 menuTab3 menuTab">` + tabHtml + `</div>`;
+        $(".menuRow3").append(divHtml);
+        $(".menuTab3").addClass("d-none");
+        $(".menuRow3").append(menuFrom);
+        $("#menu").val(menuId);
+        $(".back-btn").addClass("d-none");
+        $("#menu").prop("disabled", true);
+        $(".data-menu").text(menuId == 1 ? "5 Days Menu" : "7 Days Menu");
         for (var i = 1; i < 5; i++) {
             var weekData = menu[i];
             let weekCol = `<div class="col-md-3 p-md-0 mb-4 mb-md-0">
@@ -472,18 +469,16 @@ $(document).on('click', 'a[href="#finish"]', async function(event) {
                             </div>
                             <h5 class="text-site-danger">Week ${i}</h5>
                         </div>`;
-            weekData.forEach((item ,index) => {
+            weekData.forEach((item, index) => {
                 weekCol += `<div class="menu-item">
                         <span class="item-day">${item.day}</span>
                         <span class="item-name">&#8226; ${item.name}</span>
                     </div>`;
-            })
+            });
             weekCol += `</div>`;
-            $('.weeksDetail').append(weekCol);
-
+            $(".weeksDetail").append(weekCol);
         }
     }
-
 });
 $(document).on("keyup", "#meal", function (e) {
     var value = $(this).val().toLowerCase();
@@ -500,48 +495,44 @@ function searchMeal(value) {
         return text.indexOf(value) >= 0;
     }).show();
 }
-function resetCustomFromUi()
-{
-    $('.mealUl').removeClass('bg-light');
-    $('.mealUl').css('cursor' , 'auto');
-    $('.meal-item').css('cursor' , 'pointer');
+function resetCustomFromUi() {
+    $(".mealUl").removeClass("bg-light");
+    $(".mealUl").css("cursor", "auto");
+    $(".meal-item").css("cursor", "pointer");
     $('a[href="#next"]')
-    .addClass('disabled btn-light')    // Add the 'disabled' class
-    .attr('href', '#new');
-    $('a[href="#finish"]')
-    .addClass('d-none')
+        .addClass("disabled btn-light") // Add the 'disabled' class
+        .attr("href", "#new");
+    $('a[href="#finish"]').addClass("d-none");
 }
-function resetCustomFrom()
-{
+function resetCustomFrom() {
     emptyMealArray = [];
     removedDaysArray = null;
     selectedMealArray = [];
     currentIndex = 0;
     currentDayIndex = 0;
     removedDaysArray = null;
-    $('#customStepFrom').empty();
+    $("#customStepFrom").empty();
     createCustomStepsForm();
     resetCustomFromUi();
 }
 
 function orderPlaced() {
-    $('.orderConfirmed').addClass('d-none');
-    $('.orderPlaced').removeClass('d-md-none d-none');
-    $('.orderPlacedImg').removeClass('d-none');
+    $(".orderConfirmed").addClass("d-none");
+    $(".orderPlaced").removeClass("d-md-none d-none");
+    $(".orderPlacedImg").removeClass("d-none");
 }
-function getCustomMealData()
-{
+function getCustomMealData() {
     var array = [];
 
-    $('.customInputData').each((index , ele) =>{
+    $(".customInputData").each((index, ele) => {
         var obj = {
-            'id' : $(ele).val(),
-            'week' : $(ele).attr('data-week'),
-            'day' : $(ele).attr('data-day'),
-            'name' : $(ele).attr('data-name')
+            id: $(ele).val(),
+            week: $(ele).attr("data-week"),
+            day: $(ele).attr("data-day"),
+            name: $(ele).attr("data-name"),
         };
-        array.push(obj)
-    })
+        array.push(obj);
+    });
     return array.reduce((acc, item) => {
         // Initialize an array for the week if it doesn't exist
         if (!acc[item.week]) {
@@ -552,34 +543,30 @@ function getCustomMealData()
         return acc;
     }, {});
 }
-function checkCurrentTabFillMenu()
-{
-    var week = $('.body.current').data('week');
+function checkCurrentTabFillMenu() {
+    var week = $(".body.current").data("week");
     var arr = getCustomMealData();
 
     const count = arr[week].reduce((sum, item) => {
         // Convert `id` to a number (default to 0 if it's not a number)
-        const idValue = item.id === '' ? 0 : 1;
+        const idValue = item.id === "" ? 0 : 1;
         return sum + idValue;
     }, 0);
-    if(count === 5 || count === 7){
+    if (count === 5 || count === 7) {
         $('a[href="#new"]')
-        .removeClass('disabled btn-light')    // Add the 'disabled' class
-        .attr('href', '#next');
-        if(week === 4)
-        {
-            $('a[href="#finish"]')
-            .removeClass('d-none');
+            .removeClass("disabled btn-light") // Add the 'disabled' class
+            .attr("href", "#next");
+        if (week === 4) {
+            $('a[href="#finish"]').removeClass("d-none");
         }
-    }
-    else{
+    } else {
         $('a[href="#next"]')
-        .addClass('disabled btn-light')    // Add the 'disabled' class
-        .attr('href', '#new');
+            .addClass("disabled btn-light")
+            .attr("href", "#new");
     }
 }
-$(document).on('click', '#confirmOrder', async function() {
-
+$(document).on("click", "#confirmOrder", async function () {
+    $(this).prop("disabled", true);
 
     let result = await swal.fire({
         title: "Are you sure?",
@@ -594,39 +581,53 @@ $(document).on('click', '#confirmOrder', async function() {
     if (result.value) {
         const data = {};
 
-        $('.menuFrom input, .menuFrom select').each(function() {
-            const fieldName = $(this).attr('name');
+        $(".menuFrom input, .menuFrom select").each(function () {
+            const fieldName = $(this).attr("name");
             const fieldValue = $(this).val().trim();
             data[fieldName] = fieldValue;
         });
+
+        var activeType = $(".menu-links.active").attr("data-type");
+
+        if (activeType == "custom") {
+            data["menuItems"] = getCustomMealData();
+        }
 
         await $.ajax({
             type: "POST",
             url: "/create-order",
             data: data,
             headers: {
-                'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
-            success: function(response) {
+            success: function (response) {
                 if (response.success) {
-                    swal.fire("Success!", response.message, "success").then(() => {
-                        window.location.reload();
-                    });
+                    swal.fire("Success!", response.message, "success").then(
+                        () => {
+                            window.location.reload();
+                        }
+                    );
                 }
                 console.log(response.order);
             },
-            error: function(xhr) {
+            error: function (xhr) {
                 const errors = xhr.responseJSON.errors;
                 let errorMessage = "Please correct the following errors:\n\n";
                 for (const field in errors) {
-                    errorMessage += `${errors[field].join(', ')}\n`;
+                    errorMessage += `${errors[field].join(", ")}\n`;
                 }
                 alert(errorMessage);
-            }
+            },
+            complete: function () {
+                $("#confirmOrder").prop("disabled", false);
+            },
         });
+    } else {
+        $(this).prop("disabled", false);
     }
 });
-$(document).on('click' , '.back-btn' , function(){
-    $('.menuFrom').addClass('d-none')
-    $('.menuTab').removeClass('d-none')
-})
+
+$(document).on("click", ".back-btn", function () {
+    $(".menuFrom").addClass("d-none");
+    $(".menuTab").removeClass("d-none");
+});

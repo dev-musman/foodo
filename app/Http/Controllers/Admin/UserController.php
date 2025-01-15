@@ -15,7 +15,7 @@ use App\Helpers\{
 };
 use Illuminate\Http\Request;
 
-class USerController extends Controller
+class UserController extends Controller
 {
     use HasDataTables;
     public function index(Request $request)

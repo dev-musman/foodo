@@ -3,39 +3,29 @@
 namespace App\Http\Controllers\Site;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\CreateOrderRequest;
+use App\Mail\OrderCreated;
+use App\Models\Customer;
 use App\Models\MealPlan;
-use App\Models\MealPlanDetail;
-use App\Models\MenuType;
-use App\Models\User;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
 {
-    public function createOrder(Request $request)
+    public function createOrder(CreateOrderRequest $request)
     {
-        $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'required|email|max:255',
-            'phone' => 'required',
-            'company' => 'required',
-            'persons' => 'required|integer|min:1',
-            'delivery_address' => 'required|string|max:500',
-            'start_date' => 'required|date',
-            'menu_type_id' => 'exists:menu_types,id',
-        ]);
-
-        $user = User::firstOrCreate(
+        $customer = Customer::firstOrCreate(
             ['email' => $request->email],
             [
                 'name' => $request->name,
+                'company' => $request->company,
+                'phone' => $request->phone,
                 'password' => '12345678'
             ]
         );
 
-        if ($user) {
-            // $user->syncRoles(3);
+        if ($customer) {
             $mealPlan = MealPlan::create([
-                'user_id' => $user->id,
+                'customer_id' => $customer->id,
                 'menu_type_id' => $request->menu_type_id,
                 'persons' => $request->persons,
                 'company' => $request->company,
@@ -44,18 +34,23 @@ class OrderController extends Controller
                 'start_date' => $request->start_date,
             ]);
 
-            // $menu_type = MenuType::whereId($request->menu_type_id)->first();
+            if ($request->filled("menuItems")) {
+                foreach ($request->menuItems as $menuTypeId => $menuItems) {
+                    foreach ($menuItems as $menuItem) {
+                        $mealPlan->menuItems()->create([
+                            'meal_plan_id' => $mealPlan->id,
+                            'menu_id' => $menuItem['id'],
+                            'week' => $menuItem['week'],
+                            'day' => $menuItem['day'],
+                        ]);
+                    }
+                }
+            }
 
-            // if ($menu_type->type == "Custom") {
-            //     foreach ($request->menus as $menuId) {
-            //         MealPlanDetail::create([
-            //             'meal_plan_id' => $mealPlan->id,
-            //             'menu_id' => $menuId,
-            //             'day' => $request->day,
-            //             'week' => $request->week,
-            //         ]);
-            //     }
-            // }
+            // Send email to the customer
+            Mail::to($customer->email)->send(new OrderCreated($customer, $mealPlan));
+            // Optionally, send an email to the admin as well
+            Mail::to("devtms@ipscloud.com")->send(new OrderCreated($customer, $mealPlan));
 
             return response()->json([
                 'success' => true,

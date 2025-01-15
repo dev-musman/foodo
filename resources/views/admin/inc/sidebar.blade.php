@@ -63,10 +63,27 @@
             @endcan
 
             @can('users')
-                <li class="sidebar-item {{ Route::is('admin.users.*') ? 'active' : '' }}">
-                    <a class="sidebar-link" href="{{ route('admin.users.index') }}">
+                <li
+                    class="sidebar-item {{ Route::is('admin.users.*') || Route::is('admin.customers.*') ? 'active' : '' }}">
+                    <a href="#users" data-bs-toggle="collapse"
+                        class="sidebar-link {{ Route::is('admin.users.*') || Route::is('admin.customers.*') ? '' : 'collapsed' }}"
+                        aria-expanded="{{ Route::is('admin.users.*') || Route::is('admin.customers.*') ? 'true' : 'false' }}">
                         <i class="align-middle me-2" data-feather="user"></i> <span class="align-middle">Users</span>
                     </a>
+                    <ul id="users"
+                        class="sidebar-dropdown list-unstyled collapse {{ Route::is('admin.users.*') || Route::is('admin.customers.*') ? 'show' : '' }}"
+                        data-bs-parent="#sidebar">
+                        <li class="sidebar-item {{ Route::is('admin.users.*') ? 'active' : '' }}">
+                            <a class="sidebar-link" href="{{ route('admin.users.index') }}">
+                                Admins
+                            </a>
+                        </li>
+                        <li class="sidebar-item {{ Route::is('admin.customers.*') ? 'active' : '' }}">
+                            <a class="sidebar-link" href="{{ route('admin.customers.index') }}">
+                                Customers
+                            </a>
+                        </li>
+                    </ul>
                 </li>
             @endcan
 
@@ -79,11 +96,11 @@
             @endcan
 
             @can('activity')
-            <li class="sidebar-item {{ Route::is('admin.history') ? 'active' : '' }}">
-                <a class="sidebar-link" href="{{ route('admin.history') }}">
-                    <i class="align-middle me-2" data-feather="clock"></i> <span class="align-middle">Activity</span>
-                </a>
-            </li>
+                <li class="sidebar-item {{ Route::is('admin.history') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="{{ route('admin.history') }}">
+                        <i class="align-middle me-2" data-feather="clock"></i> <span class="align-middle">Activity</span>
+                    </a>
+                </li>
             @endcan
 
         </ul>

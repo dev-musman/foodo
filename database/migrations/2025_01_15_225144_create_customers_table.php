@@ -15,7 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('email')->unique();
-            $table->string('comanpy');
+            $table->string('company');
             $table->string('phone');
             $table->string('password');
             $table->foreignId('deleted_by')->nullable()->constrained('users')->onDelete('cascade');

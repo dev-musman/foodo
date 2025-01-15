@@ -11,9 +11,14 @@
                 <h1 class="h3">All Pages</h1>
                 <div>
                     @can('trash')
-                        <a href="{{ route('admin.pages.index', 'trash=true') }}" class="btn btn-danger me-2">View Trash</a>
+                        <a href="{{ route('admin.pages.index', ['trash' => request('trash') ? null : 'true']) }}"
+                            class="btn {{ request('trash') ? 'btn-success' : 'btn-danger' }} me-2">
+                            {{ request('trash') ? 'View All' : 'View Trash' }}
+                        </a>
                     @endcan
-                    <a href="{{ route('admin.pages.create') }}" class="btn btn-primary">Add New</a>
+                    @can('add page')
+                        <a href="{{ route('admin.pages.create') }}" class="btn btn-primary">Add New</a>
+                    @endcan
                 </div>
             </div>
             <div class="card card-solid">

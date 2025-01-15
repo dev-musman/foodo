@@ -9,7 +9,7 @@ $(function () {
         autoWidth: false,
         order: [[0, "asc"]],
         columns: [
-            { data: "id", name: "id" },
+            { data: "id", name: "id", searchable: false },
             { data: "name", name: "name" },
             { data: "type", name: "type" },
             { data: "week", name: "week" },

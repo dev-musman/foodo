@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreMenuRequest extends FormRequest
+class UpdateCustomerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -21,14 +21,13 @@ class StoreMenuRequest extends FormRequest
      */
     public function rules(): array
     {
+        $customerId = $this->route('customer')->id;
         return [
             'name' => 'required|string|max:255',
-            'menu_type_id' => 'required',
-            'day' => 'required|string',
-            'week' => 'required|string',
-            'price' => 'required|numeric|min:0',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-            'description' => 'required|string',
+            'email' => 'required|email|unique:customers,email,' . $customerId,
+            'company' => 'required',
+            'phone' => 'required|min:11',
+            'password' => 'nullable|min:8',
         ];
     }
 }

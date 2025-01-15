@@ -1,5 +1,5 @@
 @extends('layouts.admin')
-@section('title', isset($user) ? 'Edit User' : 'Create User')
+@section('title', isset($customer) ? 'Edit Customer' : 'Create Customer')
 
 @section('content')
 
@@ -8,13 +8,15 @@
         <div class="container-fluid">
 
             @php
-                $action = isset($user) ? route('admin.users.update', $user) : route('admin.users.store');
-                $method = isset($user) ? 'PUT' : 'POST';
+                $action = isset($customer)
+                    ? route('admin.customers.update', $customer)
+                    : route('admin.customers.store');
+                $method = isset($customer) ? 'PUT' : 'POST';
             @endphp
 
             <div class="d-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3">{{ isset($user) ? 'Edit' : 'Create' }} Admin</h1>
-                <a href="{{ route('admin.users.index') }}" class="btn btn-primary">Back</a>
+                <h1 class="h3">{{ isset($customer) ? 'Edit' : 'Create' }} Customer</h1>
+                <a href="{{ route('admin.customers.index') }}" class="btn btn-primary">Back</a>
             </div>
 
             <form class="standart-form" action="{{ $action }}" method="{{ $method }}">
@@ -26,7 +28,7 @@
                                 <div class="form-group">
                                     <label>Name</label>
                                     <input type="text" class="form-control" name="name"
-                                        value="{{ $user->name ?? '' }}" placeholder="User name...">
+                                        value="{{ $customer->name ?? '' }}" placeholder="User name...">
                                     <span data-field="name" class="invalid-feedback"></span>
                                 </div>
                             </div>
@@ -34,12 +36,28 @@
                                 <div class="form-group">
                                     <label>Email</label>
                                     <input type="text" class="form-control" name="email"
-                                        value="{{ $user->email ?? '' }}" placeholder="User email...">
+                                        value="{{ $customer->email ?? '' }}" placeholder="User email...">
                                     <span data-field="email" class="invalid-feedback"></span>
                                 </div>
                             </div>
+                            <div class="col-sm-6 mb-2">
+                                <div class="form-group">
+                                    <label>Company</label>
+                                    <input type="text" class="form-control" name="company"
+                                        value="{{ $customer->company ?? '' }}" placeholder="User company...">
+                                    <span data-field="company" class="invalid-feedback"></span>
+                                </div>
+                            </div>
+                            <div class="col-sm-6 mb-2">
+                                <div class="form-group">
+                                    <label>Phone</label>
+                                    <input type="text" class="form-control" name="phone"
+                                        value="{{ $customer->phone ?? '' }}" placeholder="User phone...">
+                                    <span data-field="phone" class="invalid-feedback"></span>
+                                </div>
+                            </div>
 
-                            @empty($user)
+                            @empty($customer)
                                 <div class="col-sm-6 mb-3">
                                     <div class="form-group">
                                         <label>Password</label>
@@ -49,25 +67,6 @@
                                     </div>
                                 </div>
                             @endempty
-
-                            <div class="col-sm-6 mb-3">
-                                <div class="form-group">
-                                    <label for="role">Role</label>
-
-                                    <select class="form-control select2" name="roles[]" multiple="multiple"
-                                        data-placeholder="Select a role">
-                                        <option value="" disabled>Select a role</option>
-                                        @foreach ($roles as $role)
-                                            <option value="{{ $role->name }}"
-                                                @if (isset($user) && $user->roles->contains('id', $role->id)) selected @endif>
-                                                {{ $role->name }}
-                                            </option>
-                                        @endforeach
-                                    </select>
-
-                                    <span data-field="roles" class="invalid-feedback"></span>
-                                </div>
-                            </div>
 
                         </div>
                     </div>

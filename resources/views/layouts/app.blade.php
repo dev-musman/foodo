@@ -25,9 +25,9 @@
     <script src="{{ asset('public/assets/js/plugins/jquery-slideNav.js') }}"></script>
     <!-- easing JS -->
     <!-- main js -->
-    <script src="{{asset('public/assets/js/main.js')}}"></script>
-    <script src="{{asset('public/assets/css/plugins/owlcarousel/dist/owl.carousel.min.js')}}"></script>
-    <script src="{{asset('public/assets/js/plugins/jquery-steps/jquery.steps.js')}}"></script>
+    <script src="{{ asset('public/assets/js/main.js') }}"></script>
+    <script src="{{ asset('public/assets/css/plugins/owlcarousel/dist/owl.carousel.min.js') }}"></script>
+    <script src="{{ asset('public/assets/js/plugins/jquery-steps/jquery.steps.js') }}"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.15.3/sweetalert2.min.js"></script>
     @stack('scripts')
 </body>

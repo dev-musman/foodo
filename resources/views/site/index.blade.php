@@ -218,8 +218,8 @@
                         @endphp
                         @foreach ($menuTypes as $key => $menuType)
                         <li class="nav-item" role="presentation">
-                            <button class="nav-link py-4 {{$key == 0 ? 'active' : ''}}" id="Menu{{$menuType->id}}-tab" data-bs-toggle="tab" data-bs-target="#Menu{{$menuType->id}}"
-                                type="button" role="tab" aria-controls="Menu{{$menuType->id}}" aria-selected="true">
+                            <button class="nav-link menu-links py-4 {{$key == 0 ? 'active' : ''}}" id="Menu{{$menuType->id}}-tab" data-bs-toggle="tab" data-bs-target="#Menu{{$menuType->id}}"
+                                type="button" role="tab" aria-controls="Menu{{$menuType->id}}" aria-selected="true" data-type="{{ $menuType->days_count }}">
                                 {{$menuType->type}}
                             </button>
                         </li>
@@ -232,7 +232,7 @@
                                 @php
                                     $menuArr['type_id'][$menuType->id]['weeks'] = $menuType->menus->groupBy('week');
                                 @endphp
-                                @if ($menuType->id != 3)
+                                @if ($menuType->days_count != "custom")
                                 <div class="col-md-11 menuTab{{$menuType->id}} menuTab">
                                     <div class="owl{{$key}} owl-carousel">
                                         @foreach ($menuType->menus->groupBy('week')  as $weekNum => $week)
