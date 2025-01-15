@@ -480,7 +480,7 @@
             });
             $(document).ready(function () {
                 var swiper = new Swiper(".swiper-testimonials-1", {
-                  slidesPerView: 1,
+                  slidesPerView: 2,
                   slidesPerGroup: 1,
                   parallax: true,
                   speed: 1600,
@@ -488,6 +488,26 @@
                   loop: true,
                   autoplay: {
                     delay: 3000,
+                  },
+                  breakpoints: {
+                    1500: {
+                      slidesPerView: 2,
+                    },
+                    1199: {
+                      slidesPerView: 2,
+                    },
+                    991: {
+                      slidesPerView: 2,
+                    },
+                    767: {
+                      slidesPerView: 1,
+                    },
+                    575: {
+                      slidesPerView: 1,
+                    },
+                    0: {
+                      slidesPerView: 1,
+                    }
                   },
                   loopFillGroupWithBlank: true,
                   pagination: {
