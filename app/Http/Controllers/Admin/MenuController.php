@@ -114,6 +114,7 @@ class MenuController extends Controller
         return view('admin.menus.edit', compact('menu', 'menu_types', 'days', 'weeks'));
     }
 
+
     private function uploadImage(Request $request, string $fieldName, string $directory)
     {
         if (!$request->hasFile($fieldName)) {
@@ -122,9 +123,15 @@ class MenuController extends Controller
 
         $file = $request->file($fieldName);
         $fileName = time() . '_' . $file->getClientOriginalName();
-        $filePath = $file->storeAs($directory, $fileName, 'public');
+        $filePath = $directory . '/' . $fileName;
 
-        return 'public/storage/' . $filePath;
+        $file->move(public_path($directory), $fileName);
+        return url("public/" . $filePath);
+
+        // storage
+        // $fileName = time() . '_' . $file->getClientOriginalName();
+        // $filePath = $file->storeAs($directory, $fileName, 'public');
+        // return 'public/storage/' . $filePath;
     }
 
 
