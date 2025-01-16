@@ -29,10 +29,8 @@ class OrderController extends Controller
                     return $plan->menuType->type ?? '';
                 });
                 $dataTable->addColumn('name', function ($plan) {
-                    return $plan->user ? '<a href="' . route('admin.users.edit', $plan->user->id) . '">' . $plan->user->name . '</a>' : '';
-
+                    return $plan->customer ? '<a href="' . route('admin.customers.edit', $plan->customer->id) . '">' . $plan->customer->name . '</a>' : '';
                 });
-
             });
         }
 
@@ -60,22 +58,13 @@ class OrderController extends Controller
             if ($user && $data['status'] != "pending") {
                 try {
                     Mail::to($user->email)->send(new OrderStatusUpdated($order, 'user'));
-                    // Mail::to($adminEmail)->send(new OrderStatusUpdated($order, 'admin'));
-                    Log::info('Email send: ');
                 } catch (\Exception $e) {
                     Log::error('Email failed to send: ' . $e->getMessage());
                     return response()->json(['error' => 'Email could not be sent'], 500);
                 }
             }
         }
-        // if ($user && $user->email) {
-        //     Mail::to($user->email)->send(new OrderStatusUpdated($order, 'user'));
-        // }
 
-        // $adminEmail = config('mail.admin_email');
-        // if ($adminEmail) {
-        //     // Mail::to($adminEmail)->send(new OrderStatusUpdated($order, 'admin'));
-        // }
 
         return response()->json([
             'success' => true,

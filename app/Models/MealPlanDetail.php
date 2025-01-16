@@ -9,10 +9,12 @@ class MealPlanDetail extends Model
 {
     use SoftDeletes;
     protected $dates = ['deleted_at'];
-    
+
     protected $fillable = [
         'meal_plan_id',
         'menu_id',
+        'day',
+        'week',
     ];
 
     public function mealPlan()

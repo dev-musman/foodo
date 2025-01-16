@@ -8,10 +8,15 @@
     <section class="content">
         <div class="container-fluid">
             <div class="d-flex align-items-center justify-content-between mb-4">
+                @php $trash = request()->get('trash') @endphp
+
                 <h1 class="h3">All Menu Types</h1>
                 <div>
                     @can('trash')
-                        <a href="{{ route('admin.menu-types.index', 'trash=true') }}" class="btn btn-danger me-2">View Trash</a>
+                        <a href="{{ route('admin.menu-types.index', ['trash' => request('trash') ? null : 'true']) }}"
+                            class="btn {{ request('trash') ? 'btn-success' : 'btn-danger' }} me-2">
+                            {{ request('trash') ? 'View All' : 'View Trash' }}
+                        </a>
                     @endcan
                     <a href="{{ route('admin.menu-types.create') }}" class="btn btn-primary">Add New</a>
                 </div>

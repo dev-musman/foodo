@@ -4,7 +4,7 @@ namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
 
-class StoreMenuRequest extends FormRequest
+class CreateCustomerRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -23,12 +23,10 @@ class StoreMenuRequest extends FormRequest
     {
         return [
             'name' => 'required|string|max:255',
-            'menu_type_id' => 'required',
-            'day' => 'required|string',
-            'week' => 'required|string',
-            'price' => 'required|numeric|min:0',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
-            'description' => 'required|string',
+            'email' => 'required|email|unique:customers,email',
+            'company' => 'required',
+            'phone' => 'required|min:11',
+            'password' => 'required|min:8',
         ];
     }
 }

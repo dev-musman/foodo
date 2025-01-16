@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Admin\CustomersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PageController;
 use App\Http\Controllers\Site\PagesController;
@@ -19,11 +20,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
     Route::get('/menus/available-days', [MenuController::class, 'getAvailableDays'])->name('menus.available-days');
 
     Route::resource('pages', PageController::class);
-    Route::resource('permissions', PermissionController::class);
-    Route::resource('roles', RoleController::class);
-    Route::resource('users', UserController::class);
     Route::resource('menus', MenuController::class);
     Route::resource('menu-types', MenuTypesController::class);
+    Route::resource('roles', RoleController::class);
+    Route::resource('permissions', PermissionController::class);
+    Route::resource('users', UserController::class);
+    Route::resource('customers', CustomersController::class);
 
     Route::get('/orders', [OrderController::class, 'index'])->name('orders');
     Route::get('/update-order-status/{id}', [OrderController::class, 'updateOrderStatus'])->name('orders.status');

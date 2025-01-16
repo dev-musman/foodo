@@ -14,7 +14,7 @@ return new class extends Migration
         Schema::create('meal_plans', function (Blueprint $table) {
             $table->id();
             $table->foreignId('menu_type_id')->constrained('menu_types')->onDelete('cascade');
-            $table->foreignId('user_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('customer_id')->constrained('customers')->onDelete('cascade');
             $table->string('company');
             $table->string('phone');
             $table->string('persons');

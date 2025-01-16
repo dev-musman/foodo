@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Database\Eloquent\SoftDeletes;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 
 
 class Menu extends Model
@@ -62,10 +63,18 @@ class Menu extends Model
             ->exists();
     }
 
+    // for storage
+    // public function deleteImage()
+    // {
+    //     if ($this->image && Storage::exists(str_replace('/storage/', '', $this->image))) {
+    //         Storage::delete(str_replace('/storage/', '', $this->image));
+    //     }
+    // }
+
     public function deleteImage()
     {
-        if ($this->image && Storage::exists(str_replace('/storage/', '', $this->image))) {
-            Storage::delete(str_replace('/storage/', '', $this->image));
+        if ($this->image && file_exists(public_path($this->image))) {
+            unlink(public_path($this->image));
         }
     }
 
@@ -87,5 +96,13 @@ class Menu extends Model
             $menu->deleted_by = auth()->id();
             $menu->save();
         });
+    }
+
+
+    protected function image(): Attribute
+    {
+        return Attribute::make(
+            get: fn(string $value = null) => $value === null ? asset('public/assets/images/default-foodo.png') : $value,
+        );
     }
 }

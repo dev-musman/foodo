@@ -32,9 +32,12 @@ class MenuController extends Controller
                     fn($menu) => $menu->image
                         ? '<img src="' . asset($menu->image) . '" alt="Menu Image" style="width: 50px; height: 50px; object-fit: cover;">'
                         : 'No Image'
-                );
-
-                $dataTable->addColumn('type', fn($menu) => $menu->menuType->type ?? '');
+                )->addColumn('type', fn($menu) => $menu->menuType->type ?? '')
+                    ->filterColumn('type', function ($query, $keyword) {
+                        $query->whereHas('menuType', function ($q) use ($keyword) {
+                            $q->where('type', 'LIKE', "%$keyword%");
+                        });
+                    });
             });
         }
         return view('admin.menus.index');
@@ -147,7 +150,7 @@ class MenuController extends Controller
             ->pluck('day')
             ->toArray();
 
-        $allDays = $menuType->days_count === 5
+        $allDays = $menuType->days_count == 5
             ? ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
             : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
 

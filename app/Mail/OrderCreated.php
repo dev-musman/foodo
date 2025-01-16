@@ -8,36 +8,28 @@ use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
 
-class OrderStatusUpdated extends Mailable
+class OrderCreated extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $order;
-    public $recipientType;
-
     /**
      * Create a new message instance.
-     *
-     * @param  mixed  $order
-     * @param  string  $recipientType
      */
-    public function __construct($order, $recipientType)
-    {
-        $this->order = $order;
-        $this->recipientType = $recipientType; // 'admin' or 'user'
-    }
+    public $customer;
+    public $mealPlan;
 
+    public function __construct($customer, $mealPlan)
+    {
+        $this->customer = $customer;
+        $this->mealPlan = $mealPlan;
+    }
     /**
      * Get the message envelope.
      */
     public function envelope(): Envelope
     {
-        $subject = $this->recipientType === 'admin'
-            ? "Order #{$this->order->id} Status Updated (Admin Notification)"
-            : "Your Order #{$this->order->id} Status Updated";
-
         return new Envelope(
-            subject: $subject,
+            subject: 'Order Created',
         );
     }
 
@@ -46,19 +38,21 @@ class OrderStatusUpdated extends Mailable
      */
     public function content(): Content
     {
-        $view = 'emails.orders.status_updated';
+        $view = 'emails.orders.create';
 
         return new Content(
             view: $view,
             with: [
-                'order' => $this->order,
-                'recipientType' => $this->recipientType,
+                'customer' => $this->customer,
+                'mealPlan' => $this->mealPlan,
             ]
         );
     }
 
     /**
      * Get the attachments for the message.
+     *
+     * @return array<int, \Illuminate\Mail\Mailables\Attachment>
      */
     public function attachments(): array
     {
