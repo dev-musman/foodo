@@ -90,7 +90,6 @@
                 </ul>
             </div>
 
-            <a href="{{ url('/orders/'.$mealPlan->id) }}" class="cta-button">View Your Order</a>
         </div>
 
         <p>Thanks, <br>{{ config('app.name') }}</p>
