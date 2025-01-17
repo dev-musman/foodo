@@ -30,6 +30,7 @@
                                     <th>Delivery Adress</th>
                                     <th>Expected Start Date</th>
                                     <th>Persons</th>
+                                    <th>Details</th>
                                     <th>Status</th>
                                     <th>Actions</th>
                                 </tr>

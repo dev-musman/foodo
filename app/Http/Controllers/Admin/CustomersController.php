@@ -20,19 +20,13 @@ class CustomersController extends Controller
     public function index(Request $request)
     {
 
-
         if (request()->ajax()) {
-
-            $trash = $request->get("trash");
-            $q = Customer::latest();
-            $query = $trash == "true" ? $q->onlyTrashed() : $q;
-
+            $query = Customer::latest();
             return $this->dataTable(
                 $query,
                 'customers'
             );
         }
-
 
         return view('admin.customers.index');
     }
@@ -49,7 +43,7 @@ class CustomersController extends Controller
             'email' => $request->email,
             'company' => $request->company,
             'phone' => $request->phone,
-            'password' => Hash::make($request->password),
+            'password' => Hash::make("12345678"),
         ]);
 
         LogActivity::addToLog('customer', 'insert', $user, null);
@@ -69,9 +63,6 @@ class CustomersController extends Controller
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
         $data = $request->only(['name', 'email', 'comapny', 'phone']);
-        if ($request->filled('password')) {
-            $data['password'] = Hash::make($request->password);
-        }
 
         $changes_exist = Common::get_changes($customer, $data);
         if ($changes_exist) {

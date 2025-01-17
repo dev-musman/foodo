@@ -25,8 +25,7 @@ class CreateCustomerRequest extends FormRequest
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:customers,email',
             'company' => 'required',
-            'phone' => 'required|min:11',
-            'password' => 'required|min:8',
+            'phone' => 'required|min:11'
         ];
     }
 }

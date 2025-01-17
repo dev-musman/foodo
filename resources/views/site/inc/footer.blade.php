@@ -25,7 +25,7 @@
                                 </ul>
                             </div>
                         </div>
-                        
+
                         <div class="single-footer-wized-one pages" data-sal="slide-up" data-sal-delay="250"
                             data-sal-duration="800">
                             <div class="footer-header-two pages">

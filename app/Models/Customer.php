@@ -16,4 +16,9 @@ class Customer extends Model
         'phone',
         'password',
     ];
+
+    public function mealPlans()
+    {
+        return $this->hasMany(MealPlan::class);
+    }
 }

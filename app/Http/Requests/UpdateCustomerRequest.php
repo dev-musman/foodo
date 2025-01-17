@@ -26,8 +26,7 @@ class UpdateCustomerRequest extends FormRequest
             'name' => 'required|string|max:255',
             'email' => 'required|email|unique:customers,email,' . $customerId,
             'company' => 'required',
-            'phone' => 'required|min:11',
-            'password' => 'nullable|min:8',
+            'phone' => 'required|min:11'
         ];
     }
 }
