@@ -450,16 +450,7 @@ $(document).on("click", 'a[href="#next"]', function (event) {
 });
 $(document).on("click", 'a[href="#previous"]', function (event) {
     event.preventDefault(); // Prevent the default anchor click behavior
-    var week = $(".body.current").data("week");
-    if(week === 3)
-        {
-            $('a[href="#new"]')
-            .removeClass("disabled btn-light") // Add the 'disabled' class
-            .attr("href", "#next");
-        }
-        checkCurrentTabFillMenu();
-    
-    
+    checkCurrentTabFillMenu();
 });
 
 $(document).on("click", 'a[href="#finish"]', async function (event) {
