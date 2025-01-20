@@ -7,6 +7,7 @@ use App\Http\Requests\CreateOrderRequest;
 use App\Mail\OrderCreated;
 use App\Models\Customer;
 use App\Models\MealPlan;
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
@@ -58,4 +59,19 @@ class OrderController extends Controller
             ], 201);
         }
     }
+
+
+    public function show()
+{
+    $mealPlan = MealPlan::with([
+        'menuItems.menu' => function ($query) {
+            $query->select('id' ,'name');
+        }
+    ])->findOrFail(7);
+
+    return view('test', compact('mealPlan'));
+}
+
+
+
 }

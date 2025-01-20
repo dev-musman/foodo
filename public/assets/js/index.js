@@ -173,6 +173,7 @@ $(document).on("click", ".nav-link", function () {
     $(".orderDetail").empty();
     resetCustomFrom();
 });
+
 $(document).on("click", ".selectMenu", function () {
     var menuId = $(this).data("id");
     const menus = menuObj.type_id[menuId]["weeks"];

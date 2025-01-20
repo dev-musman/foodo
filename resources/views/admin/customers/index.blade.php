@@ -8,14 +8,8 @@
         <div class="container-fluid">
 
             <div class="d-flex align-items-center justify-content-between mb-4">
-                <h1 class="h3">All Users</h1>
+                <h1 class="h3">All Customers</h1>
                 <div>
-                    @can('trash')
-                        <a href="{{ route('admin.customers.index', ['trash' => request('trash') ? null : 'true']) }}"
-                            class="btn {{ request('trash') ? 'btn-success' : 'btn-danger' }} me-2">
-                            {{ request('trash') ? 'View All' : 'View Trash' }}
-                        </a>
-                    @endcan
                     <a href="{{ route('admin.customers.create') }}" class="btn btn-primary">Add New</a>
                 </div>
             </div>

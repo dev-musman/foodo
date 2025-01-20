@@ -72,7 +72,7 @@
                                 <li>Enjoy your food at the designated time</li>
                             </ul>
                             <br>
-                            <div class="banner-home-button mt-5">
+                            <div class="banner-home-button text-center">
                                 <a href="tel:+92 337 0777019" class="btn btn-site-primary w-auto text-uppercase px-5 py-3 fs-5 booking-btn">Get Started</a>
                             </div>
                         </div>
@@ -284,8 +284,6 @@
                                     <div class="row">
                                         <div class="col-md-7">
                                             <div id="customStepFrom">
-
-
                                             </div>
                                         </div>
                                         <div class="col-md-5">
@@ -337,6 +335,8 @@
     </div>
 </div>
 <!-- end menu area start -->
+
+
 
 <div class="rts-about-area rts-section-gapTopBotm">
     <div class="container">

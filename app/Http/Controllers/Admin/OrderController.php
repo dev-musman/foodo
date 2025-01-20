@@ -24,13 +24,16 @@ class OrderController extends Controller
             $q = MealPlan::with('menuType')->latest();
             $query = $trash == "true" ? $q->onlyTrashed() : $q;
 
+            // \Log::info('Menu Items:', [$plan->menuItems]);
             return $this->dataTable($query, 'orders', function ($dataTable) {
                 $dataTable->addColumn('type', function ($plan) {
                     return $plan->menuType->type ?? '';
-                });
-                $dataTable->addColumn('name', function ($plan) {
+                })->addColumn('name', function ($plan) {
                     return $plan->customer ? '<a href="' . route('admin.customers.edit', $plan->customer->id) . '">' . $plan->customer->name . '</a>' : '';
-                });
+                    })->addColumn('details', function ($plan) {
+                        return count($plan->menuItems) > 0  ? '<a href="' . route('admin.orders.details', $plan->id) . '">Custom Menu</a>'  : '';
+                    });
+
             });
         }
 
@@ -111,5 +114,16 @@ class OrderController extends Controller
             'success' => true,
             'message' => 'Menu successfully deleted.',
         ]);
+    }
+
+    public function details($id)
+    {
+        $mealPlan = MealPlan::with([
+            'menuItems.menu' => function ($query) {
+                $query->select('id', 'name');
+            }
+        ])->findOrFail($id);
+
+        return view('admin.orders.details', compact('mealPlan'));
     }
 }

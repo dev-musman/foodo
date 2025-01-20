@@ -35,7 +35,8 @@
                                 <div class="form-group">
                                     <label>URL</label>
                                     <input type="text" class="form-control" name="slug"
-                                        value="{{ $page->slug ?? '' }}" placeholder="URL...">
+                                        value="{{ $page->slug ?? '' }}" placeholder="URL..."
+                                        {{ isset($page) ? 'disabled' : '' }}>
                                     <span data-field="slug" class="invalid-feedback"></span>
                                 </div>
                             </div>
@@ -77,17 +78,16 @@
                                 </div>
                             </div>
 
-                            {{-- @role('Super-admin') --}}
-                            <div class="col-sm-6 mb-4">
-                                <div class="form-group">
-                                    <label>View Path</label>
-                                    <input type="text" class="form-control" name="view_path"
-                                    value="{{ $page->view_path ?? '' }}" placeholder="View Path...">
-                                    <span data-field="view_path" class="invalid-feedback"></span>
+                            @role('Super-admin')
+                                <div class="col-sm-6 mb-4">
+                                    <div class="form-group">
+                                        <label>View Path</label>
+                                        <input type="text" class="form-control" name="view_path"
+                                            value="{{ $page->view_path ?? '' }}" placeholder="View Path...">
+                                        <span data-field="view_path" class="invalid-feedback"></span>
+                                    </div>
                                 </div>
-                            </div>
-                            {{-- @endrole --}}
-
+                            @endrole
 
                         </div>
                     </div>

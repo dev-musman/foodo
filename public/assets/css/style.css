@@ -21810,6 +21810,7 @@ p.desc {
     padding: 140px 0 170px 0;
     position: relative;
     z-index: 1;
+    padding-bottom: 0px !important;
 }
 @media (max-width: 576px) {
     .rts-banner-main-area-swiper.banner-four {

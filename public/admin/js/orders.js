@@ -16,6 +16,7 @@ $(function () {
             { data: "delivery_address", name: "" },
             { data: "start_date", name: "" },
             { data: "persons", name: "" },
+            { data: "details", name: "" },
             {
                 data: "status",
                 name: "status",

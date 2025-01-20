@@ -31,10 +31,14 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
     Route::get('/update-order-status/{id}', [OrderController::class, 'updateOrderStatus'])->name('orders.status');
     Route::get('/order/edit/{mealPlan}', [OrderController::class, 'edit'])->name('orders.edit');
     Route::put('/order/update/{mealPlan}', [OrderController::class, 'update'])->name('orders.update');
+    Route::get('/order/deltails/{mealPlan}', [OrderController::class, 'details'])->name('orders.details');
     Route::delete('/order/delete/{mealPlan}', [OrderController::class, 'destroy'])->name('orders.destroy');
 });
+Route::get('/de', [SiteOrderController::class, 'show']);
 
 require __DIR__ . '/auth.php';
 // client
 Route::post('/create-order', [SiteOrderController::class, 'createOrder'])->name('orders.menu');
 Route::get('/{slug?}', [PagesController::class, 'show'])->where('slug', '^(?!(admin|logout|login)(\/|$))[A-Za-z0-9+-_\/]+')->name('page');
+
+

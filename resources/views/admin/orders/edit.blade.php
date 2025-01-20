@@ -23,7 +23,7 @@
                                 <div class="form-group">
                                     <label for="name">User Name</label>
                                     <input type="text" id="name" class="form-control" name="name"
-                                        value="{{ $mealPlan->user->name }}" disabled>
+                                        value="{{ $mealPlan->customer->name }}" disabled>
                                 </div>
                             </div>
 
