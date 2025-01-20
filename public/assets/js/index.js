@@ -41,8 +41,6 @@ const menuFrom = `<div class="col-md-10 menuFrom">
                                 <div class="col-md-6 mb-3">
                                     <label for="menu" class="form-label">Menu Type</label>
                                     <select name="menu_type_id" class="site-select" id="menu">
-                                        <option value="1">5 Days a week</option>
-                                        <option value="2">7 Days a week</option>
                                     </select>
                                 </div>
                                 <div class="col-md-6 mb-3">
@@ -111,60 +109,44 @@ const menuFrom = `<div class="col-md-10 menuFrom">
                     </div>`;
 
 const menuArray = $("#menues").val();
+const menuTypesArray = $("#menueTypes").val();
 var menuObj = JSON.parse(menuArray);
+var menuTypesObj = JSON.parse(menuTypesArray);
 
 $(document).ready(function () {
-    var firstOwl = $(".owl0").owlCarousel({
-        loop: false,
-        margin: 10,
-        responsiveClass: true,
-        dots: false,
-        navText: ["&#x27E8;", "&#x27E9;"],
-        responsive: {
-            0: {
-                items: 1,
-                nav: true,
+    $(".owl-carousel").each(function (index) {
+        $(this).owlCarousel({
+            loop: false,
+            margin: 10,
+            responsiveClass: true,
+            dots: false,
+            navText: ["&#x27E8;", "&#x27E9;"],
+            responsive: {
+                0: {
+                    items: 1,
+                    nav: true,
+                },
+                600: {
+                    items: 1,
+                    nav: false,
+                },
+                1000: {
+                    items: 1,
+                    nav: true,
+                },
             },
-            600: {
-                items: 1,
-                nav: false,
-            },
-            1000: {
-                items: 1,
-                nav: true,
-            },
-        },
-    });
-    var secondOwl = $(".owl1").owlCarousel({
-        loop: false,
-        margin: 10,
-        responsiveClass: true,
-        dots: false,
-        navText: ["&#x27E8;", "&#x27E9;"],
-        responsive: {
-            0: {
-                items: 1,
-                nav: true,
-            },
-            600: {
-                items: 1,
-                nav: false,
-            },
-            1000: {
-                items: 1,
-                nav: true,
-            },
-        },
+        });
     });
 
     createCustomStepsForm();
     $(document).on("click", ".custom-owl-prev", function () {
-        var owl = $(this).data("number") == 0 ? firstOwl : secondOwl;
-        owl.trigger("prev.owl.carousel");
+        const owlIndex = $(this).data("number");
+        $(`.owl${owlIndex}`).trigger("prev.owl.carousel");
     });
+
     $(document).on("click", ".custom-owl-next", function () {
-        var owl = $(this).data("number") == 0 ? firstOwl : secondOwl;
-        owl.trigger("next.owl.carousel");
+        const owlIndex = $(this).data("number");
+        $(`.owl${owlIndex}`).trigger("next.owl.carousel");
     });
 });
 $(document).on("click", ".nav-link", function () {
@@ -176,13 +158,33 @@ $(document).on("click", ".nav-link", function () {
 
 $(document).on("click", ".selectMenu", function () {
     var menuId = $(this).data("id");
+    console.log(menuObj);
     const menus = menuObj.type_id[menuId]["weeks"];
 
     $(".menuTab" + menuId).addClass("d-none");
     $(".menuRow" + menuId).append(menuFrom);
+
+    if (menuTypesObj) {
+        const selectType = $("#menu");
+        let matchedMenuType = "Custom"; // Default text if no match is found
+
+        menuTypesObj.forEach((menu) => {
+            selectType.append(
+                `<option value="${menu.id}">${menu.type}</option>`
+            );
+            console.log("menuId: " + menuId, "menu.id: " + menu.id);
+
+            if (menuId == menu.id) {
+                matchedMenuType = menu.type;
+            }
+        });
+
+        $(".data-menu").text(matchedMenuType);
+    }
+
     $("#menu").val(menuId);
     $("#menu").prop("disabled", true);
-    $(".data-menu").text(menuId == 1 ? "5 Days Menu" : "7 Days Menu");
+
     for (var i = 0; i < 4; i++) {
         const weekData = menus[i + 1];
         let weekCol = `<div class="col-md-3 p-md-0 mb-4 mb-md-0">
@@ -207,6 +209,7 @@ $(document).on("click", ".selectMenu", function () {
         $(".weeksDetail").append(weekCol);
     }
 });
+
 $(document).on("click", ".view-detail", function () {
     if (!validate()) return false;
     $(".menuFrom").addClass("d-none");
@@ -328,9 +331,7 @@ function createCustomStepsForm() {
         transitionEffect: "slideLeft",
         stepsOrientation: "vertical",
     });
-    $('a[href="#next"]')
-        .addClass("disabled btn-light") // Add the 'disabled' class
-        .attr("href", "#new");
+    $('a[href="#next"]').addClass("disabled btn-light").attr("href", "#new");
     $('a[href="#finish"]').addClass("d-none").text("Next");
 }
 let emptyMealArray = [];
@@ -339,11 +340,23 @@ let currentIndex = 0;
 let currentDayIndex = 0;
 let removedDaysArray;
 function createCustomItemBox() {
-    const weekDays = {
-        1: ["Mon", "Tue", "Wed", "Thu", "Fri"],
-        2: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
-    };
-    const days = weekDays[$(".custom-meal-selector").val()];
+    const weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri"];
+    let count = parseInt(
+        $(".custom-meal-selector").find(":selected").data("count")
+    );
+    let days;
+
+    switch (count) {
+        case 7:
+            days = [...weekDays, "Sat", "Sun"];
+            break;
+        case 6:
+            days = [...weekDays, "Sat"];
+            break;
+        default:
+            days = [...weekDays];
+    }
+
     for (var i = 1; i < 5; i++) {
         let html = ``;
         emptyMealArray.push([]);
@@ -367,12 +380,14 @@ function createCustomItemBox() {
     }
     removedDaysArray = JSON.parse(JSON.stringify(emptyMealArray));
 }
+
 $(document).on("click", ".custom-remove-span", function () {
     let index = $(this).data("week");
     let day = $(this).data("day");
     $(".customRemove" + day + index).addClass("d-none");
     $(".customAdd" + day + index).removeClass("d-none");
     $(".item" + day + index).text("Add Item");
+    $(".input" + day + index).val("");
     $(".customDiv" + day + index)
         .removeClass("bg-light")
         .addClass("bg-light");
@@ -416,11 +431,11 @@ $(document).on("click", ".meal-item", function () {
             $(".mealUl").css("cursor", "not-allowed");
             $(".meal-item").css("cursor", "not-allowed");
             $('a[href="#new"]')
-                .removeClass("disabled btn-light") // Add the 'disabled' class
+                .removeClass("disabled btn-light")
                 .attr("href", "#next");
             $('a[href="#finish"]').removeClass("d-none");
             currentIndex++;
-            currentDayIndex = 0; // Reset day index for the next array
+            currentDayIndex = 0;
         }
     }
 });
@@ -433,6 +448,7 @@ $(document).on("click", 'a[href="#previous"]', function (event) {
     event.preventDefault(); // Prevent the default anchor click behavior
     checkCurrentTabFillMenu();
 });
+
 $(document).on("click", 'a[href="#finish"]', async function (event) {
     let result = await swal.fire({
         title: "Are you sure?",
@@ -444,22 +460,30 @@ $(document).on("click", 'a[href="#finish"]', async function (event) {
         confirmButtonText: "Yes, confirm it!",
     });
 
+    // Find the closest parent with the desired data attribute
+    const parentDataAttr = $(this).closest(".getRow").data("menurow");
+
     if (result.value) {
-        var menuId = $(".custom-meal-selector").val();
+        var menuText = $(".custom-meal-selector").find(":selected").text();
+        var menuId = $(".custom-meal-selector").find(":selected").val();
         $(".weeksDetail").empty();
 
         var menu = getCustomMealData();
-        var tabHtml = $(".menuRow3").children(".menuTab3").html();
-        $(".menuRow3").empty();
+        var tabHtml = $(`.menuRow${parentDataAttr}`)
+            .children(`.menuTab${parentDataAttr}`)
+            .html();
+        $(`.menuRow${parentDataAttr}`).empty();
         var divHtml =
-            `<div class="col-md-11 menuTab3 menuTab">` + tabHtml + `</div>`;
-        $(".menuRow3").append(divHtml);
-        $(".menuTab3").addClass("d-none");
-        $(".menuRow3").append(menuFrom);
-        $("#menu").val(menuId);
+            `<div class="col-md-11 menuTab${parentDataAttr} menuTab">` +
+            tabHtml +
+            `</div>`;
+        $(`.menuRow${parentDataAttr}`).append(divHtml);
+        $(`.menuTab${parentDataAttr}`).addClass("d-none");
+        $(`.menuRow${parentDataAttr}`).append(menuFrom);
+        $("#menu").append(`<option value='${menuId}'>${menuText}</option>`);
         $(".back-btn").addClass("d-none");
         $("#menu").prop("disabled", true);
-        $(".data-menu").text(menuId == 1 ? "5 Days Menu" : "7 Days Menu");
+        $(".data-menu").text(menuText);
         for (var i = 1; i < 5; i++) {
             var weekData = menu[i];
             let weekCol = `<div class="col-md-3 p-md-0 mb-4 mb-md-0">
@@ -575,20 +599,22 @@ function getCustomMealData() {
 }
 function checkCurrentTabFillMenu() {
     var week = $(".body.current").data("week");
+    console.log("week", week)
     var arr = getCustomMealData();
 
     const count = arr[week].reduce((sum, item) => {
         // Convert `id` to a number (default to 0 if it's not a number)
-        const idValue = item.id === "" ? 0 : 1;
+        var idValue = item.id === "" ? 0 : 1;
         return sum + idValue;
     }, 0);
-    if (count === 5 || count === 7) {
+    console.log("count ", count)
+    if (count === 5 || count === 7 || count === 6) {
         $('a[href="#new"]')
             .removeClass("disabled btn-light") // Add the 'disabled' class
             .attr("href", "#next");
         if (week === 4) {
             $('a[href="#finish"]').removeClass("d-none");
-        }
+        }0
     } else {
         $('a[href="#next"]')
             .addClass("disabled btn-light")
@@ -626,7 +652,10 @@ $(document).on("click", "#confirmOrder", async function () {
         await $.ajax({
             type: "POST",
             url: "/create-order",
-            data: data,
+            data: {
+            data,
+            "_token": "{{ csrf_token() }}",
+            },
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
@@ -638,7 +667,6 @@ $(document).on("click", "#confirmOrder", async function () {
                         }
                     );
                 }
-                console.log(response.order);
             },
             error: function (xhr) {
                 const errors = xhr.responseJSON.errors;

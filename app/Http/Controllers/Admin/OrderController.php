@@ -21,10 +21,9 @@ class OrderController extends Controller
     {
         if (request()->ajax()) {
             $trash = $request->get("trash");
-            $q = MealPlan::with('menuType')->latest();
-            $query = $trash == "true" ? $q->onlyTrashed() : $q;
+            $query = MealPlan::with('menuType')->latest();
+            $query = ($trash == "true") ? $query->onlyTrashed() : $query;
 
-            // \Log::info('Menu Items:', [$plan->menuItems]);
             return $this->dataTable($query, 'orders', function ($dataTable) {
                 $dataTable->addColumn('type', function ($plan) {
                     return $plan->menuType->type ?? '';
@@ -58,14 +57,14 @@ class OrderController extends Controller
 
             $user = $order->user;
 
-            if ($user && $data['status'] != "pending") {
-                try {
-                    Mail::to($user->email)->send(new OrderStatusUpdated($order, 'user'));
-                } catch (\Exception $e) {
-                    Log::error('Email failed to send: ' . $e->getMessage());
-                    return response()->json(['error' => 'Email could not be sent'], 500);
-                }
-            }
+            // if ($user && $data['status'] != "pending") {
+            //     try {
+            //         Mail::to($user->email)->send(new OrderStatusUpdated($order, 'user'));
+            //     } catch (\Exception $e) {
+            //         Log::error('Email failed to send: ' . $e->getMessage());
+            //         return response()->json(['error' => 'Email could not be sent'], 500);
+            //     }
+            // }
         }
 
 
@@ -120,7 +119,7 @@ class OrderController extends Controller
     {
         $mealPlan = MealPlan::with([
             'menuItems.menu' => function ($query) {
-                $query->select('id', 'name');
+                $query->select('id', 'name', 'description');
             }
         ])->findOrFail($id);
 

@@ -56,12 +56,14 @@ class RoleController extends Controller
             'name' => $data['name'],
         ]);
 
-        $role->permissions()->sync($request->permissions);
+        if ($request->has('permissions')) {
+            $role->permissions()->sync($request->permissions);
+        }
         LogActivity::addToLog('role', 'insert', $data, null);
 
         return response()->json([
             'success' => true,
-            'message' => 'Role successfully updated.',
+            'message' => 'Role successfully created.',
             'redirect' => route('admin.roles.index')
         ]);
     }
@@ -86,7 +88,9 @@ class RoleController extends Controller
             $role->update(['name' => $data['name']]);
         }
 
-        $role->permissions()->sync($data['permissions']);
+        if (isset($data['permissions'])) {
+            $role->permissions()->sync($data['permissions']);
+        }
 
         return response()->json([
             'success' => true,

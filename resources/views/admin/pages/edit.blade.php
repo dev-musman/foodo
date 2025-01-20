@@ -30,16 +30,17 @@
                                     <span data-field="title" class="invalid-feedback"></span>
                                 </div>
                             </div>
-
+                            @role('Super-admin')
                             <div class="col-sm-6 mb-4">
                                 <div class="form-group">
                                     <label>URL</label>
                                     <input type="text" class="form-control" name="slug"
                                         value="{{ $page->slug ?? '' }}" placeholder="URL..."
-                                        {{ isset($page) ? 'disabled' : '' }}>
+                                        >
                                     <span data-field="slug" class="invalid-feedback"></span>
                                 </div>
                             </div>
+                            @endrole
                             <div class="col-sm-6 mb-4">
                                 <div class="form-group">
                                     <label>Meta title</label>
@@ -64,6 +65,7 @@
                                     <span data-field="meta_keywords" class="invalid-feedback"></span>
                                 </div>
                             </div>
+                            @role('Super-admin')
                             <div class="col-sm-6 mb-4">
                                 <div class="form-group">
                                     <label>Status</label>
@@ -78,7 +80,6 @@
                                 </div>
                             </div>
 
-                            @role('Super-admin')
                                 <div class="col-sm-6 mb-4">
                                     <div class="form-group">
                                         <label>View Path</label>

@@ -16,6 +16,12 @@ class DashboardController extends Controller
 
     public function history(Request $request)
     {
+        $request->validate([
+            'date_from' => 'nullable|date',
+            'date_to' => 'nullable|date',
+            'user' => 'nullable|exists:users,id',
+        ]);
+
         $query = History::query();
 
         if ($request->filled('date_from')) {
@@ -30,9 +36,10 @@ class DashboardController extends Controller
             $query->where('user_id', $request->input('user'));
         }
 
-        $history = $query->latest()->limit(10)->get();
-        $users = User::all();
+        $history = $query->with('user')->latest()->paginate(10);
+        $users = User::select('id', 'name')->get();
 
         return view('admin.history', compact('history', 'users'));
     }
+
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use App\Rules\RequiredIfExists;
+
 
 class UpdatePageRequest extends FormRequest
 {
@@ -23,10 +25,11 @@ class UpdatePageRequest extends FormRequest
     {
         return [
             'title' => 'required',
-            'slug' => 'required',
+            'slug' => [new RequiredIfExists('slug')],
             'meta_title' => 'required',
             'meta_description' => 'required',
             'meta_keywords' => 'required',
+            'view_path' => [new RequiredIfExists(field: 'view_path')]
         ];
     }
 }

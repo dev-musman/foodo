@@ -7,7 +7,7 @@
                     <div class="main-footer-wrapper-one">
                         <div class="single-footer-wized-one logo-area" data-sal="slide-up" data-sal-delay="150"
                             data-sal-duration="800">
-                            <a href="index.html" class="logo">
+                            <a href="{{ url("/") }}" class="logo">
                                 <img src="{{ asset('public/assets/images/footer/logo.png') }}"
                                     alt="logo">
                             </a>

@@ -10,10 +10,9 @@ class LogActivity
 {
     public static function addToLog($entity, $action, $values = null, $changes = null)
     {
-        // if ($values && is_array($values)) {
-        //     unset($values['_token']);
-        //     unset($values['guard_name']);
-        // }
+        if ($values && is_array($values)) {
+            unset($values['_token']);
+        }
 
         $log = [];
         $log['entity'] = $entity;
@@ -24,7 +23,7 @@ class LogActivity
         $log['method'] = Request::method();
         $log['ip'] = Request::ip();
         $log['agent'] = Request::header('user-agent');
-        $log['user_id'] = auth()->check() ? auth()->user()->id : '';
+        $log['user_id'] = auth()->check() ? auth()->user()->id : null;
 
         History::create($log);
     }

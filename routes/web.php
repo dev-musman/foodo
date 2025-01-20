@@ -34,7 +34,6 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
     Route::get('/order/deltails/{mealPlan}', [OrderController::class, 'details'])->name('orders.details');
     Route::delete('/order/delete/{mealPlan}', [OrderController::class, 'destroy'])->name('orders.destroy');
 });
-Route::get('/de', [SiteOrderController::class, 'show']);
 
 require __DIR__ . '/auth.php';
 // client

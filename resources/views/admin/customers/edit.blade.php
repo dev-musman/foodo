@@ -57,16 +57,13 @@
                                 </div>
                             </div>
 
-                            @empty($customer)
-                                <div class="col-sm-6 mb-3">
-                                    <div class="form-group">
-                                        <label>Password</label>
-                                        <input type="password" class="form-control" name="password"
-                                            placeholder="User password...">
-                                        <span data-field="password" class="invalid-feedback"></span>
-                                    </div>
+                            <div class="col-sm-12">
+                                <div class="form-group">
+                                    <label for="address">Adress</label>
+                                    <textarea id="address" class="form-control" name="address" rows="6">{{ old('address', $customer->address ?? '') }}</textarea>
+                                    <span data-field="address" class="invalid-feedback"></span>
                                 </div>
-                            @endempty
+                            </div>
 
                         </div>
                     </div>
