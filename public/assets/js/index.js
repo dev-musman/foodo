@@ -158,7 +158,6 @@ $(document).on("click", ".nav-link", function () {
 
 $(document).on("click", ".selectMenu", function () {
     var menuId = $(this).data("id");
-    console.log(menuObj);
     const menus = menuObj.type_id[menuId]["weeks"];
 
     $(".menuTab" + menuId).addClass("d-none");
@@ -172,7 +171,6 @@ $(document).on("click", ".selectMenu", function () {
             selectType.append(
                 `<option value="${menu.id}">${menu.type}</option>`
             );
-            console.log("menuId: " + menuId, "menu.id: " + menu.id);
 
             if (menuId == menu.id) {
                 matchedMenuType = menu.type;
@@ -409,7 +407,6 @@ $(document).on("click", ".meal-item", function () {
     var name = $(this).data("name");
     var currentWeek = $(".body.current").data("week");
     if (leftItems[currentWeek].length  === 0) {
-        console.log('here');
         return false;
     }
 
@@ -417,7 +414,6 @@ $(document).on("click", ".meal-item", function () {
         var week = currentWeek;
         var day = leftItems[currentWeek][0].day;
         var inputClass = ".input" + day + week;
-        console.log(week , day , leftItems[currentWeek][0].day);
         $(inputClass).val(id);
         $(inputClass).attr("data-name", name);
         $(".item" + day + week).text(name);
@@ -446,11 +442,18 @@ $(document).on("click", ".meal-item", function () {
 $(document).on("click", 'a[href="#next"]', function (event) {
     event.preventDefault(); // Prevent the default anchor click behavior
     resetCustomFromUi();
-    checkCurrentTabFillMenu();
+    checkCurrentTabFillMenu('next');
 });
 $(document).on("click", 'a[href="#previous"]', function (event) {
     event.preventDefault(); // Prevent the default anchor click behavior
-    checkCurrentTabFillMenu();
+    var week = $(".body.current").data("week");
+    if(week == 3){
+        $('a[href="#new"]')
+        .removeClass("disabled btn-light") // Add the 'disabled' class
+        .attr("href", "#next");
+        $('a[href="#next"]').parent().css('display' , 'block').removeClass('disabled');
+    }
+    checkCurrentTabFillMenu('prev');
 });
 
 $(document).on("click", 'a[href="#finish"]', async function (event) {
@@ -601,19 +604,20 @@ function getCustomMealData() {
         return acc;
     }, {});
 }
-function checkCurrentTabFillMenu() {
+function checkCurrentTabFillMenu(eventType) {
     var week = $(".body.current").data("week");
     var arr = getCustomMealData();
-    var match = $('.custom-meal-selector').val();
+    var match = parseInt(
+        $(".custom-meal-selector").find(":selected").data("count")
+    );
     const count = arr[week].reduce((sum, item) => {
-        // Convert `id` to a number (default to 0 if it's not a number)
-        var idValue = item.id === "" ? 0 : 1;
-        return sum + idValue;
+        return sum + 1;
     }, 0);
+
     if (count == match) {
         $('a[href="#new"]')
-            .removeClass("disabled btn-light") // Add the 'disabled' class
-            .attr("href", "#next");
+        .removeClass("disabled btn-light") // Add the 'disabled' class
+        .attr("href", "#next");
         if (week === 4) {
             $('a[href="#finish"]').removeClass("d-none");
         }
