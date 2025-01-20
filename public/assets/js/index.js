@@ -406,11 +406,11 @@ $(document).on("click", ".meal-item", function () {
     var id = $(this).data("id");
     var name = $(this).data("name");
     var currentWeek = $(".body.current").data("week");
-    if (leftItems[currentWeek].length  === 0) {
+    if (leftItems[currentWeek] === undefined) {
         return false;
     }
-
-    if (currentIndex < emptyMealArray.length) {
+    
+    if (leftItems[currentWeek].length) {
         var week = currentWeek;
         var day = leftItems[currentWeek][0].day;
         var inputClass = ".input" + day + week;
@@ -423,11 +423,25 @@ $(document).on("click", ".meal-item", function () {
             .addClass("bg-light")
             .removeClass("bg-light");
         // Remove a day from the current sub-array
-        emptyMealArray[currentIndex].splice(currentDayIndex, 1);
+        if(emptyMealArray[currentIndex]){
+            emptyMealArray[currentIndex].splice(currentDayIndex, 1);
+        }
 
         // If the sub-array is empty, move to the next index
-        if (emptyMealArray[currentIndex].length === 0) {
-            $(".mealUl").addClass("bg-light");
+        // if (emptyMealArray[currentIndex].length === 0) {
+        //     $(".mealUl").addClass("bg-light");
+        //     $(".mealUl").css("cursor", "not-allowed");
+        //     $(".meal-item").css("cursor", "not-allowed");
+        //     $('a[href="#new"]')
+        //         .removeClass("disabled btn-light")
+        //         .attr("href", "#next");
+        //     $('a[href="#finish"]').removeClass("d-none");
+        //     currentIndex++;
+        //     currentDayIndex = 0;
+        // }
+    }
+    if (leftItems[currentWeek].length === 1) {
+        $(".mealUl").addClass("bg-light");
             $(".mealUl").css("cursor", "not-allowed");
             $(".meal-item").css("cursor", "not-allowed");
             $('a[href="#new"]')
@@ -436,7 +450,7 @@ $(document).on("click", ".meal-item", function () {
             $('a[href="#finish"]').removeClass("d-none");
             currentIndex++;
             currentDayIndex = 0;
-        }
+        return false;
     }
 });
 $(document).on("click", 'a[href="#next"]', function (event) {
@@ -610,9 +624,16 @@ function checkCurrentTabFillMenu(eventType) {
     var match = parseInt(
         $(".custom-meal-selector").find(":selected").data("count")
     );
-    const count = arr[week].reduce((sum, item) => {
-        return sum + 1;
-    }, 0);
+    let count;
+    if(arr[week] === undefined)
+    {
+        count = 0;
+    }
+    else{
+        count = arr[week].reduce((sum, item) => {
+            return sum + 1;
+        }, 0);
+    }
 
     if (count == match) {
         $('a[href="#new"]')
