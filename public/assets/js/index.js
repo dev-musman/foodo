@@ -403,17 +403,21 @@ $(document).on("click", ".custom-remove-span", function () {
     resetCustomFromUi();
 });
 $(document).on("click", ".meal-item", function () {
-    if ($('a[href="#next"]').length == 1) {
-        return false;
-    }
-    getCustomMealLeftData();
+    
+    var leftItems = getCustomMealLeftData();
     var id = $(this).data("id");
     var name = $(this).data("name");
-    console.log(leftItems);
+    var currentWeek = $(".body.current").data("week");
+    if (leftItems[currentWeek].length  === 0) {
+        console.log('here');
+        return false;
+    }
+
     if (currentIndex < emptyMealArray.length) {
-        var week = currentIndex + 1;
-        var day = emptyMealArray[currentIndex][currentDayIndex];
+        var week = currentWeek;
+        var day = leftItems[currentWeek][0].day;
         var inputClass = ".input" + day + week;
+        console.log(week , day , leftItems[currentWeek][0].day);
         $(inputClass).val(id);
         $(inputClass).attr("data-name", name);
         $(".item" + day + week).text(name);
@@ -446,7 +450,16 @@ $(document).on("click", 'a[href="#next"]', function (event) {
 });
 $(document).on("click", 'a[href="#previous"]', function (event) {
     event.preventDefault(); // Prevent the default anchor click behavior
-    checkCurrentTabFillMenu();
+    var week = $(".body.current").data("week");
+    if(week === 3)
+        {
+            $('a[href="#new"]')
+            .removeClass("disabled btn-light") // Add the 'disabled' class
+            .attr("href", "#next");
+        }
+        checkCurrentTabFillMenu();
+    
+    
 });
 
 $(document).on("click", 'a[href="#finish"]', async function (event) {
@@ -599,22 +612,20 @@ function getCustomMealData() {
 }
 function checkCurrentTabFillMenu() {
     var week = $(".body.current").data("week");
-    console.log("week", week)
     var arr = getCustomMealData();
-
+    var match = $('.custom-meal-selector').val();
     const count = arr[week].reduce((sum, item) => {
         // Convert `id` to a number (default to 0 if it's not a number)
         var idValue = item.id === "" ? 0 : 1;
         return sum + idValue;
     }, 0);
-    console.log("count ", count)
-    if (count === 5 || count === 7 || count === 6) {
+    if (count == match) {
         $('a[href="#new"]')
             .removeClass("disabled btn-light") // Add the 'disabled' class
             .attr("href", "#next");
         if (week === 4) {
             $('a[href="#finish"]').removeClass("d-none");
-        }0
+        }
     } else {
         $('a[href="#next"]')
             .addClass("disabled btn-light")
