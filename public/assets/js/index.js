@@ -390,8 +390,10 @@ $(document).on("click", ".meal-item", function () {
     if ($('a[href="#next"]').length == 1) {
         return false;
     }
+    getCustomMealLeftData();
     var id = $(this).data("id");
     var name = $(this).data("name");
+    console.log(leftItems);
     if (currentIndex < emptyMealArray.length) {
         var week = currentIndex + 1;
         var day = emptyMealArray[currentIndex][currentDayIndex];
@@ -521,6 +523,31 @@ function orderPlaced() {
     $(".orderPlaced").removeClass("d-md-none d-none");
     $(".orderPlacedImg").removeClass("d-none");
 }
+function getCustomMealLeftData() {
+    var array = [];
+
+    $(".customInputData").each((index, ele) => {
+        var obj = {
+            id: $(ele).val(),
+            week: $(ele).attr("data-week"),
+            day: $(ele).attr("data-day"),
+            name: $(ele).attr("data-name"),
+        };
+        if($(ele).val()){}
+        else{
+            array.push(obj);
+        }
+    });
+    return array.reduce((acc, item) => {
+        // Initialize an array for the week if it doesn't exist
+        if (!acc[item.week]) {
+            acc[item.week] = [];
+        }
+        // Add the item to the corresponding week array
+        acc[item.week].push(item);
+        return acc;
+    }, {});
+}
 function getCustomMealData() {
     var array = [];
 
@@ -531,7 +558,9 @@ function getCustomMealData() {
             day: $(ele).attr("data-day"),
             name: $(ele).attr("data-name"),
         };
-        array.push(obj);
+        if($(ele).val()){  
+            array.push(obj);
+        }
     });
     return array.reduce((acc, item) => {
         // Initialize an array for the week if it doesn't exist
