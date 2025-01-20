@@ -20,8 +20,9 @@ class MenuTypesController extends Controller
     {
         if (request()->ajax()) {
             $trash = $request->get("trash");
-            $q = MenuType::latest();
-            $query = $trash == "true" ? $q->onlyTrashed() : $q;
+            $query = MenuType::latest();
+            $query = ($trash == "true") ? $query->onlyTrashed() : $query;
+
             return $this->dataTable($query, 'menu-types');
         }
 
@@ -74,7 +75,6 @@ class MenuTypesController extends Controller
             'redirect' => route('admin.menu-types.index'),
         ]);
     }
-
 
 
     public function edit(MenuType $menuType)

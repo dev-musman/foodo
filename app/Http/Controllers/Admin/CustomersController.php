@@ -38,15 +38,13 @@ class CustomersController extends Controller
 
     public function store(CreateCustomerRequest $request)
     {
-        $user = Customer::create([
-            'name' => $request->name,
-            'email' => $request->email,
-            'company' => $request->company,
-            'phone' => $request->phone,
-            'password' => Hash::make("12345678"),
-        ]);
 
-        LogActivity::addToLog('customer', 'insert', $user, null);
+        $data = $request->validated();
+        $data['password'] = Hash::make('12345678');
+
+        $customer = Customer::create($data);
+
+        LogActivity::addToLog('customer', 'insert', $customer, null);
 
         return response()->json([
             'success' => true,
@@ -62,7 +60,7 @@ class CustomersController extends Controller
 
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
-        $data = $request->only(['name', 'email', 'comapny', 'phone']);
+        $data = $request->validated();
 
         $changes_exist = Common::get_changes($customer, $data);
         if ($changes_exist) {

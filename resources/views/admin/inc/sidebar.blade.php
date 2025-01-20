@@ -1,7 +1,8 @@
 <nav id="sidebar" class="sidebar js-sidebar">
     <div class="sidebar-content js-simplebar">
-        <a class="sidebar-brand" href="javascript:void()">
-            <span class="align-middle">Foodo</span>
+        <a class="sidebar-brand" href="{{ url('/') }}">
+                <img src="{{ asset('public/assets/images/footer/logo.png') }}"
+                    alt="logo" width="130" height="40" class="align-middle">
         </a>
 
         <ul class="sidebar-nav">

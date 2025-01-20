@@ -68,7 +68,7 @@ class PermissionController extends Controller
 
         return response()->json([
             'success' => true,
-            'message' => 'Permission successfully created.',
+            'message' => 'Permission successfully updated.',
             'redirect' => route('admin.permissions.index')
         ]);
     }

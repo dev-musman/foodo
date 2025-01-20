@@ -2,12 +2,13 @@
 
 namespace App\Http\Controllers\Site;
 
+use App\Helpers\LogActivity;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\CreateOrderRequest;
 use App\Mail\OrderCreated;
 use App\Models\Customer;
 use App\Models\MealPlan;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
@@ -20,11 +21,14 @@ class OrderController extends Controller
                 'name' => $request->name,
                 'company' => $request->company,
                 'phone' => $request->phone,
-                'password' => '12345678'
+                'address' => $request->delivery_address,
+                'password' => Hash::make("12345678"),
             ]
         );
 
         if ($customer) {
+            LogActivity::addToLog('customer', 'insert', $customer, null);
+
             $mealPlan = MealPlan::create([
                 'customer_id' => $customer->id,
                 'menu_type_id' => $request->menu_type_id,
@@ -34,6 +38,8 @@ class OrderController extends Controller
                 'delivery_address' => $request->delivery_address,
                 'start_date' => $request->start_date,
             ]);
+
+            LogActivity::addToLog('meal plan', 'insert', $mealPlan, null);
 
             if ($request->filled("menuItems")) {
                 foreach ($request->menuItems as $menuTypeId => $menuItems) {
@@ -49,9 +55,9 @@ class OrderController extends Controller
             }
 
             // Send email to the customer
-            Mail::to($customer->email)->send(new OrderCreated($customer, $mealPlan));
+            // Mail::to($customer->email)->send(new OrderCreated($customer, $mealPlan));
             // Optionally, send an email to the admin as well
-            Mail::to("devtms@ipscloud.com")->send(new OrderCreated($customer, $mealPlan));
+            // Mail::to("devtms@ipscloud.com")->send(new OrderCreated($customer, $mealPlan));
 
             return response()->json([
                 'success' => true,
@@ -59,19 +65,4 @@ class OrderController extends Controller
             ], 201);
         }
     }
-
-
-    public function show()
-{
-    $mealPlan = MealPlan::with([
-        'menuItems.menu' => function ($query) {
-            $query->select('id' ,'name');
-        }
-    ])->findOrFail(7);
-
-    return view('test', compact('mealPlan'));
-}
-
-
-
 }

@@ -24,8 +24,8 @@ class UserController extends Controller
         if (request()->ajax()) {
 
             $trash = $request->get("trash");
-            $q = User::with('roles.permissions')->latest();
-            $query = $trash == "true" ? $q->onlyTrashed() : $q;
+            $query = User::with('roles.permissions')->latest();
+            $query = ($trash == "true") ? $query->onlyTrashed() : $query;
 
             return $this->dataTable(
                 $query,

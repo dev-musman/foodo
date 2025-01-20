@@ -38,10 +38,6 @@ class PageController extends Controller
     public function store(StorePageRequest $request)
     {
         $data = $request->all();
-        if (!$data['slug']) {
-            $data['slug'] = Str::slug($data['title']);
-        }
-
         $page = Page::create($data);
 
         if ($page) {
@@ -62,10 +58,6 @@ class PageController extends Controller
     public function update(UpdatePageRequest $request, Page $page)
     {
         $data = $request->all();
-
-        if (!$data['slug']) {
-            $data['slug'] = Str::slug($data['title']);
-        }
 
         $changes_exist = Common::get_changes($page, $data);
         if ($changes_exist) {

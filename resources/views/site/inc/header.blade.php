@@ -5,7 +5,7 @@
                 <div class="col-12">
                     <div class="header-main-wrapper">
                         <div class="logo-area">
-                            <a href="index.html" class="logo">
+                            <a href="{{ url('/') }}" class="logo">
                                 <img src="{{ asset('public/assets/images/logo/foodo-logo.png') }}" alt="image-logo">
                             </a>
                         </div>

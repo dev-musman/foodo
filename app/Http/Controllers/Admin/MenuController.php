@@ -23,8 +23,8 @@ class MenuController extends Controller
     {
         if ($request->ajax()) {
             $trash = $request->get("trash");
-            $q = Menu::with('menuType')->latest();
-            $query = $trash == "true" ? $q->onlyTrashed() : $q;
+            $query = Menu::with('menuType')->latest();
+            $query = $trash === "true" ? $query->onlyTrashed() : $query;
 
             return $this->dataTable($query, 'menus', function ($dataTable) {
                 $dataTable->addColumn(
@@ -32,7 +32,7 @@ class MenuController extends Controller
                     fn($menu) => $menu->image
                         ? '<img src="' . asset($menu->image) . '" alt="Menu Image" style="width: 50px; height: 50px; object-fit: cover;">'
                         : 'No Image'
-                )->addColumn('type', fn($menu) => $menu->menuType->type ?? '')
+                )->addColumn('type', fn($menu) => $menu->menuType->type ?? 'Not Specified')
                     ->filterColumn('type', function ($query, $keyword) {
                         $query->whereHas('menuType', function ($q) use ($keyword) {
                             $q->where('type', 'LIKE', "%$keyword%");
@@ -129,7 +129,7 @@ class MenuController extends Controller
         $filePath = $directory . '/' . $fileName;
 
         $file->move(public_path($directory), $fileName);
-        return url("public/" . $filePath);
+        return url("public/".$filePath);
 
         // storage
         // $fileName = time() . '_' . $file->getClientOriginalName();

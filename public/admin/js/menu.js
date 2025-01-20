@@ -36,10 +36,6 @@ $(".standart-menu-form").on("submit", async function (e) {
         let $form = $(this);
         let formData = new FormData(this);
 
-        for (let [key, value] of formData.entries()) {
-            console.log(key, value);
-        }
-
         let response = await $.ajax({
             type: $form.attr("method"),
             url: $form.attr("action"),
@@ -137,18 +133,4 @@ $(document).ready(function () {
         }
     });
 
-    // Preview image before uploading
-    // $("#image").on("change", function () {
-    //     alert('sdsd ')
-    //     const file = this.files[0];
-    //     if (file) {
-    //         const reader = new FileReader();
-    //         reader.onload = function (e) {
-    //             $("#image-preview")
-    //                 .attr("src", e.target.result)
-    //                 .removeClass("d-none");
-    //         };
-    //         reader.readAsDataURL(file);
-    //     }
-    // });
 });
