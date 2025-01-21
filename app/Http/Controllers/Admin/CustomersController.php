@@ -58,6 +58,8 @@ class CustomersController extends Controller
         return view('admin.customers.edit', compact('customer'));
     }
 
+    public function show() {}
+
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {
         $data = $request->validated();

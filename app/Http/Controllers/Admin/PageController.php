@@ -35,6 +35,8 @@ class PageController extends Controller
         return view('admin.pages.edit');
     }
 
+    public function show() {}
+
     public function store(StorePageRequest $request)
     {
         $data = $request->all();

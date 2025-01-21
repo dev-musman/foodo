@@ -44,6 +44,8 @@ class RoleController extends Controller
         return view('admin.roles.edit', compact('permissions'));
     }
 
+    public function show() {}
+
     public function store(Request $request)
     {
         $request->validate([

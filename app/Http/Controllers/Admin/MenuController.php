@@ -48,6 +48,8 @@ class MenuController extends Controller
         return $this->eidtOrCreate();
     }
 
+    public function show() {}
+
     public function store(StoreMenuRequest $request)
     {
         $data = $request->validated();

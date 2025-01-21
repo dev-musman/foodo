@@ -378,8 +378,6 @@
     </div>
     <!-- end menu area start -->
 
-
-
     <div class="rts-about-area rts-section-gapTopBotm">
         <div class="container">
             <div class="row">
@@ -547,7 +545,6 @@
         </div>
     </div>
     <!-- testimonial area end -->
-
 
     <div class="rts-about-area rts-section-gapTopBotm" style="background-color: #F9F7F2;" id="pricing">
         <div class="container">

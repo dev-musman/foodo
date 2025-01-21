@@ -76,6 +76,7 @@ class MenuTypesController extends Controller
         ]);
     }
 
+    public function show() {}
 
     public function edit(MenuType $menuType)
     {

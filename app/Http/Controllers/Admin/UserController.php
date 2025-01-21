@@ -61,6 +61,8 @@ class UserController extends Controller
         return view('admin.users.edit', compact('roles'));
     }
 
+    public function show() {}
+
     public function store(CreateUserRequest $request)
     {
         $user = User::create([

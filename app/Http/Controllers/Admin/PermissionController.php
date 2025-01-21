@@ -47,6 +47,8 @@ class PermissionController extends Controller
         ]);
     }
 
+    public function show() {}
+
     public function edit(Permission $permission)
     {
         return view('admin.permissions.edit', compact('permission'));
