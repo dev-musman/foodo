@@ -93,7 +93,7 @@ const menuFrom = `<div class="col-md-10 menuFrom">
                                     </ul>
                                 </div>
                                 <div class="col-md-2">
-                                <img src="/assets/images/order-confirmation.gif" class="orderPlacedImg d-none" />
+                                <img src="public/assets/images/order-confirmation.gif" class="orderPlacedImg d-none" />
                                 </div>
                             </div>
                         </div>
@@ -103,7 +103,7 @@ const menuFrom = `<div class="col-md-10 menuFrom">
                         </div>
                         <div class="col-md-12 orderPlaced d-md-none d-none text-md-end mt-3 bg-site-danger p-3 d-md-flex justify-content-around align-items-center">
                             <p class="fs-5 text-white m-0">Your Order has been Confirmed! You’ll soon receive a confirmation message on your Email.</p>
-                            <button class="btn btn-lg text-uppercase p-4 rounded-5 btn-warning w-auto" style="border-radius: 12px;background-color: #FBB03B;border-color: #FBB03B;">Back To Home</button>
+                            <button class="btn btn-lg text-uppercase p-4 rounded-5 btn-warning w-auto d-none" style="border-radius: 12px;background-color: #FBB03B;border-color: #FBB03B;">Back To Home</button>
 
                         </div>
                     </div>`;
@@ -401,7 +401,7 @@ $(document).on("click", ".custom-remove-span", function () {
     resetCustomFromUi();
 });
 $(document).on("click", ".meal-item", function () {
-    
+
     var leftItems = getCustomMealLeftData();
     var id = $(this).data("id");
     var name = $(this).data("name");
@@ -409,7 +409,7 @@ $(document).on("click", ".meal-item", function () {
     if (leftItems[currentWeek] === undefined) {
         return false;
     }
-    
+
     if (leftItems[currentWeek].length) {
         var week = currentWeek;
         var day = leftItems[currentWeek][0].day;
@@ -604,7 +604,7 @@ function getCustomMealData() {
             day: $(ele).attr("data-day"),
             name: $(ele).attr("data-name"),
         };
-        if($(ele).val()){  
+        if($(ele).val()){
             array.push(obj);
         }
     });
@@ -679,20 +679,16 @@ $(document).on("click", "#confirmOrder", async function () {
         await $.ajax({
             type: "POST",
             url: "/create-order",
-            data: {
-            data,
-            "_token": "{{ csrf_token() }}",
-            },
+            data: data,
             headers: {
                 "X-CSRF-TOKEN": $('meta[name="csrf-token"]').attr("content"),
             },
             success: function (response) {
                 if (response.success) {
-                    swal.fire("Success!", response.message, "success").then(
-                        () => {
-                            window.location.reload();
-                        }
-                    );
+                    orderPlaced();
+                    setTimeout(() => {
+                        window.location.reload();
+                    }, 1000);
                 }
             },
             error: function (xhr) {

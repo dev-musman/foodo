@@ -57,14 +57,14 @@ class OrderController extends Controller
 
             $user = $order->user;
 
-            // if ($user && $data['status'] != "pending") {
-            //     try {
-            //         Mail::to($user->email)->send(new OrderStatusUpdated($order, 'user'));
-            //     } catch (\Exception $e) {
-            //         Log::error('Email failed to send: ' . $e->getMessage());
-            //         return response()->json(['error' => 'Email could not be sent'], 500);
-            //     }
-            // }
+            if ($user && $data['status'] != "pending") {
+                try {
+                    Mail::to($user->email)->send(new OrderStatusUpdated($order, 'user'));
+                } catch (\Exception $e) {
+                    Log::error('Email failed to send: ' . $e->getMessage());
+                    return response()->json(['error' => 'Email could not be sent'], 500);
+                }
+            }
         }
 
 

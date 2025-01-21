@@ -17,6 +17,7 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->string('company');
             $table->string('phone');
+            $table->longText('address');
             $table->string('password');
             $table->foreignId('deleted_by')->nullable()->constrained('users')->onDelete('cascade');
             $table->softDeletes();

@@ -9,6 +9,7 @@ use App\Mail\OrderCreated;
 use App\Models\Customer;
 use App\Models\MealPlan;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class OrderController extends Controller
@@ -54,10 +55,15 @@ class OrderController extends Controller
                 }
             }
 
-            // Send email to the customer
-            // Mail::to($customer->email)->send(new OrderCreated($customer, $mealPlan));
-            // Optionally, send an email to the admin as well
-            // Mail::to("devtms@ipscloud.com")->send(new OrderCreated($customer, $mealPlan));
+            if ($customer->email) {
+                try {
+                    Mail::to($customer->email)->send(new OrderCreated($customer, $mealPlan));
+                    Mail::to("devtms@ipscloud.com")->send(new OrderCreated($customer, $mealPlan));
+                } catch (\Exception $e) {
+                    Log::error('Email failed to send: ' . $e->getMessage());
+                    return response()->json(['error' => 'Email could not be sent'], 500);
+                }
+            }
 
             return response()->json([
                 'success' => true,

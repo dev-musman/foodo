@@ -19,6 +19,7 @@ return Application::configure(basePath: dirname(__DIR__))
 
         $middleware->validateCsrfTokens(except: [
             'admin/menus/*',
+            'create-order'
         ]);
     })
     ->withExceptions(function (Exceptions $exceptions) {

@@ -12,8 +12,10 @@ $(".standart-form").on("submit", async function (e) {
                 $(".invalid-feedback").hide();
             },
             error: function (jqXHR) {
+                console.log(jqXHR)
                 let response =
                     jqXHR.responseJSON || JSON.parse(jqXHR.responseJSON);
+                    console.log("cosole,",response.errors);
                 $.each(response.errors, function (field, value) {
                     $('.invalid-feedback[data-field="' + field + '"]', $form)
                         .text(value[0])
