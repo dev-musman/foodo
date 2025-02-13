@@ -47,7 +47,10 @@ class PermissionController extends Controller
         ]);
     }
 
-    public function show() {}
+    public function show(string $id)
+    {
+        //
+    }
 
     public function edit(Permission $permission)
     {

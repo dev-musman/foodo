@@ -31,7 +31,6 @@
                                     <th>Week</th>
                                     <th>Day</th>
                                     <th>Image</th>
-                                    <th>Price</th>
                                     <th>Actions</th>
                                 </tr>
                             </thead>

@@ -9,7 +9,14 @@ $(function () {
         "autoWidth": false,
         "order": [[0, "asc"]],
         "columns"   : [
-            {data: 'id', name: 'id'},
+            {
+                data: null,
+                name: "id",
+                searchable: false,
+                render: function (data, type, row, meta) {
+                    return meta.row + 1 + meta.settings._iDisplayStart;
+                },
+            },
             {data: 'title', name: 'title'},
             {data: 'meta_title', name: 'meta_title'},
             {data: 'meta_description', name: 'meta_description'},

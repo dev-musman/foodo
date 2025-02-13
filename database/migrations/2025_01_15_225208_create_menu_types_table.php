@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('menu_types', function (Blueprint $table) {
             $table->id();
             $table->string("type");
-            $table->string('days_count')->default('7');
+            $table->tinyInteger('days_count')->default(7);
+            $table->tinyInteger('is_custom')->default(0);
             $table->timestamps();
             $table->softDeletes();
             $table->foreignId('deleted_by')->nullable()->constrained('users')->onDelete('cascade');

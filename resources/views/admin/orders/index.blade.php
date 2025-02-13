@@ -26,6 +26,7 @@
                                     <th>#</th>
                                     <th>Type</th>
                                     <th>Customer Name</th>
+                                    <th>Customer Email</th>
                                     <th>Phone</th>
                                     <th>Delivery Adress</th>
                                     <th>Expected Start Date</th>

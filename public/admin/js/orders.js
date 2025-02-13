@@ -9,9 +9,17 @@ $(function () {
         autoWidth: false,
         order: [[0, "asc"]],
         columns: [
-            { data: "id", name: "id" },
+            {
+                data: null,
+                name: "id",
+                searchable: false,
+                render: function (data, type, row, meta) {
+                    return meta.row + 1 + meta.settings._iDisplayStart;
+                },
+            },
             { data: "type", name: "type" },
             { data: "name", name: "name" },
+            { data: "email", name: "email" },
             { data: "phone", name: "phone" },
             { data: "delivery_address", name: "delivery_address" },
             { data: "start_date", name: "start_date" },
@@ -21,10 +29,11 @@ $(function () {
                 data: "status",
                 name: "status",
                 render: function (data, type, row) {
+                    const isDisabled = data === "completed" ? "disabled" : "";
                     return `
                         <select class="form-select order-status" data-order-id="${
                             row.id
-                        }">
+                        }" ${isDisabled}>
                             <option value="pending" ${
                                 data === "pending" ? "selected" : ""
                             }>Pending</option>
@@ -48,6 +57,9 @@ $(function () {
                 name: "action",
                 searchable: false,
                 orderable: false,
+                render: function (data, type, row) {
+                    return row.status === "completed" ? "" : data;
+                },
             },
         ],
         processing: true,

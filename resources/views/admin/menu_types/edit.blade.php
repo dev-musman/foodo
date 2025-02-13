@@ -17,8 +17,11 @@
                 <a href="{{ route('admin.menu-types.index') }}" class="btn btn-primary">Back</a>
             </div>
 
-            <form class="standart-form" action="{{ $action }}" method="{{ $method }}">
+            <form class="standart-form" action="{{ $action }}" method="POST">
                 @csrf
+                @if (isset($menuType))
+                    @method('PUT')
+                @endif
                 <div class="card card-solid">
                     <div class="card-body">
                         <div class="row">
@@ -30,6 +33,17 @@
                                     <span data-field="type" class="invalid-feedback"></span>
                                 </div>
                             </div>
+                            
+                            <div class="col-sm-6 mb-4">
+                                <div class="form-group">
+                                    <label>Days Count</label>
+                                    <input type="text" class="form-control" name="days_count"
+                                        value="{{ $menuType->days_count ?? '' }}" placeholder="Days count...">
+                                    <span data-field="days_count" class="invalid-feedback"></span>
+                                </div>
+                            </div>
+                            
+                            
                         </div>
                     </div>
                     <!-- /.card-body -->

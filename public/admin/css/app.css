@@ -13486,3 +13486,36 @@ label {
     pointer-events: none;
     background-color: #f7f7f7;
 }
+
+
+.tags-display {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 5px;
+    margin-top: 5px;
+}
+
+.tag {
+    background-color: #007bff;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 5px;
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.tag button {
+    background: none;
+    border: none;
+    color: white;
+    cursor: pointer;
+    font-size: 12px;
+    line-height: 1;
+}
+
+.input-readonly {
+    background: #000;
+    pointer-events: none !important;
+    background-color: #f8f9fa !important;
+}

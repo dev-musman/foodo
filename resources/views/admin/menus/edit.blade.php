@@ -38,7 +38,7 @@
                             <div class="col-sm-6 mb-3">
                                 <div class="form-group">
                                     <label for="menu_type_id">Menu Type</label>
-                                    <select id="menu_type_id" class="form-control" name="menu_type_id">
+                                    <select id="menu_type_id" class="form-control {{ isset($menu) ? 'input-readonly' : '' }}" name="menu_type_id" >
                                         <option value="">Select Type</option>
                                         @foreach ($menu_types as $menu_type)
                                             <option value="{{ $menu_type->id }}"
@@ -52,10 +52,10 @@
                             </div>
 
                             <!-- Week -->
-                            <div class="col-sm-6 mb-3">
+                            <div class="col-sm-6 mb-3" >
                                 <div class="form-group">
                                     <label for="week">Week</label>
-                                    <select id="week" class="form-control" name="week">
+                                    <select id="week" class="form-control {{ isset($menu) ? 'input-readonly' : '' }}" name="week">
                                         <option value="">Select Week</option>
                                         @foreach ($weeks as $week)
                                             <option value="{{ $week }}"
@@ -72,7 +72,7 @@
                             <div class="col-sm-6 mb-3">
                                 <div class="form-group">
                                     <label for="day">Day</label>
-                                    <select id="day" class="form-control" name="day">
+                                    <select id="day" class="form-control {{ isset($menu) ? 'input-readonly' : '' }}" name="day">
                                         <option value="">Select Day</option>
                                         @foreach ($days as $key => $value)
                                             <option value="{{ $key }}"
@@ -86,14 +86,14 @@
                             </div>
 
                             <!-- Price -->
-                            <div class="col-sm-6 mb-3">
+                            {{-- <div class="col-sm-6 mb-3">
                                 <div class="form-group">
                                     <label for="price">Price</label>
                                     <input type="text" id="price" class="form-control" name="price"
                                         value="{{ old('price', $menu->price ?? '') }}" placeholder="Price...">
                                     <span data-field="price" class="invalid-feedback"></span>
                                 </div>
-                            </div>
+                            </div> --}}
 
                             <!-- Image -->
                             <div class="col-sm-6 mb-3">

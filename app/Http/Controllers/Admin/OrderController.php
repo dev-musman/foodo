@@ -28,11 +28,14 @@ class OrderController extends Controller
                 $dataTable->addColumn('type', function ($plan) {
                     return $plan->menuType->type ?? '';
                 })->addColumn('name', function ($plan) {
-                    return $plan->customer ? '<a href="' . route('admin.customers.edit', $plan->customer->id) . '">' . $plan->customer->name . '</a>' : '';
-                    })->addColumn('details', function ($plan) {
+                    return $plan->customer ?  $plan->customer->name : '';
+                })
+                    ->addColumn('email', function ($plan) {
+                        return $plan->customer ?  $plan->customer->email : '';
+                    })
+                    ->addColumn('details', function ($plan) {
                         return count($plan->menuItems) > 0  ? '<a href="' . route('admin.orders.details', $plan->id) . '">Custom Menu</a>'  : '';
                     });
-
             });
         }
 
@@ -55,11 +58,12 @@ class OrderController extends Controller
             $order->status = $data['status'];
             $order->save();
 
-            $user = $order->user;
+            $customer = $order->customer;
 
-            if ($user && $data['status'] != "pending") {
+            if ($customer && $data['status'] != "pending") {
                 try {
-                    Mail::to($user->email)->send(new OrderStatusUpdated($order, 'user'));
+                    Mail::to($customer->email)->send(new OrderStatusUpdated($order, 'user'));
+                    Log::info('Order Update Email send: ' . $customer->email);
                 } catch (\Exception $e) {
                     Log::error('Email failed to send: ' . $e->getMessage());
                     return response()->json(['error' => 'Email could not be sent'], 500);

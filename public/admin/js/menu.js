@@ -9,13 +9,19 @@ $(function () {
         autoWidth: false,
         order: [[0, "asc"]],
         columns: [
-            { data: "id", name: "id", searchable: false },
+            {
+                data: null,
+                name: "id",
+                searchable: false,
+                render: function (data, type, row, meta) {
+                    return meta.row + 1 + meta.settings._iDisplayStart;
+                },
+            },
             { data: "name", name: "name" },
             { data: "type", name: "type" },
             { data: "week", name: "week" },
             { data: "day", name: "day" },
             { data: "image", name: "image" },
-            { data: "price", name: "price" },
             {
                 data: "action",
                 name: "action",
@@ -91,7 +97,14 @@ $(function () {
         autoWidth: false,
         order: [[0, "asc"]],
         columns: [
-            { data: "id", name: "id" },
+            {
+                data: null,
+                name: "id",
+                searchable: false,
+                render: function (data, type, row, meta) {
+                    return meta.row + 1 + meta.settings._iDisplayStart;
+                },
+            },
             { data: "type", name: "type" },
             {
                 data: "action",

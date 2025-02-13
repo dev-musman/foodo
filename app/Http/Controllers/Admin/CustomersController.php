@@ -58,7 +58,10 @@ class CustomersController extends Controller
         return view('admin.customers.edit', compact('customer'));
     }
 
-    public function show() {}
+    public function show(string $id)
+    {
+        //
+    }
 
     public function update(UpdateCustomerRequest $request, Customer $customer)
     {

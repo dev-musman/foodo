@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Site;
 
 use App\Models\Page;
 use App\Http\Controllers\Controller;
+use App\Models\Blog;
 
 class PagesController extends Controller
 {
@@ -22,7 +23,11 @@ class PagesController extends Controller
         if (!view()->exists($viewPath)) {
             abort(404);
         }
+         $blogs = '';
+        if ($slug == '/') {
+            $blogs = Blog::latest()->get();
+        }
 
-        return view($viewPath, compact('page'));
+        return view($viewPath, compact('page', 'blogs'));
     }
 }

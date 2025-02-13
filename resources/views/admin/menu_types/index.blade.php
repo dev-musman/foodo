@@ -18,7 +18,9 @@
                             {{ request('trash') ? 'View All' : 'View Trash' }}
                         </a>
                     @endcan
+                    @can('add page')
                     <a href="{{ route('admin.menu-types.create') }}" class="btn btn-primary">Add New</a>
+                @endcan
                 </div>
             </div>
             <div class="card card-solid">

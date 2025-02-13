@@ -73,8 +73,9 @@ class Menu extends Model
 
     public function deleteImage()
     {
-        if ($this->image && file_exists(public_path($this->image))) {
-            unlink(public_path($this->image));
+        $relativePath = str_replace(url('/') . '/', '', $this->image);
+        if ($this->image && file_exists($relativePath)) {
+            unlink($relativePath);
         }
     }
 
@@ -102,7 +103,7 @@ class Menu extends Model
     protected function image(): Attribute
     {
         return Attribute::make(
-            get: fn(string $value = null) => $value === null ? asset('public/assets/images/default-foodo.png') : $value,
+            get: fn(string $value = null) => $value === null ? asset('public/assets/images/default-foodo.webp') : $value,
         );
     }
 }

@@ -19,7 +19,7 @@
                 </div>
                 <div class="col-lg-6">
                     <div class=" d-none d-md-block" data-sal="zoom-in" data-sal-delay="600" data-sal-duration="600">
-                        <img src="{{ asset('public/assets/images/banner/home-banner-image.png') }}" alt="banner-right-image">
+                        <img src="{{ asset('public/assets/images/banner/home-banner-image.webp') }}" alt="banner-right-image">
                     </div>
                 </div>
                 <div class="col-lg-12">
@@ -27,19 +27,19 @@
                         <ul class="d-flex list-unstyled m-0">
                             <li>
                                 <a target="_blank" href="https://www.facebook.com/foodoofficial1/">
-                                    <img src="{{ asset('public/assets/images/social/facebook.png') }}" alt="img"
+                                    <img src="{{ asset('public/assets/images/social/facebook.webp') }}" alt="img"
                                         class="w-75 me-3">
                                 </a>
                             </li>
                             <li>
                                 <a target="_blank" href="https://www.instagram.com/foodoofficial1/">
-                                    <img src="{{ asset('public/assets/images/social/instagram.png') }}" alt="img"
+                                    <img src="{{ asset('public/assets/images/social/instagram.webp') }}" alt="img"
                                         class="w-75 me-3">
                                 </a>
                             </li>
                             <li class="d-none">
                                 <a target="_blank" href="https://www.linkedin.com/company/foodoofficial1/">
-                                    <img src="{{ asset('public/assets/images/social/x.png') }}" alt="img" class="w-75 me-3">
+                                    <img src="{{ asset('public/assets/images/social/x.webp') }}" alt="img" class="w-75 me-3">
                                 </a>
                             </li>
                         </ul>
@@ -58,7 +58,7 @@
                     <div class="row shadow">
                         <div class="col-md-6 p-0">
                             <div class="home-about-one-img">
-                                <img src="{{ asset('public/assets/images/about/home-about-image.png') }}" alt="about">
+                                <img src="{{ asset('public/assets/images/about/home-about-image.webp') }}" alt="about">
                             </div>
                         </div>
                         <div class="col-md-6 home-about-heading pb-3">
@@ -94,7 +94,7 @@
                 <div class="col-md-5">
                     <div class="">
                         <h5 class="p-title d-flex">
-                            <img src="{{ asset('public/assets/images/home/qoute.png') }}" alt="qoute" class="me-3 qoute-img">
+                            <img src="{{ asset('public/assets/images/home/qoute.webp') }}" alt="qoute" class="me-3 qoute-img">
                             The Food You Eat Should Be Perfect,
                             And This Is Our Responsibility
                         </h5>
@@ -133,14 +133,14 @@
                 </div>
                 <div class="col-md-5">
                     <div class="home-about-one-img">
-                        <img src="{{ asset('public/assets/images/about/home-about-img-2.png') }}" alt="about">
+                        <img src="{{ asset('public/assets/images/about/home-about-img-2.webp') }}" alt="about">
                     </div>
                 </div>
             </div>
         </div>
     </div>
 
-    <div class="rts-about-area rts-section-gapTopBotm" style="background-color: #F9F7F2;" id="services">
+ <div class="rts-about-area rts-section-gapTopBotm" style="background-color: #F9F7F2;" id="services">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-5">
@@ -162,43 +162,46 @@
                     </div>
                 </div>
                 <div class="col-md-10 mt-5">
-                    <div class="row">
-                        <div class="col-md-4">
-                            <div class="our-services-grid-border mb-3">
+                    <!--desktop screen-->
+                    <div class="row d-none d-md-flex">
+                        <!-- Corporate Events Section -->
+                        <div class="col-12 col-sm-6 col-md-4 mb-3">
+                            <div class="our-services-grid-border">
                                 <img src="{{ asset('public/assets/images/about/Corporate-Events-Icon.svg') }}"
-                                    alt="placeholder img" />
+                                    alt="Corporate Events" />
                                 <h6 class="py-4 m-0">Corporate Events</h6>
                                 <p class="desc mb-4">Elevate your corporate event with our premium catering services and
-                                    customized menu.
-                                </p>
+                                    customized menu.</p>
                                 <a href="#" class="service-link">
                                     Read more
                                     <i class="fa-solid fa-arrow-right"></i>
                                 </a>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="our-services-grid-border mb-3">
+
+                        <!-- Wedding Events Section -->
+                        <div class="col-12 col-sm-6 col-md-4 mb-3">
+                            <div class="our-services-grid-border">
                                 <img src="{{ asset('public/assets/images/about/Wedding-Events-Icon.svg') }}"
-                                    alt="placeholder img" />
+                                    alt="Wedding Events" />
                                 <h6 class="py-4 m-0">Wedding Events</h6>
                                 <p class="desc mb-4">Uplift your event with an exquisite menu that lightens the space and
-                                    boosts your
-                                    energy.</p>
+                                    boosts your energy.</p>
                                 <a href="#" class="service-link">
                                     Read more
                                     <i class="fa-solid fa-arrow-right"></i>
                                 </a>
                             </div>
                         </div>
-                        <div class="col-md-4">
-                            <div class="our-services-grid-border mb-3">
+
+                        <!-- Social Events Section -->
+                        <div class="col-12 col-sm-6 col-md-4 mb-3">
+                            <div class="our-services-grid-border">
                                 <img src="{{ asset('public/assets/images/about/Social-Events-Icon.svg') }}"
-                                    alt="placeholder img" />
+                                    alt="Social Events" />
                                 <h6 class="py-4 m-0">Social Events</h6>
                                 <p class="desc mb-4">Grace your social events with our personalized services that fulfill
-                                    all the
-                                    requirements.</p>
+                                    all the requirements.</p>
                                 <a href="#" class="service-link">
                                     Read more
                                     <i class="fa-solid fa-arrow-right"></i>
@@ -206,7 +209,58 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Mobile screen carousel -->
+                    <div id="mobile-carousel" class="carousel slide d-md-none" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <!-- Corporate Events Slide -->
+                            <div class="carousel-item active">
+                                <div class="our-services-grid-border">
+                                    <img src="{{ asset('public/assets/images/about/Corporate-Events-Icon.svg') }}"
+                                        alt="Corporate Events" />
+                                    <h6 class="py-4 m-0">Corporate Events</h6>
+                                    <p class="desc mb-4">Elevate your corporate event with our premium catering services
+                                        and customized menu.</p>
+                                    <a href="#" class="service-link">
+                                        Read more
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- Wedding Events Slide -->
+                            <div class="carousel-item">
+                                <div class="our-services-grid-border">
+                                    <img src="{{ asset('public/assets/images/about/Wedding-Events-Icon.svg') }}"
+                                        alt="Wedding Events" />
+                                    <h6 class="py-4 m-0">Wedding Events</h6>
+                                    <p class="desc mb-4">Uplift your event with an exquisite menu that lightens the space
+                                        and boosts your energy.</p>
+                                    <a href="#" class="service-link">
+                                        Read more
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <!-- Social Events Slide -->
+                            <div class="carousel-item">
+                                <div class="our-services-grid-border">
+                                    <img src="{{ asset('public/assets/images/about/Social-Events-Icon.svg') }}"
+                                        alt="Social Events" />
+                                    <h6 class="py-4 m-0">Social Events</h6>
+                                    <p class="desc mb-4">Grace your social events with our personalized services that
+                                        fulfill all the requirements.</p>
+                                    <a href="#" class="service-link">
+                                        Read more
+                                        <i class="fa-solid fa-arrow-right"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
                 </div>
+
             </div>
         </div>
     </div>
@@ -228,13 +282,14 @@
                             @php
                                 $menuTypes = \App\Models\MenuType::all();
                             @endphp
+
                             @foreach ($menuTypes as $key => $menuType)
                                 <li class="nav-item" role="presentation">
                                     <button class="nav-link menu-links py-4 {{ $key == 0 ? 'active' : '' }}"
                                         id="Menu{{ $menuType->id }}-tab" data-bs-toggle="tab"
                                         data-bs-target="#Menu{{ $menuType->id }}" type="button" role="tab"
                                         aria-controls="Menu{{ $menuType->id }}" aria-selected="true"
-                                        data-type="{{ $menuType->days_count }}">
+                                        data-type="{{ $menuType->is_custom }}">
                                         {{ $menuType->type }}
                                     </button>
                                 </li>
@@ -252,7 +307,7 @@
                                                 'week',
                                             );
                                         @endphp
-                                        @if ($menuType->days_count != 'custom')
+                                        @if ($menuType->is_custom != 1)
                                             <div class="col-md-11 menuTab{{ $menuType->id }} menuTab">
                                                 <div class="owl{{ $key }} owl-carousel">
                                                     @foreach ($menuType->menus->groupBy('week') as $weekNum => $week)
@@ -260,8 +315,15 @@
                                                             <div class="col-md-12">
                                                                 <h5 class="text-site-danger">Week {{ $weekNum }}</h5>
                                                             </div>
-                                                            @foreach ($week as $menu)
-                                                                <div class="col-md-6 my-4">
+                                                           @php
+                                                                $dayOrder = ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+                                                                $sortedWeek = $week->sortBy(function ($menu) use ($dayOrder) {
+                                                                return array_search($menu->day, $dayOrder);
+                                                                });
+                                                                @endphp
+
+                                                                @foreach ($sortedWeek as $menu)
+                                                        <div class="col-md-6 my-4">
                                                                     <div class="d-flex">
                                                                         <div class="col-3 px-2">
                                                                             <img src="{{ asset($menu->image) }}"
@@ -329,11 +391,11 @@
                                                                 <select name="type"
                                                                     class="site-select custom-meal-selector"
                                                                     id="type">
-                                                                    @foreach ($menuTypes as $key => $menuType)
-                                                                        @if ($menuType->days_count != 'custom')
-                                                                            <option value="{{ $menuType->id }}"
-                                                                                data-count="{{ $menuType->days_count }}">
-                                                                                {{ $menuType->type }}</option>
+                                                                    @foreach ($menuTypes as $key => $menuTypeItem)
+                                                                        @if ($menuTypeItem->is_custom != 1)
+                                                                            <option value="{{ $menuTypeItem->id }}"
+                                                                                data-count="{{ $menuTypeItem->days_count }}">
+                                                                                {{ $menuTypeItem->type }}</option>
                                                                         @endif
                                                                     @endforeach
                                                                 </select>
@@ -378,7 +440,7 @@
     </div>
     <!-- end menu area start -->
 
-    <div class="rts-about-area rts-section-gapTopBotm">
+<div class="rts-about-area rts-section-gapTopBotm">
         <div class="container">
             <div class="row">
                 <div class="col-md-12 text-center">
@@ -390,7 +452,8 @@
                 </div>
             </div>
             <br />
-            <div class="row pt-5 text-center">
+
+            <div class="row pt-5 text-center d-none d-md-flex">
                 <div class="col-md-4 mb-4">
                     <div>
                         <span class="bg-danger rounded-circle p-4 text-white fw-bold">
@@ -400,11 +463,10 @@
                             <img src="{{ asset('public/assets/images/working-process/appointment.svg') }}"
                                 alt="placeholder img" />
                         </div>
-
                     </div>
                     <h6 class="my-3">Make an Appointment</h6>
-                    <p class="desc px-5 fs-5">Book an appointment with us to get the best-cooked and flavorous meals for
-                        your teams</p>
+                    <p class="desc px-5 fs-5">Book an appointment with us to get the best-cooked and flavorous meals
+                        for your teams</p>
                 </div>
                 <div class="col-md-4 mb-4">
                     <div>
@@ -412,14 +474,13 @@
                             02
                         </span>
                         <div class="border border-2 border-danger p-5 position-relative m-auto working-process">
-                            <img src="{{ asset('public/assets/images/working-process/food.svg') }}" alt="placeholder img" />
+                            <img src="{{ asset('public/assets/images/working-process/food.svg') }}"
+                                alt="placeholder img" />
                         </div>
                     </div>
-
                     <h6 class="my-3">Pay Your Catering</h6>
                     <p class="desc px-5 fs-5">We offer secure payment options for corporate lunch catering services to
-                        ensure a hassle-free process.
-                    </p>
+                        ensure a hassle-free process.</p>
                 </div>
                 <div class="col-md-4 mb-4">
                     <div>
@@ -427,15 +488,61 @@
                             03
                         </span>
                         <div class="border border-2 border-danger p-5 position-relative m-auto working-process">
-                            <img src="{{ asset('public/assets/images/working-process/catering.svg') }}" alt="placeholder img" />
+                            <img src="{{ asset('public/assets/images/working-process/catering.svg') }}"
+                                alt="placeholder img" />
                         </div>
                     </div>
-
                     <h6 class="my-3">Enjoy Your Food</h6>
-                    <p class="desc px-5 fs-5">Order the flavorful food and enjoy it with your team and boost the energy of
-                        your workspace.</p>
+                    <p class="desc px-5 fs-5">Order the flavorful food and enjoy it with your team and boost the energy
+                        of your workspace.</p>
                 </div>
             </div>
+
+            <!-- Mobile Carousel View -->
+            <div id="workingProcessCarousel" class="carousel slide d-md-none" data-bs-ride="carousel">
+                <div class="carousel-inner">
+                    <!-- Step 1 -->
+                    <div class="carousel-item active">
+                        <div class="text-center">
+                            <span class="bg-danger rounded-circle p-4 text-white fw-bold">01</span>
+                            <div class="border border-2 border-danger p-5 position-relative m-auto working-process">
+                                <img src="{{ asset('public/assets/images/working-process/appointment.svg') }}"
+                                    alt="placeholder img" />
+                            </div>
+                            <h6 class="my-3">Make an Appointment</h6>
+                            <p class="desc px-5 fs-5">Book an appointment with us to get the best-cooked and flavorous
+                                meals for your teams</p>
+                        </div>
+                    </div>
+                    <!-- Step 2 -->
+                    <div class="carousel-item">
+                        <div class="text-center">
+                            <span class="bg-danger rounded-circle p-4 text-white fw-bold">02</span>
+                            <div class="border border-2 border-danger p-5 position-relative m-auto working-process">
+                                <img src="{{ asset('public/assets/images/working-process/food.svg') }}"
+                                    alt="placeholder img" />
+                            </div>
+                            <h6 class="my-3">Pay Your Catering</h6>
+                            <p class="desc px-5 fs-5">We offer secure payment options for corporate lunch catering
+                                services to ensure a hassle-free process.</p>
+                        </div>
+                    </div>
+                    <!-- Step 3 -->
+                    <div class="carousel-item">
+                        <div class="text-center">
+                            <span class="bg-danger rounded-circle p-4 text-white fw-bold">03</span>
+                            <div class="border border-2 border-danger p-5 position-relative m-auto working-process">
+                                <img src="{{ asset('public/assets/images/working-process/catering.svg') }}"
+                                    alt="placeholder img" />
+                            </div>
+                            <h6 class="my-3">Enjoy Your Food</h6>
+                            <p class="desc px-5 fs-5">Order the flavorful food and enjoy it with your team and boost
+                                the energy of your workspace.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
         </div>
     </div>
 
@@ -546,74 +653,105 @@
     </div>
     <!-- testimonial area end -->
 
-    <div class="rts-about-area rts-section-gapTopBotm" style="background-color: #F9F7F2;" id="pricing">
+ <div class="rts-about-area rts-section-gapTopBotm" style="background-color: #F9F7F2;" id="pricing">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-12 text-center mb-4">
                     <span class="w-foods-itilanio">Our Packages</span>
                     <h4 class="p-title">Choose Your Menu – Choices for <br>Foodies Like You!</h4>
                 </div>
-                <div class="col-md-3">
-                    <div class="px-3 py-5 border border-danger text-center d-grid my-3"
-                        style="border-radius:15px;    min-height: 25em;">
-                        <div>
-                            <h5 class="fs-4 mb-3">Hostel Menu</h5>
-                            <h4 class="text-danger fs-3 mb-0">30 Individuals</h4>
-                            <p class="m-0 fw-light fs-6 border-bottom">Minimum</p>
+                    <!-- Desktop Grid View -->
+                    <div class="row pt-5 text-center d-none d-md-flex justify-content-center">
+                        <div class="col-md-3">
+                            <div class="px-3 py-5 border border-danger text-center d-grid my-3"
+                                style="border-radius:15px; min-height: 25em;">
+                                <div>
+                                    <h5 class="fs-4 mb-3">Hostel Menu</h5>
+                                    <h4 class="text-danger fs-3 mb-0">30 Individuals</h4>
+                                    <p class="m-0 fw-light fs-6 border-bottom">Minimum</p>
+                                </div>
+                                <ul class="list-unstyled">
+                                    <li><i class="fa fa-check me-4 text-danger"></i>7 days a week</li>
+                                    <li><i class="fa fa-check me-4 text-danger"></i>Selected items only</li>
+                                    <li><i class="fa fa-check me-4 text-danger"></i>Free Delivery</li>
+                                </ul>
+                                <a href="tel:+92 337 0777019"
+                                    class="btn btn-site-primary w-auto text-uppercase px-5 py-3 fs-5 booking-btn">Book Now</a>
+                            </div>
                         </div>
-                        <ul class="list-unstyled">
-                            <li>
-                                <i class="fa fa-check me-4 text-danger"></i>
-                                7 days a week
-                            </li>
-                            <li>
-                                <i class="fa fa-check me-4 text-danger"></i>
-                                Selected items only
-                            </li>
-                            <li>
-                                <i class="fa fa-check me-4 text-danger"></i>
-                                Free Delivery
-                            </li>
-                        </ul>
-                        <a href="tel:+92 337 0777019"
-                            class="btn btn-site-primary w-auto text-uppercase px-5 py-3 fs-5 booking-btn">Book Now</a>
-                    </div>
-                </div>
-                <div class="col-md-3">
-                    <div class="px-3 py-5 border border-danger text-center d-grid my-3"
-                        style="border-radius:15px;    min-height: 25em;">
-                        <div>
-                            <h5 class="fs-4 mb-3">Corporate Menu</h5>
-                            <h4 class="text-danger fs-3 mb-0">30 Individuals</h4>
-                            <p class="m-0 fw-light fs-6 border-bottom">Minimum</p>
+                        <div class="col-md-3">
+                            <div class="px-3 py-5 border border-danger text-center d-grid my-3"
+                                style="border-radius:15px; min-height: 25em;">
+                                <div>
+                                    <h5 class="fs-4 mb-3">Corporate Menu</h5>
+                                    <h4 class="text-danger fs-3 mb-0">30 Individuals</h4>
+                                    <p class="m-0 fw-light fs-6 border-bottom">Minimum</p>
+                                </div>
+                                <ul class="list-unstyled">
+                                    <li><i class="fa fa-check me-4 text-danger"></i>5 days a week</li>
+                                    <li><i class="fa fa-check me-4 text-danger"></i>8 Main Course Menu</li>
+                                    <li><i class="fa fa-check me-4 text-danger"></i>All Menu Items</li>
+                                    <li><i class="fa fa-check me-4 text-danger"></i>Free Delivery</li>
+                                </ul>
+                                <a href="tel:+92 337 0777019"
+                                    class="btn btn-site-primary w-auto text-uppercase px-5 py-3 fs-5 booking-btn">Book Now</a>
+                            </div>
                         </div>
-                        <ul class="list-unstyled">
-                            <li>
-                                <i class="fa fa-check me-4 text-danger"></i>
-                                5 days a week
-                            </li>
-                            <li>
-                                <i class="fa fa-check me-4 text-danger"></i>
-                                8 Main Course Menu
-                            </li>
-                            <li>
-                                <i class="fa fa-check me-4 text-danger"></i>
-                                All Menu Items
-                            </li>
-                            <li>
-                                <i class="fa fa-check me-4 text-danger"></i>
-                                Free Delivery
-                            </li>
-                        </ul>
-                        <a href="tel:+92 337 0777019"
-                            class="btn btn-site-primary w-auto text-uppercase px-5 py-3 fs-5 booking-btn">Book Now</a>
                     </div>
-                </div>
+
+                    <!-- Mobile Carousel View -->
+                    <div id="menuCarousel" class="carousel slide d-md-none" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <!-- Hostel Menu -->
+                            <div class="carousel-item active">
+                                <div class="text-center">
+                                    <div class="px-3 py-5 border border-danger text-center d-grid my-3"
+                                        style="border-radius:15px; min-height: 25em;">
+                                        <div>
+                                            <h5 class="fs-4 mb-3">Hostel Menu</h5>
+                                            <h4 class="text-danger fs-3 mb-0">30 Individuals</h4>
+                                            <p class="m-0 fw-light fs-6 border-bottom">Minimum</p>
+                                        </div>
+                                        <ul class="list-unstyled">
+                                            <li><i class="fa fa-check me-4 text-danger"></i>7 days a week</li>
+                                            <li><i class="fa fa-check me-4 text-danger"></i>Selected items only</li>
+                                            <li><i class="fa fa-check me-4 text-danger"></i>Free Delivery</li>
+                                        </ul>
+                                        <a href="tel:+92 337 0777019"
+                                            class="btn btn-site-primary w-auto text-uppercase px-5 py-3 fs-5 booking-btn">Book Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Corporate Menu -->
+                            <div class="carousel-item">
+                                <div class="text-center">
+                                    <div class="px-3 py-5 border border-danger text-center d-grid my-3"
+                                        style="border-radius:15px; min-height: 25em;">
+                                        <div>
+                                            <h5 class="fs-4 mb-3">Corporate Menu</h5>
+                                            <h4 class="text-danger fs-3 mb-0">30 Individuals</h4>
+                                            <p class="m-0 fw-light fs-6 border-bottom">Minimum</p>
+                                        </div>
+                                        <ul class="list-unstyled">
+                                            <li><i class="fa fa-check me-4 text-danger"></i>5 days a week</li>
+                                            <li><i class="fa fa-check me-4 text-danger"></i>8 Main Course Menu</li>
+                                            <li><i class="fa fa-check me-4 text-danger"></i>All Menu Items</li>
+                                            <li><i class="fa fa-check me-4 text-danger"></i>Free Delivery</li>
+                                        </ul>
+                                        <a href="tel:+92 337 0777019"
+                                            class="btn btn-site-primary w-auto text-uppercase px-5 py-3 fs-5 booking-btn">Book Now</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+
             </div>
         </div>
     </div>
 
-    <div class="rts-about-area rts-section-gapTopBotm bg-white booking-bg">
+    <div class="rts-about-area rts-section-gapTopBotm bg-white booking-bg mb-lg-0 mb-5">
         <div class="container">
             <div class="row justify-content-center">
                 <div class="col-md-7 text-center">
@@ -628,7 +766,7 @@
         </div>
     </div>
     <!-- blog area start -->
-    <div class="rts-blog-area rts-blog-area-2 rts-section-gap" id="blog">
+    <div class="rts-blog-area rts-blog-area-2 rts-section-gap d-lg-block d-none" id="blog">
         <div class="container">
             <div class="row text-center justify-content-center">
                 <div class="col-md-12 text-center mb-5">
@@ -637,48 +775,29 @@
                     <p class="desc">Learn more about our processes and stay informed about the latest <br> trends in the
                         food industry.</p>
                 </div>
-                <div class="col-md-5">
-                    <div class="blog-wrapper d-flex">
-                        <div class="image-part col-5">
-                            <img src="{{ asset('public/assets/images/blog/blog-03.jpg') }}" alt="blog"
-                                class="h-100 w-100 obj-fit-contain">
-                        </div>
-                        <div class="content text-start p-3 col-7">
-                            <h5 class="fs-3 mb-md-4 m-0">Catering Ideas for Baby
-                                Showers In 2021</h5>
-                            <p class="m-0 fs-5"><i class="fa fa-clock pe-2"></i>October 18, 2021</p>
-                            <p class="py-md-3 m-0 fs-5">Lorem ipsum dolor sit amet,
-                                consectetur adipiscing elit, sed do
-                                eiusmod tempor incididunt ut
-                                labore et dolore magna</p>
-                            <a href="#" class="service-link text-danger text-uppercase fs-5 fw-bold">
-                                Read more
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-5">
-                    <div class="blog-wrapper d-flex">
-                        <div class="image-part col-5">
-                            <img src="{{ asset('public/assets/images/blog/blog-03.jpg') }}" alt="blog"
-                                class="h-100 w-100 obj-fit-contain">
-                        </div>
-                        <div class="content text-start p-3 col-7">
-                            <h5 class="fs-3 mb-md-4 m-0">Catering Ideas for Baby
-                                Showers In 2021</h5>
-                            <p class="m-0 fs-5"><i class="fa fa-clock pe-2"></i>October 18, 2021</p>
-                            <p class="py-3 m-0 fs-5">Lorem ipsum dolor sit amet,
-                                consectetur adipiscing elit, sed do
-                                eiusmod tempor incididunt ut
-                                labore et dolore magna</p>
-                            <a href="#" class="service-link text-danger text-uppercase fs-5 fw-bold">
-                                Read more
-                                <i class="fa-solid fa-arrow-right"></i>
-                            </a>
+                @forelse ($blogs->take(4) as $item)
+                    <div class="col-md-5 mb-5">
+                        <div class="blog-wrapper d-flex">
+                            <div class="image-part col-5">
+                                <img src="{{ asset($item->image) }}" alt="blog" class="h-100 w-100 obj-fit-contain">
+                            </div>
+                            <div class="content text-start p-3 col-7">
+                                <h5 class="fs-3 mb-md-4 m-0">{{ $item->title }}</h5>
+                                <p class="m-0 fs-5"><i
+                                        class="fa fa-clock pe-2"></i>{{ $item->created_at->format('d M Y') }}</p>
+                                <p class="py-md-3 m-0 fs-5"> {!! strip_tags(mb_substr($item->content, 0, 100)) . '...' !!}</p>
+                                <a href="{{ route('blogs.index', $item->slug) }}"
+                                    class="service-link text-danger text-uppercase fs-5 fw-bold">
+                                    Read more
+                                    <i class="fa-solid fa-arrow-right"></i>
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
+
+                @empty
+                @endforelse
+
             </div>
         </div>
     </div>

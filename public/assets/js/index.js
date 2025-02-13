@@ -292,6 +292,21 @@ function validate() {
                 valid = false;
             }
         }
+
+        if ($(this).attr("name") === "email" && valid) {
+            var emailCondition = /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test($(this).val());
+            if (!emailCondition) {
+                $(this)
+                    .closest(div)
+                    .append(
+                        '<div class="text-danger fs-6" data-field=' +
+                            name +
+                            ">Please enter a valid email address</div>"
+                    );
+                valid = false;
+            }
+        }
+
     });
     if (!valid) {
         var input = $(".alert-danger:first").attr("data-field");
@@ -338,22 +353,16 @@ let currentIndex = 0;
 let currentDayIndex = 0;
 let removedDaysArray;
 function createCustomItemBox() {
-    const weekDays = ["Mon", "Tue", "Wed", "Thu", "Fri"];
+       const generateDays = (count) => {
+        const allDays = ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"];
+        return allDays.slice(0, count);
+    };
+
     let count = parseInt(
         $(".custom-meal-selector").find(":selected").data("count")
     );
-    let days;
 
-    switch (count) {
-        case 7:
-            days = [...weekDays, "Sat", "Sun"];
-            break;
-        case 6:
-            days = [...weekDays, "Sat"];
-            break;
-        default:
-            days = [...weekDays];
-    }
+    let days = generateDays(count);
 
     for (var i = 1; i < 5; i++) {
         let html = ``;
@@ -672,7 +681,7 @@ $(document).on("click", "#confirmOrder", async function () {
 
         var activeType = $(".menu-links.active").attr("data-type");
 
-        if (activeType == "custom") {
+        if (activeType == 1) {
             data["menuItems"] = getCustomMealData();
         }
 
@@ -688,7 +697,7 @@ $(document).on("click", "#confirmOrder", async function () {
                     orderPlaced();
                     setTimeout(() => {
                         window.location.reload();
-                    }, 1000);
+                    }, 3000);
                 }
             },
             error: function (xhr) {
@@ -708,7 +717,11 @@ $(document).on("click", "#confirmOrder", async function () {
     }
 });
 
+
+
 $(document).on("click", ".back-btn", function () {
+    $(".menuFrom").empty();
+    $(".orderDetail").empty();
     $(".menuFrom").addClass("d-none");
     $(".menuTab").removeClass("d-none");
 });

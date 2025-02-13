@@ -37,7 +37,8 @@ class MenuTypesController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'type' => 'required|string|max:255',
+            'type' => 'required|unique:menu_types,type',
+            'days_count' => 'required|integer|max:7'
         ]);
 
         $data = $request->all();
@@ -76,7 +77,10 @@ class MenuTypesController extends Controller
         ]);
     }
 
-    public function show() {}
+    public function show(string $id)
+    {
+        //
+    }
 
     public function edit(MenuType $menuType)
     {
@@ -87,6 +91,7 @@ class MenuTypesController extends Controller
     {
         $request->validate([
             'type' => 'required|unique:menu_types,type,' . $menuType->id,
+             'days_count' => 'required|integer|max:7'
         ]);
 
         $data = $request->all();

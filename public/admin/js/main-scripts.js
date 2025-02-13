@@ -49,7 +49,7 @@ $(document).on("click", ".removeItem", async function (e) {
     e.preventDefault();
 
     let $button = $(this);
-    let $table = $button.closest("table");
+    let $form = $button.closest("form");
 
     let result = await swal.fire({
         title: "Are you sure?",
@@ -63,26 +63,20 @@ $(document).on("click", ".removeItem", async function (e) {
 
     if (result.value) {
         let response = await $.ajax({
-            url: $button.attr("href"),
-            type: "DELETE",
-            data: { _token: $('meta[name="csrf-token"]').attr("content") },
+            url: $form.attr("action"),
+            type: "POST",
+            data: $form.serialize(),
             success: function (response) {
                 if (response.success) {
-                    $table
-                        .DataTable()
-                        .row($button.closest("tr"))
-                        .remove()
-                        .draw(false);
+                    $form.closest("tr").remove();
                     swal.fire("Deleted!", "", "success");
                 } else {
                     swal.fire("Error", response.message, "error");
                 }
             },
             error: function () {
-                swal.fire("Error!", "", "error").then(() => {
-                    window.location.reload();
-                });
-            },
+                swal.fire("Error!", "There was an issue deleting this item.", "error");
+            }
         });
     }
 });

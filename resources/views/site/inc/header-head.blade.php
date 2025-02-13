@@ -12,11 +12,9 @@
         <title>@yield('title') | {{ $title ?? 'Foodo' }}</title>
     @endif
 
+    <meta name="google-site-verification" content="H6ST_t7ToqfYJo7j1-MQ-WUhh_8UhR0mjlGP7r-dDnE">
     <meta name="description" content="@yield('seo_description', isset($page->meta_description) ? $page->meta_description : '')">
-
-    @if (isset($page->meta_keywords))
-        <meta name="keywords" content="{{ $page->meta_keywords }}">
-    @endif
+    <meta name="keywords" content="@yield('meta_keywords', isset($page->meta_keywords) ? $page->meta_keywords : '')">
 
     <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/fontawesome-5.css') }}">
     <link rel="stylesheet" href="{{ asset('public/assets/css/plugins/swiper.css') }}">
@@ -30,6 +28,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
     <link
         href="https://fonts.googleapis.com/css2?family=Italianno&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap"
         rel="stylesheet">
@@ -41,4 +40,17 @@
         href="{{ asset('public/assets/css/plugins/owlcarousel/dist/assets/owl.theme.default.min.css') }}">
     <!-- sweet alert -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert2/11.15.3/sweetalert2.min.css" />
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-S10HP3W1E3"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+
+        function gtag() {
+            dataLayer.push(arguments);
+        }
+        gtag('js', new Date());
+
+        gtag('config', 'G-S10HP3W1E3');
+    </script>
 </head>

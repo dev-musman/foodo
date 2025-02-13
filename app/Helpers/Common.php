@@ -35,7 +35,16 @@ class Common
         return $changes;
     }
 
+    public static function uploadMedia($file, $path)
+    {
+        $fileName = time() . '.' . $file->extension();
+        $file->move(public_path($path), $fileName);
+        return asset("public/" . $path . '/' . $fileName);
+    }
 }
+
+
+
 
 
 // function get_changes($old, $new)

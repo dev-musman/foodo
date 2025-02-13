@@ -8,7 +8,7 @@
                         <div class="single-footer-wized-one logo-area" data-sal="slide-up" data-sal-delay="150"
                             data-sal-duration="800">
                             <a href="{{ url("/") }}" class="logo">
-                                <img src="{{ asset('public/assets/images/footer/logo.png') }}"
+                                <img src="{{ asset('public/assets/images/footer/logo.webp') }}"
                                     alt="logo">
                             </a>
                             <p class="disc-f fs-4">
@@ -71,10 +71,7 @@
                                     <div class="rts-social-wrapper m-0 d-flex align-items-center text-white fs-4">
                                         Payment:
                                         <ul class="ps-4">
-                                            <li><i class="fa-brands fa-cc-visa"></i></li>
-                                            <li><i class="fa-brands fa-cc-paypal"></i></li>
-                                            <li><i class="fa-brands fa-cc-mastercard"></i></li>
-                                            <li><i class="fa-brands fa-cc-stripe"></i></li>
+                                            <li><img src="{{ asset("public/assets/images/footer/cash.svg") }}" alt="cash icon" class="mb-2" width="18" height="16" class="mb-2"></li>
                                         </ul>
                                     </div>
                                 </div>
@@ -92,7 +89,7 @@
                 <div class="row">
                     <div class="col-lg-12">
                         <div class="copyright-footer-one">
-                            <p class="disc fs-5">Copyright © 2024. All Right Reserved.
+                            <p class="disc fs-5">Copyright © {{ date('Y') }}. All Right Reserved.
                             </p>
                         </div>
                     </div>
@@ -130,3 +127,39 @@
 
     <div id="anywhere-home" class="">
     </div>
+
+<!-- Cookie Consent Banner -->
+<div id="cookie-banner" class="position-fixed bottom-0 bg-dark text-white p-3 rounded shadow-lg d-none mb-sm-4 ms-sm-5">
+    <div>
+        <strong>We use cookies!</strong> <p class="p-title text-white">This website uses cookies to ensure you get the best experience.</p>
+    </div>
+    <div class="mt-2 text-end">
+        <button class="btn btn-success btn-sm me-2" onclick="acceptCookies()">Accept</button>
+        <button class="btn btn-danger btn-sm" onclick="rejectCookies()">Reject</button>
+    </div>
+</div>
+
+
+@push('scripts')
+<script>
+    function acceptCookies() {
+        document.cookie = "user_cookie_consent=accepted; path=/; max-age=" + (60*60*24*365); // 1 year
+        hideBanner();
+    }
+
+    function rejectCookies() {
+        document.cookie = "user_cookie_consent=rejected; path=/; max-age=" + (60*60*24*365); // 1 year
+        hideBanner();
+    }
+
+    function hideBanner() {
+        document.getElementById('cookie-banner').classList.add('d-none');
+    }
+
+    // Show banner if user hasn't made a choice
+    if (!document.cookie.includes("user_cookie_consent=accepted") && !document.cookie.includes("user_cookie_consent=rejected")) {
+        document.getElementById('cookie-banner').classList.remove('d-none');
+    }
+</script>
+@endpush
+

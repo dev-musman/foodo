@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('menu_type_id')->constrained('menu_types')->onDelete('cascade');
             $table->unsignedTinyInteger('week');
             $table->enum('day', ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun']);
-            $table->decimal('price', 8, 2);
+            $table->decimal('price', 8, 2)->nullable();
             $table->text('description')->nullable();
             $table->string('image')->nullable();
             $table->timestamps();

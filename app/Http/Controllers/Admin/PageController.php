@@ -35,7 +35,10 @@ class PageController extends Controller
         return view('admin.pages.edit');
     }
 
-    public function show() {}
+ public function show(string $id)
+    {
+        //
+    }
 
     public function store(StorePageRequest $request)
     {
@@ -51,11 +54,13 @@ class PageController extends Controller
             'redirect' => route('admin.pages.index')
         ]);
     }
+    
 
     public function edit(Page $page)
     {
         return view('admin.pages.edit', compact('page'));
     }
+
 
     public function update(UpdatePageRequest $request, Page $page)
     {

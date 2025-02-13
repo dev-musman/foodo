@@ -17,8 +17,11 @@
                 <a href="{{ route('admin.pages.index') }}" class="btn btn-primary">Back</a>
             </div>
 
-            <form class="standart-form" action="{{ $action }}" method="{{ $method }}">
+            <form class="standart-form" action="{{ $action }}" method="POST">
                 @csrf
+                   @if (isset($page))
+                    @method('PUT')
+                @endif
                 <div class="card card-solid">
                     <div class="card-body">
                         <div class="row">
@@ -35,8 +38,7 @@
                                 <div class="form-group">
                                     <label>URL</label>
                                     <input type="text" class="form-control" name="slug"
-                                        value="{{ $page->slug ?? '' }}" placeholder="URL..."
-                                        >
+                                        value="{{ $page->slug ?? '' }}" placeholder="URL...">
                                     <span data-field="slug" class="invalid-feedback"></span>
                                 </div>
                             </div>
@@ -80,14 +82,14 @@
                                 </div>
                             </div>
 
-                                <div class="col-sm-6 mb-4">
-                                    <div class="form-group">
-                                        <label>View Path</label>
-                                        <input type="text" class="form-control" name="view_path"
-                                            value="{{ $page->view_path ?? '' }}" placeholder="View Path...">
-                                        <span data-field="view_path" class="invalid-feedback"></span>
-                                    </div>
+                            <div class="col-sm-6 mb-4">
+                                <div class="form-group">
+                                    <label>View Path</label>
+                                    <input type="text" class="form-control" name="view_path"
+                                        value="{{ $page->view_path ?? '' }}" placeholder="View Path...">
+                                    <span data-field="view_path" class="invalid-feedback"></span>
                                 </div>
+                            </div>
                             @endrole
 
                         </div>

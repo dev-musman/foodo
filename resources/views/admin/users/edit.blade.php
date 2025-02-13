@@ -17,8 +17,11 @@
                 <a href="{{ route('admin.users.index') }}" class="btn btn-primary">Back</a>
             </div>
 
-            <form class="standart-form" action="{{ $action }}" method="{{ $method }}">
+             <form class="standart-form" action="{{ $action }}" method="POST">
                 @csrf
+                @if (isset($user))
+                    @method('PUT')
+                @endif
                 <div class="card card-solid">
                     <div class="card-body">
                         <div class="row">

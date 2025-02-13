@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
+use App\Models\Customer;
 use App\Models\History;
+use App\Models\MealPlan;
+use App\Models\MenuType;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -11,7 +14,12 @@ class DashboardController extends Controller
 {
     public function index()
     {
-        return view('admin.dashboard');
+        $recentOrders = MealPlan::with('menuType')->latest()->take(4)->get();
+        $totalOrders = MealPlan::count();
+        $totalCustomers = Customer::count();
+        $totalMenuTypes = MenuType::count();
+
+        return view('admin.dashboard', compact('recentOrders', 'totalOrders', 'totalCustomers', 'totalMenuTypes'));
     }
 
     public function history(Request $request)
@@ -41,5 +49,4 @@ class DashboardController extends Controller
 
         return view('admin.history', compact('history', 'users'));
     }
-
 }

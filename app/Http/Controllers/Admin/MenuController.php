@@ -48,8 +48,7 @@ class MenuController extends Controller
         return $this->eidtOrCreate();
     }
 
-    public function show() {}
-
+ 
     public function store(StoreMenuRequest $request)
     {
         $data = $request->validated();
@@ -152,9 +151,9 @@ class MenuController extends Controller
             ->pluck('day')
             ->toArray();
 
-        $allDays = $menuType->days_count == 5
-            ? ['Mon', 'Tue', 'Wed', 'Thu', 'Fri']
-            : ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'];
+       $allDays = collect(['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'])
+        ->take($menuType->days_count)
+        ->toArray();
 
         $availableDays = array_diff($allDays, $selectedDays);
 

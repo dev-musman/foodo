@@ -9,7 +9,14 @@ $(function () {
         autoWidth: false,
         order: [[0, "asc"]],
         columns: [
-            { data: "id", name: "id" },
+            {
+                data: null,
+                name: "id",
+                searchable: false,
+                render: function (data, type, row, meta) {
+                    return meta.row + 1 + meta.settings._iDisplayStart;
+                },
+            },
             { data: "name", name: "name" },
             { data: "email", name: "email" },
             { data: "roles", name: "roles" },
@@ -20,5 +27,5 @@ $(function () {
         serverSide: true,
         ajax: "",
     });
-        
+
 });

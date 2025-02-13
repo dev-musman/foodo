@@ -26,8 +26,7 @@ class UpdateMenuRequest extends FormRequest
             'menu_type_id' => 'required|exists:menu_types,id',
             'day' => 'required|string',
             'week' => 'required|string',
-            'price' => 'required|numeric|min:0',
-            'image' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+            'image' => 'nullable|image|mimes:webp|max:2048',
             'description' => 'required|string',
         ];
     }

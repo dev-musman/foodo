@@ -6,7 +6,7 @@
                     <div class="header-main-wrapper">
                         <div class="logo-area">
                             <a href="{{ url('/') }}" class="logo">
-                                <img src="{{ asset('public/assets/images/logo/foodo-logo.png') }}" alt="image-logo">
+                                <img src="{{ asset('public/assets/images/logo/foodo-logo.webp') }}" alt="image-logo">
                             </a>
                         </div>
                         <div class="rts-header-mid">
@@ -17,9 +17,9 @@
                                         <li><a class="nav-link" href="{{ url('/') }}">Home</a></li>
                                         <li><a class="nav-link" href="#about">About Us</a></li>
                                         <li><a class="nav-link" href="#services">Services</a></li>
-                                        <li><a class="nav-link" href="#menu-section">Menu</a></li>
+                                        <li><a class="nav-link" href="{{ url('/') }}#menu-section">Menu</a></li>
                                         <li><a class="nav-link" href="#pricing">Pricing</a></li>
-                                        <li><a class="nav-link" href="#blog">Blog</a></li>
+                                        <li><a class="nav-link" href="{{ route("blogs.index") }}">Blog</a></li>
                                         <li><a class="nav-link" href="tel:+92 337 0777019">Contact</a></li>
                                     </ul>
                                 </nav>

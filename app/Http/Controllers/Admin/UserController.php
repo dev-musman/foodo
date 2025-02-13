@@ -61,7 +61,10 @@ class UserController extends Controller
         return view('admin.users.edit', compact('roles'));
     }
 
-    public function show() {}
+    public function show(string $id)
+    {
+        //
+    }
 
     public function store(CreateUserRequest $request)
     {

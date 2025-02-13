@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\BlogsController;
+use App\Http\Controllers\Admin\CategoriesController;
+use App\Http\Controllers\Admin\CkeditorController;
 use App\Http\Controllers\Admin\CustomersController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\PageController;
@@ -10,10 +13,15 @@ use App\Http\Controllers\Admin\MenuTypesController;
 use App\Http\Controllers\Admin\OrderController;
 use App\Http\Controllers\Admin\PermissionController;
 use App\Http\Controllers\Admin\RoleController;
+use App\Http\Controllers\Admin\UrlRedirectController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Site\BlogsController as SiteBlogsController;
 use App\Http\Controllers\Site\OrderController as SiteOrderController;
 
+
 // admin
+
+
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/history', [DashboardController::class, 'history'])->name('history');
@@ -26,6 +34,12 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
     Route::resource('permissions', PermissionController::class);
     Route::resource('users', UserController::class);
     Route::resource('customers', CustomersController::class);
+    Route::resource('categories', CategoriesController::class);
+    Route::resource('blogs', BlogsController::class);
+    Route::resource('url-redirects', UrlRedirectController::class);
+
+    // ckeditor upload image
+    Route::any('ckeditor-uploads', [CkeditorController::class, 'upload'])->name('ckeditor.upload');
 
     Route::get('/orders', [OrderController::class, 'index'])->name('orders');
     Route::get('/update-order-status/{id}', [OrderController::class, 'updateOrderStatus'])->name('orders.status');
@@ -35,9 +49,21 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
     Route::delete('/order/delete/{mealPlan}', [OrderController::class, 'destroy'])->name('orders.destroy');
 });
 
-require __DIR__ . '/auth.php';
 // client
+Route::group(['middleware' => ['url.redirect']], function () {
 Route::post('/create-order', [SiteOrderController::class, 'createOrder'])->name('orders.menu');
+Route::get('/order-details/{mealPlan}', [SiteOrderController::class, 'orderDetails'])->name('order.details');
+
+Route::get('blogs/{slug?}', [SiteBlogsController::class , 'getIndex'])->name('blogs.index');
+Route::get('/search', [SiteBlogsController::class, 'searchBlog'])->name('search');
+Route::get('{category}/blogs', [SiteBlogsController::class , 'getByCategory'])->name('blogs.category');
 Route::get('/{slug?}', [PagesController::class, 'show'])->where('slug', '^(?!(admin|logout|login)(\/|$))[A-Za-z0-9+-_\/]+')->name('page');
+});
+
+require __DIR__ . '/auth.php';
+
+
+
+
 
 

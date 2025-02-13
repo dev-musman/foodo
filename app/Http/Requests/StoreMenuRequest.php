@@ -26,8 +26,7 @@ class StoreMenuRequest extends FormRequest
             'menu_type_id' => 'required',
             'day' => 'required|string',
             'week' => 'required|string',
-            'price' => 'required|numeric|min:0',
-            'image' => 'image|mimes:jpeg,png,jpg,gif,webp|max:2048',
+            'image' => 'image|mimes:webp|max:2048',
             'description' => 'required|string',
         ];
     }

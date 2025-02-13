@@ -1,8 +1,8 @@
 <nav id="sidebar" class="sidebar js-sidebar">
     <div class="sidebar-content js-simplebar">
         <a class="sidebar-brand" href="{{ url('/') }}">
-                <img src="{{ asset('public/assets/images/footer/logo.png') }}"
-                    alt="logo" width="130" height="40" class="align-middle">
+            <img src="{{ asset('public/assets/images/footer/logo.webp') }}" alt="logo" width="130" height="40"
+                class="align-middle">
         </a>
 
         <ul class="sidebar-nav">
@@ -93,7 +93,33 @@
             @can('orders')
                 <li class="sidebar-item {{ Route::is('admin.orders') ? 'active' : '' }}">
                     <a class="sidebar-link" href="{{ route('admin.orders') }}">
-                        <i class="align-middle" data-feather="shopping-cart"></i> <span class="align-middle">Orders</span>
+                        <i data-feather="shopping-cart"></i> <span class="align-middle">Orders</span>
+                    </a>
+                </li>
+            @endcan
+
+            @can('Categories')
+                <li class="sidebar-item {{ Route::is('admin.categories.index') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="{{ route('admin.categories.index') }}">
+                        <i data-feather="tag"></i> <span
+                            class="align-middle">Categories</span>
+                    </a>
+                </li>
+            @endcan
+
+            @can('blogs')
+                <li class="sidebar-item {{ Route::is('admin.blogs.index') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="{{ route('admin.blogs.index') }}">
+                        <i data-feather="book-open"></i> <span class="align-middle">Blogs</span>
+                    </a>
+                </li>
+            @endcan
+
+            @can('UrlRedirect')
+                <li class="sidebar-item {{ Route::is('admin.url-redirects.index') ? 'active' : '' }}">
+                    <a class="sidebar-link" href="{{ route('admin.url-redirects.index') }}">
+                        <i data-feather="link"></i> <span
+                            class="align-middle">Url Redirects</span>
                     </a>
                 </li>
             @endcan
@@ -105,7 +131,6 @@
                     </a>
                 </li>
             @endcan
-
         </ul>
 
     </div>
