@@ -2,8 +2,8 @@
 
 namespace App\Http\Controllers\Admin;
 
-use App\Helpers\LogActivity;
 use App\Http\Controllers\Controller;
+use App\Helpers\LogActivity;
 use App\Models\Customer;
 use App\Models\History;
 use App\Models\MealPlan;

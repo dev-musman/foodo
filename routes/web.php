@@ -63,4 +63,8 @@ Route::group(['middleware' => ['url.redirect']], function () {
     Route::get('/{slug?}', [PagesController::class, 'show'])->where('slug', '^(?!(admin|logout|login)(\/|$))[A-Za-z0-9+-_\/]+')->name('page');
 });
 
+Route::get('/sitemap.xml', function () {
+    return response()->file(base_path('sitemap.xml'));
+});
+
 require __DIR__ . '/auth.php';
