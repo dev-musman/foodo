@@ -25,6 +25,9 @@ use App\Http\Controllers\Site\OrderController as SiteOrderController;
 Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], function () {
     Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
     Route::get('/history', [DashboardController::class, 'history'])->name('history');
+    Route::get('/sitemap', [DashboardController::class, 'sitemap'])->name('sitemap');
+    Route::post('/upload/sitemap', [DashboardController::class, 'uploadSitemap'])->name('sitemap.upload');
+
     Route::get('/menus/available-days', [MenuController::class, 'getAvailableDays'])->name('menus.available-days');
 
     Route::resource('pages', PageController::class);
@@ -51,19 +54,13 @@ Route::group(['prefix' => 'admin', 'as' => 'admin.', 'middleware' => 'auth'], fu
 
 // client
 Route::group(['middleware' => ['url.redirect']], function () {
-Route::post('/create-order', [SiteOrderController::class, 'createOrder'])->name('orders.menu');
-Route::get('/order-details/{mealPlan}', [SiteOrderController::class, 'orderDetails'])->name('order.details');
+    Route::post('/create-order', [SiteOrderController::class, 'createOrder'])->name('orders.menu');
+    Route::get('/order-details/{mealPlan}', [SiteOrderController::class, 'orderDetails'])->name('order.details');
 
-Route::get('blogs/{slug?}', [SiteBlogsController::class , 'getIndex'])->name('blogs.index');
-Route::get('/search', [SiteBlogsController::class, 'searchBlog'])->name('search');
-Route::get('{category}/blogs', [SiteBlogsController::class , 'getByCategory'])->name('blogs.category');
-Route::get('/{slug?}', [PagesController::class, 'show'])->where('slug', '^(?!(admin|logout|login)(\/|$))[A-Za-z0-9+-_\/]+')->name('page');
+    Route::get('blogs/{slug?}', [SiteBlogsController::class, 'getIndex'])->name('blogs.index');
+    Route::get('/search', [SiteBlogsController::class, 'searchBlog'])->name('search');
+    Route::get('{category}/blogs', [SiteBlogsController::class, 'getByCategory'])->name('blogs.category');
+    Route::get('/{slug?}', [PagesController::class, 'show'])->where('slug', '^(?!(admin|logout|login)(\/|$))[A-Za-z0-9+-_\/]+')->name('page');
 });
 
 require __DIR__ . '/auth.php';
-
-
-
-
-
-

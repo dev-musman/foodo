@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Helpers\LogActivity;
 use App\Http\Controllers\Controller;
 use App\Models\Customer;
 use App\Models\History;
@@ -48,5 +49,30 @@ class DashboardController extends Controller
         $users = User::select('id', 'name')->get();
 
         return view('admin.history', compact('history', 'users'));
+    }
+
+    public function sitemap(Request $request)
+    {
+        return view("admin.sitemap.upload");
+    }
+
+    public function uploadSitemap(Request $request)
+    {
+        $request->validate([
+            'sitemap_file' => 'required|file|mimes:xml|max:2048',
+        ]);
+
+        $file = $request->file('sitemap_file');
+        $upload = $file->move(base_path(), 'sitemap.xml');
+
+        if ($upload) {
+            LogActivity::addToLog('sitemap', 'insert', "", null);
+        }
+
+        return response()->json([
+            'success' => true,
+            'message' => 'Sitemap uploaded successfully!',
+            'redirect' => route('admin.sitemap')
+        ]);
     }
 }
